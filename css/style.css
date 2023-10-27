@@ -1,0 +1,79 @@
+html, body{
+    margin: 0px;
+    padding: 0px;
+}
+
+.main-content{
+    height: 1000px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.navigation-container{
+    height: 1000px;
+    width: 100%;
+    background-color: blue;
+    display: grid;
+}
+
+.avatar-container{
+    height: 150px;
+    width: 100%;
+    background-color: red;
+    display: grid;
+}
+
+.avatar{
+    background-image: url("../img/storybg.webp");
+    background-size: cover;
+    height: 100px;
+    width: 100px;
+    justify-self: center;
+    align-self: center;
+}
+
+.avatar-container p{
+    font-size: 20px;
+    font-weight: bold;
+    justify-self: center;
+    align-self: center;
+}
+
+.navigation-content{
+    height: 1000px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.navigation{
+    align-self: flex-start;
+    list-style: none;
+    font-size: 20px;
+    color: white;
+    background-color: blue;
+    height: 1000px;
+}
+
+.navigation div{
+    height: 90px;
+    width: 100%;
+}
+
+.navigation div:hover{
+    background-color: yellow;
+    display: grid;
+}
+
+.navigation li{
+    justify-self: flex-start;
+    transform: translateX(30px);
+}
+
+.navigation-detail{
+    width: 100%;
+    height: 1000px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+}
