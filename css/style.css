@@ -58,6 +58,7 @@ html, body{
 .navigation div{
     height: 90px;
     width: 100%;
+    display: grid;
 }
 
 .navigation div:hover{
@@ -65,9 +66,11 @@ html, body{
     display: grid;
 }
 
-.navigation li{
+.navigation div li{
+    word-break: break-all;
     justify-self: flex-start;
-    transform: translateX(30px);
+    align-self: center;
+    margin: 0px 30px 0px 10px;
 }
 
 .navigation-detail{
@@ -77,3 +80,11 @@ html, body{
     display: flex;
     flex-direction: column;
 }
+
+.navigation-detail li{
+    word-break: break-all;
+    justify-self: flex-start;
+    align-self: center;
+    margin: 0px 30px 0px 10px;
+}
+
