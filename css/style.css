@@ -3,108 +3,172 @@ html, body{
     padding: 0px;
 }
 
-.main-content{
-    height: 1000px;
+header{
     width: 100%;
     display: grid;
-    grid-template-columns: 20% 65% 25%;
+    justify-items: center;
 }
 
-.navigation-container{
-    height: 1000px;
-    width: 100%;
-    background-color: blue;
-    display: grid;
+header h1{
+    height: 20px;
+    font-size: 40px;
 }
 
-.avatar-container{
-    height: 150px;
-    width: 100%;
-    background-color: red;
-    display: grid;
-}
-
-.avatar{
-    background-image: url("../img/storybg.webp");
-    background-size: cover;
-    height: 100px;
-    width: 100px;
-    justify-self: center;
-    align-self: center;
-}
-
-.avatar-container p{
+header p{
     font-size: 20px;
-    font-weight: bold;
-    justify-self: center;
-    align-self: center;
 }
 
-.navigation-content{
-    height: 850px;
+.option{
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.option a{
+    text-decoration: none;
+    color: rgb(115, 101, 101);
+}
+
+.option a:hover{
+    text-decoration: underline;
+}
+
+.header-contact-us{
+    height: 100px;
+    transform: translateY(20px);
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.img-element{
+    height: 40px;
+    width: 40px;
+    border: none;
+    position: absolute;
+}
+
+.header-contact-us a{ 
     display: grid;
-    grid-template-columns: 50% 50%;
+    height: 35px;
+    width: 35px;
+    position: relative;
+}
+
+.header-contact-us a:hover::before{
+    transform: scale(1);
+}
+
+.header-contact-us a::before{
+    content: "";
+    height: 45px;
+    width: 45px;
+    border-radius: 50px; 
+    transform: scale(0);
+    transition: transform 0.5s;
+    transition-timing-function: ease;
+    transition-property: transform;
+    transition-duration: 0.3s;
+}
+
+.fb::before{
+    background-color: #0866FF;
+}
+
+.fb-img{
+    background-image: url("https://static.vecteezy.com/system/resources/previews/018/930/702/original/facebook-logo-facebook-icon-transparent-free-png.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+}
+
+.fb-img.img-element{
+    transform: translate(3px, 3px);
+}
+
+.fb-img:hover{
+    background-image: url("../img/fbwhite.png");
+}
+
+
+.twitter-img{
+    background-image: url("https://www.iconpacks.net/icons/2/free-twitter-logo-icon-2429-thumb.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+}
+
+.twitter-img.img-element{
+    background-size: 60%;
+    background-position: center;
+    transform: translate(3px, 3px);
+}
+
+.twitter::before{
+    background-color: #50ABF1;
+}
+
+.twitter-img:hover{
+    background-image: url("../img/twitterwhite.png");
 }
 
 .navigation{
-    align-self: flex-start;
     list-style: none;
-    font-size: 20px;
-    color: white;
-    background-color: blue;
-    height: 100%;
-}
-
-.navigation div{
-    height: 90px;
-    width: 100%;
-    display: grid;
-}
-
-.navigation div:hover{
-    background-color: yellow;
-    display: grid;
-}
-
-.navigation div li{
-    word-break: break-all;
-    justify-self: flex-start;
-    align-self: center;
-    margin: 0px 30px 0px 10px;
-}
-
-.navigation-detail{
-    width: 100%;
-    height: 100%;
-    background-color: aqua;
     display: flex;
-    flex-direction: column;
-}
-
-.navigation-detail li{
-    word-break: break-all;
+    gap: 50px;
     justify-self: flex-start;
-    align-self: center;
-    margin: 0px 30px 0px 10px;
+    margin-left: 200px;
 }
 
-.product-container{
-    width: 100%;
-    height: 1000px;
-    background-color: lightgreen;
+.navigation li{
+    height: 70px;
+    width: 200px;
+    background-color: white;
 }
 
-.aside{
-    width: 100%;
+.navigation li a{
+    width: inherit;
+    text-decoration: none;
+    overflow: hidden;
+    color: rgb(72, 70, 70);
+    position: relative;
     display: grid;
+    align-items: center;
+    justify-items: center;
 }
 
-.aside div{
-    width: 10%;
-    height: 500px;
-    background-image: url("../img/storybg.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    top: 20%
+.navigation li a::before{
+    content: "";
+    background-color: rgb(250, 202, 44);
+    width: 100%;
+    height: 70px;
+    transform: translateX(200px);
+    transition: transform 1s;
+    transition-property: transform;
+    transition-timing-function: ease;
+}
+
+.navigation li a:hover::before{
+    transform: translateX(0px);
+    opacity: 1;
+}
+
+.navigation li a::after{
+    content: "";
+    width: 10px;
+    height: 70px;
+    background-color: green;
+    position: absolute;
+    transform: translateX(-150px);
+    transition: transform 1s;
+    transition-property: transform;
+    transition-timing-function: ease;
+}
+
+.navigation li a:hover::after{
+    transform: translateX(-95px);
+}
+
+.navigation p{
+    position: absolute;
 }
