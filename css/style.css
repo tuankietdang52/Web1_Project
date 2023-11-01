@@ -112,21 +112,28 @@ header p{
     background-image: url("../img/twitterwhite.png");
 }
 
+.navi-cart{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
 .navigation{
     list-style: none;
     display: flex;
     gap: 50px;
+    width: 100%;
     justify-self: flex-start;
-    margin-left: 200px;
+    margin-left: 5%;
 }
 
 .navigation li{
     height: 70px;
-    width: 200px;
+    flex-basis: 200px;
     background-color: white;
 }
 
-.navigation li a{
+.navigation a{
     width: inherit;
     text-decoration: none;
     overflow: hidden;
@@ -135,9 +142,14 @@ header p{
     display: grid;
     align-items: center;
     justify-items: center;
+    transition: color 1s;
 }
 
-.navigation li a::before{
+.navigation li a:hover{
+    color: white;
+}
+
+.navigation a::before{
     content: "";
     background-color: rgb(250, 202, 44);
     width: 100%;
@@ -148,27 +160,99 @@ header p{
     transition-timing-function: ease;
 }
 
-.navigation li a:hover::before{
+.navigation a:hover::before{
     transform: translateX(0px);
     opacity: 1;
 }
 
-.navigation li a::after{
+.navigation a::after{
     content: "";
     width: 10px;
     height: 70px;
     background-color: green;
     position: absolute;
-    transform: translateX(-150px);
+    transform: translateX(-110px);
     transition: transform 1s;
     transition-property: transform;
     transition-timing-function: ease;
 }
 
-.navigation li a:hover::after{
+.navigation a:hover::after{
     transform: translateX(-95px);
 }
 
 .navigation p{
     position: absolute;
+}
+
+.cart-container{
+    width: 100%;
+    height: 70px;
+    display: grid;
+    align-items: center;
+}
+
+.cart-icon{
+    background-image: url("https://cdn-icons-png.flaticon.com/512/565/565375.png");
+    background-size: cover;
+    border: none;
+    background-color: transparent;
+    width: 35px;
+    height: 35px;
+    margin-left: 60px;
+}
+
+.titleandsearch{
+    height: 400px;
+    width: 100%;
+    background-image: url("https://img.freepik.com/premium-photo/mobile-phones-store-generative-ai_220873-21824.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    justify-items: center;
+}
+
+.titleandsearch p{
+    align-self: flex-end;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    height: 50px;
+}
+
+.searchbox-container{
+    align-self: flex-start;
+    width: 50%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.searchbox-container input{
+    height: 45px;
+    width: 50%;
+    border-radius: 10px;
+    opacity: 0.8;
+}
+
+.searchbox-container button{
+    height: 51px;
+    width: 51px;
+    background-color: rgb(250, 202, 44);
+    border-radius: 10px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    transition: background-color 0.5s;
+}
+
+.searchbox-container button:hover{
+    background-color: rgb(32, 203, 32);
+}
+
+.searchbox-container img{
+    height: 30px;
+    width: 30px;
 }
