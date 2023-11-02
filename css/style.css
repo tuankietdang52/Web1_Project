@@ -171,14 +171,14 @@ header p{
     height: 70px;
     background-color: green;
     position: absolute;
-    transform: translateX(-110px);
-    transition: transform 1s;
-    transition-property: transform;
+    left: -20px;
+    transition: left 1s;
+    transition-property: left;
     transition-timing-function: ease;
 }
 
 .navigation a:hover::after{
-    transform: translateX(-95px);
+    left: 0;
 }
 
 .navigation p{
