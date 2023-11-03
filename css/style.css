@@ -35,7 +35,7 @@ header p{
 
 .header-contact-us{
     height: 100px;
-    transform: translateY(20px);
+    transform: translate(-8px ,20px);
     display: flex;
     gap: 20px;
     list-style: none;
