@@ -55,7 +55,7 @@ function addheader(){
         </div>
     </section>
     <section class="header-content">
-        <img src="../img/storybg.webp" alt="logo">
+        <a class="homelogo" href="#"><img src="../img/logo.jpg" alt="logo"></a>
         <div class="searchbar-container">
             <div class="searchbox">
                 <input type="text" class="searchbar" placeholder="Search">
