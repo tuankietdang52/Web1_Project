@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="home.css">
-    <script src="../js/code.js"></script>
-
+    
     <!-- Thu vien js va waypoints -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-
+    
+    <!-- Thu vien slideshow -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    
     <!-- Thu vien icon -->
     <script src="https://kit.fontawesome.com/843b9d6718.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <script src="../js/code.js"></script>
+    <script src="../js/home.js"></script>
 
     <title>Mobile</title>
 </head>
@@ -21,8 +28,24 @@
     <script>
         addheader();
     </script>
-    <section class="slideshow">
-        
-    </section>
+
+    <div class="slideshow-container">
+        <section class="slideshow">
+            <div class="owl-carousel">
+                <div class="item item0"></div>
+                <div class="item item1"></div>
+                <div class="item item2"></div>
+                <div class="item item3"></div>
+                <div class="item item4"></div>
+                <div class="item item5"></div>
+                <div class="item item6"></div>
+                <div class="item item7"></div>
+                <div class="item item8"></div>
+            </div>
+        </section>
+    </div>
+    <div class="main-content">
+        <img class="sale-ads" src="../img/banners/blackFriday.gif" alt="blackFriday">
+    </div>
 </body>
 </html>
