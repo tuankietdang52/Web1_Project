@@ -137,9 +137,14 @@ header{
     display: flex;
     gap: 10px;
     text-decoration: none;
-    color: black;
+    color: gray;
     transition: tranform 0.4s;
     transition-property: transform;
+}
+
+.navigation a:hover{
+    color: black;
+    transform: translateY(-3px);
 }
 
 .navigation a::after{
@@ -169,11 +174,6 @@ header{
     align-self: center;
     font: initial;
     font-size: 1vw;
-}
-
-
-.navigation a:hover{
-    transform: translateY(-3px);
 }
 
 .navigation a:hover::before{
