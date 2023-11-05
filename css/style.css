@@ -1,3 +1,5 @@
+/* CSS cho thuoc tinh chung */
+
 html, body{
     margin: 0;
     padding: 0;
@@ -12,12 +14,16 @@ html, body{
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Header */
+
 header{
     display: grid;
     height: 200px;
     width: 100%;
     justify-items: center;
 }
+
+    /* Navigation */
 
 .navigation-sect{
     height: 50px;
@@ -204,6 +210,8 @@ header{
     content: "\f095";
 }
 
+    /* Logo, Searchbar, Login and Cart */
+
 .header-content{
     width: 70%;
     height: 150px;
@@ -360,4 +368,3 @@ header{
     transition: color 0.4s;
     transition-property: color;
 }
-

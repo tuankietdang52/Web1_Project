@@ -1,3 +1,8 @@
+// JS cho thuoc tinh chung //
+
+
+// Header //
+
 function addheader(){
     document.write(`<header>
     <section class="navigation-sect">

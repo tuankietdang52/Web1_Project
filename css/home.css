@@ -1,3 +1,5 @@
+/* Slideshow */
+
 .slideshow-container{
     display: flex; 
     flex-wrap: wrap; 
@@ -17,6 +19,8 @@
     height: 300px;
 }
 
+    /* For owl library */
+    
 .owl-dots {
     transform: translateY(20px);
     display: flex;
@@ -38,6 +42,8 @@
 .owl-dot.active{
     background: gray !important;
 }
+
+    /* Slideshow Img */
 
 .item0{
     background-image: url("../img/banners/banner0.gif");
@@ -74,6 +80,8 @@
 .item8{
     background-image: url("../img/banners/banner8.png");
 }
+
+/* Main content */
 
 .main-content{
     display: grid;
