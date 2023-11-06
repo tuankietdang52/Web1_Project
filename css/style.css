@@ -17,9 +17,8 @@ html, body{
 /* Header */
 
 header{
-    display: grid;
-    height: 200px;
     width: 100%;
+    display: grid;
     justify-items: center;
 }
 
@@ -213,8 +212,13 @@ header{
     /* Logo, Searchbar, Login and Cart */
 
 .header-content{
-    width: 70%;
+    width: 71%;
     height: 150px;
+    position: sticky;
+    top: 0;
+    left: 15%;
+    background-color: white;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
 }

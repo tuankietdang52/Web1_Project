@@ -59,7 +59,8 @@ function addheader(){
             </div>
         </div>
     </section>
-    <section class="header-content">
+</header>
+<section class="header-content">
         <a class="homelogo" href="#"><img src="../img/logo.jpg" alt="logo"></a>
         <div class="searchbar-container">
             <div class="searchbox">
@@ -84,6 +85,5 @@ function addheader(){
                 Giỏ hàng
             </a>
         </div>
-    </section>
-</header>`);
+    </section>`);
 }
