@@ -223,9 +223,7 @@
     background-color: gray;
 }
 
-.filter.price{
-    width: 17%;;
-    height: 50px;
+.filter{
     font-size: calc(1vw + 1px);
     font-weight: bold;
     text-align: center;
@@ -233,40 +231,24 @@
     color: white;
     align-self: flex-end;
     position: relative;
+}
+
+.filter.price{
+    width: 17%;;
+    height: 50px;
 }
 
 .filter.sale{
     width: 22%;;
     height: 50px;
-    font-size: calc(1vw + 1px);
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    align-self: flex-end;
-    position: relative;
 }
 
 .filter.star{
     width: 22%;;
     height: 50px;
-    font-size: calc(1vw + 1px);
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    align-self: flex-end;
-    position: relative;
 }
 
 .filter.sort{
     width: 17%;;
     height: 50px;
-    font-size: calc(1vw + 1px);
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    align-self: flex-end;
-    position: relative;
 }
