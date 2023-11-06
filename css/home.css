@@ -10,16 +10,7 @@
     width: 70%;
 }
 
-.item{
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    max-width: 850px;
-    width: 100%;
-    height: 300px;
-}
-
-    /* For owl library */
+/* For owl library */
     
 .owl-dots {
     transform: translateY(20px);
@@ -44,6 +35,15 @@
 }
 
     /* Slideshow Img */
+
+.item{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    max-width: 850px;
+    width: 100%;
+    height: 300px;
+}
 
 .item0{
     background-image: url("../img/banners/banner0.gif");
