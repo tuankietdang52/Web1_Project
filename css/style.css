@@ -212,12 +212,13 @@ header{
     /* Logo, Searchbar, Login and Cart */
 
 .header-content{
-    width: 71%;
+    width: 70.05%;
     height: 150px;
     position: sticky;
     top: 0;
     left: 15%;
     background-color: white;
+    border-bottom: 2px solid gray ;
     z-index: 10;
     display: flex;
     justify-content: space-between;
