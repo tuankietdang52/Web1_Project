@@ -76,11 +76,11 @@ function addheader(){
         </div>
         <div class="user-option">
             <a href="#" class="user-option-container">
-                <i class="icon account"></i>
+                <i class="icon account user-option-effect"></i>
                 Tài khoản
             </a>
             <a href="#" class="user-option-container">
-                <i class="icon cart"></i>
+                <i class="icon cart user-option-effect"></i>
                 Giỏ hàng
             </a>
         </div>

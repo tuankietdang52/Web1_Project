@@ -334,36 +334,35 @@ header{
     color: white;
 }
 
-.account{
+.user-option-effect{
     padding: 10px 12px;
     border: 2px solid black;
     border-radius: 50%;
-    display: grid;
     transition: background-color 0.4s;
     transition-property: background-color;
 }
 
-.icon.account::before{
+.user-option-effect::before{
+    transition: color 0.4s;
+    transition-property: color;
+}
+
+.account{
+    display: grid;
+}
+
+.icon.account.user-option-effect::before{
     align-self: center;
     justify-self: center;
     content: "\f007";
-    transition: color 0.4s;
-    transition-property: color;
 }
 
 .cart{
-    padding: 10px 12px;
-    border: 2px solid black;
-    border-radius: 50%;
     display: grid;
-    transition: background-color 0.4s;
-    transition-property: background-color;
 }
 
-.icon.cart::before{
+.icon.cart.user-option-effect::before{
     align-self: center;
     justify-self: center;
     content: "\f07a";
-    transition: color 0.4s;
-    transition-property: color;
 }
