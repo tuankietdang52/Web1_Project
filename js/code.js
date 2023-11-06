@@ -61,29 +61,29 @@ function addheader(){
     </section>
 </header>
 <section class="header-content">
-        <a class="homelogo" href="#"><img src="../img/logo.jpg" alt="logo"></a>
-        <div class="searchbar-container">
-            <div class="searchbox">
-                <input type="text" class="searchbar" placeholder="Search">
-                <button class="searchbutton">Tìm kiếm</button>
-            </div>
-            <div class="keyword">Từ khóa: 
-                <li><a href="#">Samsung</a></li>
-                <li><a href="#">Iphone</a></li>
-                <li><a href="#">Huawei</a></li>
-                <li><a href="#">Oppo</a></li>
-                <li><a href="#">Mobi</a></li>
-            </div>
+    <a class="homelogo" href="#"><img src="../img/logo.jpg" alt="logo"></a>
+    <div class="searchbar-container">
+        <div class="searchbox">
+            <input type="text" class="searchbar" placeholder="Search">
+            <button class="searchbutton">Tìm kiếm</button>
         </div>
-        <div class="user-option">
-            <a href="#" class="user-option-container">
-                <i class="icon account user-option-effect"></i>
-                Tài khoản
-            </a>
-            <a href="#" class="user-option-container">
-                <i class="icon cart user-option-effect"></i>
-                Giỏ hàng
-            </a>
+        <div class="keyword">Từ khóa: 
+            <li><a href="#">Samsung</a></li>
+            <li><a href="#">Iphone</a></li>
+            <li><a href="#">Huawei</a></li>
+            <li><a href="#">Oppo</a></li>
+            <li><a href="#">Xiaomi</a></li>
         </div>
-    </section>`);
+    </div>
+    <div class="user-option">
+        <a href="#" class="user-option-container">
+            <i class="icon account user-option-effect"></i>
+            Tài khoản
+        </a>
+        <a href="#" class="user-option-container">
+            <i class="icon cart user-option-effect"></i>
+            Giỏ hàng
+        </a>
+    </div>
+</section>`);
 }
