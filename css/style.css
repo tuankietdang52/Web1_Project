@@ -300,7 +300,7 @@ header{
     display: flex;
     gap: 2%;
     font-weight: bold;
-    font-size: 1vw;
+    font-size: 0.9vw;
 }
 
 .keyword a{

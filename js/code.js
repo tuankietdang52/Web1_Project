@@ -67,7 +67,7 @@ function addheader(){
             <input type="text" class="searchbar" placeholder="Search">
             <button class="searchbutton">Tìm kiếm</button>
         </div>
-        <div class="keyword">Từ khóa: 
+        <div class="keyword"><span>Từ khóa:</span> 
             <li><a href="#">Samsung</a></li>
             <li><a href="#">Iphone</a></li>
             <li><a href="#">Huawei</a></li>
