@@ -1,35 +1,89 @@
-let product_click = false;
-let donhang_click = false;
+// JS cho thuoc tinh chung //
 
-function default_click_navi(){
-    let navigate_detail = document.getElementsByClassName("navigation navigation-detail")[0];
 
-    navigate_detail.innerHTML = "";
-    product_click = false;
-    donhang_click = false;
-}
+// Header //
 
-function product_click_navi(){
-    if (product_click) return;
-
-    donhang_click = false;
-    product_click = true;
-    let navigate_detail = document.getElementsByClassName("navigation navigation-detail")[0];
-
-    navigate_detail.innerHTML = "<div><li>Phone</li></div>" +
-                                "<div><li>Earphone/Earbuds</li></div>" +
-                                "<div><li>Accessory</li></div>";
-}
-
-function donhang_click_navi(){
-    if (donhang_click) return;
-
-    product_click = false;
-    donhang_click = true;
-    let navigate_detail = document.getElementsByClassName("navigation navigation-detail")[0];
-
-    navigate_detail.innerHTML = "<div><li>Cho xet duyet</li></div>" +
-                                "<div><li>Dang giao hang</li></div>" +
-                                "<div><li>Giao Thanh Cong</li></div>" +
-                                "<div><li>Giao That Bai</li></div>";
+function addheader(){
+    document.write(`<header>
+    <section class="navigation-sect">
+        <div class="navigation-container">
+            <div class="contact-us">
+                <li>
+                    <a class="icon fb" href="#">
+                    </a>
+                </li>
+                <li>
+                    <a class="icon twitter" href="#">
+                    </a>
+                </li>
+                <li>
+                    <a class="icon google" href="#">
+                    </a>
+                </li>
+                <li>
+                    <a class="icon youtube" href="#">
+                    </a>
+                </li>
+            </div>
+            <div class="navigation">
+                <li>
+                    <a href="#" class="icon home">
+                        <p class="navi-text">Trang chủ</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="icon new">
+                        <p class="navi-text">Tin tức</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="icon recruit">
+                        <p class="navi-text">Tuyển dụng</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="icon info">
+                        <p class="navi-text">Giới thiệu</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="icon fix">
+                        <p class="navi-text">Bảo hành</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="icon contact">
+                        <p class="navi-text">Liên hệ</p>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </section>
+</header>
+<section class="header-content">
+        <a class="homelogo" href="#"><img src="../img/logo.jpg" alt="logo"></a>
+        <div class="searchbar-container">
+            <div class="searchbox">
+                <input type="text" class="searchbar" placeholder="Search">
+                <button class="searchbutton">Tìm kiếm</button>
+            </div>
+            <div class="keyword">Từ khóa: 
+                <li><a href="#">Samsung</a></li>
+                <li><a href="#">Iphone</a></li>
+                <li><a href="#">Huawei</a></li>
+                <li><a href="#">Oppo</a></li>
+                <li><a href="#">Mobi</a></li>
+            </div>
+        </div>
+        <div class="user-option">
+            <a href="#" class="user-option-container">
+                <i class="icon account user-option-effect"></i>
+                Tài khoản
+            </a>
+            <a href="#" class="user-option-container">
+                <i class="icon cart user-option-effect"></i>
+                Giỏ hàng
+            </a>
+        </div>
+    </section>`);
 }
