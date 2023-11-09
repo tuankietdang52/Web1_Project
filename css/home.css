@@ -81,7 +81,7 @@
     background-image: url("../img/banners/banner8.png");
 }
 
-/* Main content */
+/* Filter Sect */
 
 .filter-sect{
     display: grid;
@@ -92,6 +92,8 @@
 .sale-ads{
     width: 70%;
 }
+
+    /* Company Filter */
 
 .company-filter-container{
     transform: translateY(15px);
@@ -138,9 +140,11 @@
     height: 40px;
 }
 
+    /* Custom Filter */
+
 .custom-filter-container{
     width: 40%;
-    height: 80px;
+    height: 130px;
     display: flex;
     gap: 5%;
 }
@@ -189,6 +193,7 @@
 .filter-choice{
     background-color: rgba(236, 236, 236, 0.8);
     position: absolute;
+    z-index: 20;
     display: flex;
     flex-direction: column;
     width: 140%;
@@ -221,6 +226,7 @@
     justify-items: center;
     align-items: center;
     background-color: gray;
+    color: white;
 }
 
 .filter{
@@ -229,7 +235,7 @@
     text-align: center;
     text-decoration: none;
     color: white;
-    align-self: flex-end;
+    align-self: center;
     position: relative;
 }
 
@@ -251,4 +257,166 @@
 .filter.sort{
     width: 17%;;
     height: 50px;
+}
+
+    /* :vv */
+
+.just-a-line{
+    width: 70%;
+    height: 70px;
+    border-top: 2px solid rgb(210, 210, 210);
+}
+
+/* Product Section */
+
+.product-sect{
+    width: 100%;
+    display: grid;
+    justify-items: center;
+}
+
+.product-container{
+    width: 69.8%;
+    height: max-content;
+    border: 2px solid orangered;
+    border-radius: 20px;
+    display: grid;
+    justify-items: center;
+    position: relative;
+}
+
+.banner{
+    position: absolute;
+    z-index: 10;
+    width: 98%;
+    height: 50px;
+    top: -30px;
+    border-radius: 20px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.product-container h1{
+    color: white;
+    font-weight: bold;
+    font-size: 1.5vw;
+    position: absolute;
+    transition: color 0.2s;
+    transition-property: color;
+}
+
+.product-hot{
+    align-self: center;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product{
+    margin: 3% 0% 3% 0%;
+    height: 400px;
+    flex-grow: 0.1;
+    flex-basis: 263.65px;
+    display: grid;
+    grid-template-rows: 280px 35px 20px 65px;
+    align-items: center;
+    border: 1px solid rgb(203, 200, 200);
+    text-decoration: none;
+    color: unset;
+    position: relative;
+}
+
+.product:hover > .product-img{
+    transform: translateY(-15px);
+}
+
+.product:hover > .product-name{
+    color: #288ad6;
+}
+
+.product-img{
+    justify-self: center;
+    width: 90%;
+    background-image: url("../img/products/nokia-51-plus-black-18thangbh-400x400.jpg");
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.2s;
+    transition-property: transform;
+}
+
+.product-name{
+    margin-left: 6%;
+    font-size: 20px;
+    justify-self: flex-start;
+}
+
+.product-price{
+    font-weight: bold;
+    color: red;
+    margin-left: 6%;
+    font-size: 20px;
+}
+
+.star-container{
+    transform: translateX(30%);
+    height: 100px;
+}
+
+.addtocart-button{
+    border: unset;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    border: 2px solid rgb(199, 199, 199);
+    background-color: white;
+    border-radius: 50px;
+    display: grid;
+    place-items: center;
+}
+
+.addtocart-button::after{
+    content: "\2b";
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
+}
+
+.addtocart-button:hover{
+    background-color: rgb(199, 199, 199);
+    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2);
+}
+
+.addtocart-button:hover::after{
+    color: black;
+}
+
+.see-all{
+    position: absolute;
+    z-index: 10;
+    width: 98%;
+    height: 50px;
+    bottom: -30px;
+    border-radius: 20px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background-color: rgb(214, 214, 214);
+    text-decoration: none;
+    transition: background-color 0.2s;
+    transition-property: background-color;
+}
+
+.see-all:hover{
+    background-color: rgb(196, 196, 196);
+}
+
+.see-all:hover > h1{
+    color: black !important;
+}
+
+.hot{
+    background-image: linear-gradient(120deg, #ff9c00 0%, #ec1f1f 50%, #ff9c00 100%);
 }

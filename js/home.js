@@ -1,7 +1,7 @@
 // Slideshow by owl library //
 
 $(document).ready(function(){
-    var owl = $('.owl-carousel');
+    let owl = $('.owl-carousel');
 	owl.owlCarousel({
 		items: 1.5,
 		margin: 100,

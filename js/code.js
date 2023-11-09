@@ -1,5 +1,10 @@
 // JS cho thuoc tinh chung //
 
+function setThingsup(){
+    addheader();
+    addbuttontotop();
+}
+
 
 // Header //
 
@@ -86,4 +91,17 @@ function addheader(){
         </a>
     </div>
 </section>`);
+}
+
+function addbuttontotop(){
+   document.body.innerHTML += '<button class="icon scrolltotop-button" onclick="totop()"></button>' 
+}
+
+function totop(){
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+function getData(){
+    list_products = getProductData() || list_products;
 }
