@@ -22,3 +22,11 @@ $(document).ready(function(){
         }
 	});
   });
+
+function getProductHot(){
+    let productshot = sortbyratecount("desc");
+    for (let i = 0; i < productshot.length; i++){
+        console.log(productshot[i]);
+        console.log("\n\n\n\n");
+    }
+}

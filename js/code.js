@@ -3,6 +3,7 @@
 function setThingsup(){
     addheader();
     addbuttontotop();
+    setProductData();
 }
 
 
@@ -91,6 +92,15 @@ function addheader(){
         </a>
     </div>
 </section>`);
+}
+
+function addfooter() {
+    document.body.innerHTML += (`
+    <footer class="copy-right">
+        <p><a href="index.html">LDD Phone Store</a> - All rights reserved <i class="fa-regular fa-copyright"></i> 2021 - Designed by
+            <span style="color: whitesomke; font-weight: bold">group 16th</span></p>
+    </footer>
+    `)
 }
 
 function addbuttontotop(){

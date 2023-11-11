@@ -412,3 +412,20 @@ header{
 .scrolltotop-button:hover::after{
     font-size: 30px;
 }
+
+.copy-right{
+    background-color: black;
+    width: 100%;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+  }
+  .copy-right a{
+    text-decoration: none;
+    color: white;
+  }
+  .copy-right p{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
