@@ -1,0 +1,33 @@
+
+section{
+	display: grid;
+	justify-items: center;
+}
+.body-tintuc{
+	margin: 70px 50px 50px 90px;
+	width: 60%;
+}
+a{
+	text-decoration: none;
+	color: #222;
+}
+
+.tintuc-info{
+	height: 170px;
+	margin-top: 5px;
+	border-bottom: 1px solid #FCF;
+}
+.tintuc-info img{
+	width: 230px;
+	float : left;
+	height: 150px;
+	padding : 5px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	margin-right: 5px;
+}
+.tintuc-info h5{
+	font-style: italic;
+	font-weight: 100;
+	color: #adadad;
+}
