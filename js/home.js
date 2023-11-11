@@ -1,5 +1,7 @@
 // Slideshow by owl library //
 
+let producthot = [];
+
 $(document).ready(function(){
     let owl = $('.owl-carousel');
 	owl.owlCarousel({
@@ -24,9 +26,30 @@ $(document).ready(function(){
   });
 
 function getProductHot(){
-    let productshot = sortbyratecount("desc");
-    for (let i = 0; i < productshot.length; i++){
-        console.log(productshot[i]);
-        console.log("\n\n\n\n");
+    producthot = sortbyratecount("desc");
+}
+
+function ReviewProductHot(){
+    getProductHot();
+    for (let i = 0; i < 5; i++){
+        if (!producthot[i]) return;
+        writeproduct(i, producthot);
     }
+}
+
+function writeproduct(index, productlist){
+    let productcode = productlist[index][0].masp;
+    let nameproduct = productlist[index][0].name;
+    let productprice = productlist[index][0].price;
+    let imgsrc = productlist[index][0].img;
+    let producthotsect = document.getElementsByClassName("product-hot")[0];
+    producthotsect.innerHTML += (`
+    <a href="#" class="product">
+        <img class="product-img" src="` + imgsrc + `" alt="` + productcode + `">
+        <span class="product-name">` + nameproduct + `</span>
+        <p class="product-price">` + productprice + `đ</p>
+        <div class="star-container"></div>
+        <button class="addtocart-button icon"></button>
+    </a> 
+    `);
 }
