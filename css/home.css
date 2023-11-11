@@ -358,8 +358,14 @@
 }
 
 .star-container{
-    transform: translateX(30%);
-    height: 100px;
+    transform: translateX(6%);
+    height: 100%;
+    display: flex;
+}
+
+.fa-star{
+    align-self: center;
+    color: orange;
 }
 
 .addtocart-button{

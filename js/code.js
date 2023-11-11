@@ -33,17 +33,17 @@ function addheader(){
             </div>
             <div class="navigation">
                 <li>
-                    <a href="#" class="icon home">
+                    <a href="index.html" class="icon home">
                         <p class="navi-text">Trang chủ</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="icon new">
+                    <a href="tintuc.html" class="icon new">
                         <p class="navi-text">Tin tức</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="icon recruit">
+                    <a href="tuyendung.html" class="icon recruit">
                         <p class="navi-text">Tuyển dụng</p>
                     </a>
                 </li>
@@ -53,7 +53,7 @@ function addheader(){
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="icon fix">
+                    <a href="trungtambaohanh.html" class="icon fix">
                         <p class="navi-text">Bảo hành</p>
                     </a>
                 </li>

@@ -36,20 +36,3 @@ function ReviewProductHot(){
         writeproduct(i, producthot);
     }
 }
-
-function writeproduct(index, productlist){
-    let productcode = productlist[index][0].masp;
-    let nameproduct = productlist[index][0].name;
-    let productprice = productlist[index][0].price;
-    let imgsrc = productlist[index][0].img;
-    let producthotsect = document.getElementsByClassName("product-hot")[0];
-    producthotsect.innerHTML += (`
-    <a href="#" class="product">
-        <img class="product-img" src="` + imgsrc + `" alt="` + productcode + `">
-        <span class="product-name">` + nameproduct + `</span>
-        <p class="product-price">` + productprice + `đ</p>
-        <div class="star-container"></div>
-        <button class="addtocart-button icon"></button>
-    </a> 
-    `);
-}
