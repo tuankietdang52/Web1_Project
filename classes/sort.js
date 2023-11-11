@@ -1,9 +1,9 @@
 function sortbyratecount(order){
     switch(order){
         case "asc":
-            return arrayproduct.sort((a, b) => a.rateCount - b.rateCount);
+            return arrayproduct.sort((a, b) => a[0].rateCount - b[0].rateCount);
         case "desc":
-            return arrayproduct.sort((a, b) => b.rateCount - a.rateCount);
+            return arrayproduct.sort((a, b) => b[0].rateCount - a[0].rateCount);
         default:
             return;
     }
@@ -12,9 +12,9 @@ function sortbyratecount(order){
 function sortbyprice(order){
     switch(order){
         case "asc":
-            return arrayproduct.sort((a, b) => a.price - b.price);
+            return arrayproduct.sort((a, b) => a[0].price - b[0].price);
         case "desc":
-            return arrayproduct.sort((a, b) => b.price - a.price);
+            return arrayproduct.sort((a, b) => b[0].price - a[0].price);
         default:
             return;
     }
@@ -23,9 +23,9 @@ function sortbyprice(order){
 function sortbystar(order){
     switch(order){
         case "asc":
-            return arrayproduct.sort((a, b) => a.star - b.star);
+            return arrayproduct.sort((a, b) => a[0].star - b[0].star);
         case "desc":
-            return arrayproduct.sort((a, b) => b.star - a.star);
+            return arrayproduct.sort((a, b) => b[0].star - a[0].star);
         default:
             return;
     }
