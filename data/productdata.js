@@ -1,7 +1,7 @@
 let list_products = [{
     "name": "SamSung Galaxy J4+",
     "company": "Samsung",
-    "img": "img/products/samsung-galaxy-j4-plus-pink-400x400.jpg",
+    "img": "../img/products/samsung-galaxy-j4-plus-pink-400x400.jpg",
     "price": "3.490.000",
     "star": 3,
     "rateCount": 26,
@@ -24,7 +24,7 @@ let list_products = [{
 }, {
     "name": "Xiaomi Mi 8 Lite",
     "company": "Xiaomi",
-    "img": "img/products/xiaomi-mi-8-lite-black-1-600x600.jpg",
+    "img": "../img/products/xiaomi-mi-8-lite-black-1-600x600.jpg",
     "price": "6.690.000",
     "star": 0,
     "rateCount": 0,
