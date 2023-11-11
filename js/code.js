@@ -1,5 +1,11 @@
 // JS cho thuoc tinh chung //
 
+function setThingsup(){
+    addheader();
+    addbuttontotop();
+    setProductData();
+}
+
 
 // Header //
 
@@ -61,29 +67,51 @@ function addheader(){
     </section>
 </header>
 <section class="header-content">
-        <a class="homelogo" href="#"><img src="../img/logo.jpg" alt="logo"></a>
-        <div class="searchbar-container">
-            <div class="searchbox">
-                <input type="text" class="searchbar" placeholder="Search">
-                <button class="searchbutton">Tìm kiếm</button>
-            </div>
-            <div class="keyword">Từ khóa: 
-                <li><a href="#">Samsung</a></li>
-                <li><a href="#">Iphone</a></li>
-                <li><a href="#">Huawei</a></li>
-                <li><a href="#">Oppo</a></li>
-                <li><a href="#">Mobi</a></li>
-            </div>
+    <a class="homelogo" href="#"><img src="../img/logo.jpg" alt="logo"></a>
+    <div class="searchbar-container">
+        <div class="searchbox">
+            <input type="text" class="searchbar" placeholder="Search">
+            <button class="searchbutton">Tìm kiếm</button>
         </div>
-        <div class="user-option">
-            <a href="#" class="user-option-container">
-                <i class="icon account user-option-effect"></i>
-                Tài khoản
-            </a>
-            <a href="#" class="user-option-container">
-                <i class="icon cart user-option-effect"></i>
-                Giỏ hàng
-            </a>
+        <div class="keyword"><span>Từ khóa:</span> 
+            <li><a href="#">Samsung</a></li>
+            <li><a href="#">Iphone</a></li>
+            <li><a href="#">Huawei</a></li>
+            <li><a href="#">Oppo</a></li>
+            <li><a href="#">Xiaomi</a></li>
         </div>
-    </section>`);
+    </div>
+    <div class="user-option">
+        <a href="#" class="user-option-container">
+            <i class="icon account user-option-effect"></i>
+            Tài khoản
+        </a>
+        <a href="#" class="user-option-container">
+            <i class="icon cart user-option-effect"></i>
+            Giỏ hàng
+        </a>
+    </div>
+</section>`);
+}
+
+function addfooter() {
+    document.body.innerHTML += (`
+    <footer class="copy-right">
+        <p><a href="index.html">LDD Phone Store</a> - All rights reserved <i class="fa-regular fa-copyright"></i> 2021 - Designed by
+            <span style="color: whitesomke; font-weight: bold">group 16th</span></p>
+    </footer>
+    `)
+}
+
+function addbuttontotop(){
+   document.body.innerHTML += '<button class="icon scrolltotop-button" onclick="totop()"></button>' 
+}
+
+function totop(){
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+function getData(){
+    list_products = getProductData() || list_products;
 }

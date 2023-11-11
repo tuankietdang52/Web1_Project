@@ -1,7 +1,7 @@
 // Slideshow by owl library //
 
 $(document).ready(function(){
-    var owl = $('.owl-carousel');
+    let owl = $('.owl-carousel');
 	owl.owlCarousel({
 		items: 1.5,
 		margin: 100,
@@ -22,3 +22,11 @@ $(document).ready(function(){
         }
 	});
   });
+
+function getProductHot(){
+    let productshot = sortbyratecount("desc");
+    for (let i = 0; i < productshot.length; i++){
+        console.log(productshot[i]);
+        console.log("\n\n\n\n");
+    }
+}
