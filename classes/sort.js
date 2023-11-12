@@ -30,3 +30,15 @@ function sortbystar(order){
             return;
     }
 }
+
+function sortnewproduct(){
+    let index = 0;
+    let array = [];
+    for (let i = 0; i < arrayproduct.length; i++){
+        if (arrayproduct[i][0].promo.name != "moiramat") continue;
+        array[index] = arrayproduct[i];
+        index++;
+    }
+
+    return array;
+}

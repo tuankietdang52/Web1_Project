@@ -35,25 +35,28 @@ function setArrayProducts(){
     }
 }
 
-function writeproduct(index, productlist){
+function writeproduct(index, productlist, sectionclassname){
     let productcode = productlist[index][0].masp;
     let nameproduct = productlist[index][0].name;
     let productprice = productlist[index][0].price;
     let imgsrc = productlist[index][0].img;
     let amountstar = productlist[index][0].star;
-    let producthotsect = document.getElementsByClassName("product-hot")[0];
-    producthotsect.innerHTML += (`
+
+    let productsect = document.getElementsByClassName(sectionclassname)[0];
+    
+
+    productsect.innerHTML += (`
     <a href="#" class="product">
         <img class="product-img" src="` + imgsrc + `" alt="` + productcode + `">
         <span class="product-name">` + nameproduct + `</span>
         <p class="product-price">` + productprice + `đ</p>
-        <div class="star-container">` + addstar(amountstar) + `</div>
+        <div class="star-container">` + addstarandratecount(index, amountstar, productlist) + `</div>
         <button class="addtocart-button icon"></button>
     </a> 
     `);
 }
 
-function addstar(amount){
+function addstarandratecount(index, amount, productlist){
     let star = "";
     let i = 0;
     while (i < 5){
@@ -61,5 +64,10 @@ function addstar(amount){
         else star += '<i class="fa fa-star-o"></i>';
         i++;
     }
+
+    let ratecount = productlist[index][0].rateCount;
+    let ratecounttag = `<span class="ratecountdisplay">` + ratecount + " đánh giá" + `</span>`;
+    star += ratecounttag;
+
     return star;
 }
