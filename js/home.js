@@ -4,7 +4,30 @@ let frameindex = 0;
 let producthot = [];
 let newproduct = [];
 
+function getData(){
+    getProductHot();
+    getNewProduct();
+}
+
+function getProductHot(){;
+    producthot = sortbyratecount("desc");
+    for (let i = 0; i < producthot.length; i++){
+        if (producthot[i][0].star <= 2){
+            producthot.splice(i, 1);
+            i--;
+        }
+    }
+}
+
+function getNewProduct(){
+    newproduct = sortnewproduct();
+}
+
 $(document).ready(function(){
+    slideshowowl();
+});
+
+function slideshowowl(){
     let owl = $('.owl-carousel');
 	owl.owlCarousel({
 		items: 1.5,
@@ -25,7 +48,7 @@ $(document).ready(function(){
             },
         }
 	});
-  });
+}
 
 function writeamountofitemframe(amount, link = '#'){
     let productsect = document.getElementsByClassName("product-container")[frameindex];
@@ -39,35 +62,19 @@ function writeamountofitemframe(amount, link = '#'){
     frameindex++;
 }
 
-function getProductHot(){
-    producthot = sortbyratecount("desc");
-    for (let i = 0; i < producthot.length; i++){
-        if (producthot[i][0].star <= 2){
-            producthot.splice(i, 1);
-            i--;
-        }
-    }
-}
-
 function ReviewProductHot(){
-    getProductHot();
     let producthotremain = producthot.length - 5;
     for (let i = 0; i < 5; i++){
-        if (!producthot[i]) return;
+        if (!producthot[i]) break;
         writeproduct(i, producthot, "product-hot");
     }
     writeamountofitemframe(producthotremain);
 }
 
-function getNewProduct(){
-    newproduct = sortnewproduct();
-}
-
 function ReviewNewProduct(){
-    getNewProduct();
-    let newproductremain = newproduct.length - 5;
+    let newproductremain = newproduct.length >= 5 ? newproduct.length - 5 : 0;
     for (let i = 0; i < 5; i++){
-        if (!newproduct[i]) return;
+        if (!newproduct[i]) break;
         writeproduct(i, newproduct, "new-product");
     }
     writeamountofitemframe(newproductremain);

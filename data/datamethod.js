@@ -2,11 +2,14 @@ function getProductData(){
     return JSON.parse(window.localStorage.getItem("ListProducts"));
 }
 
-function setProductData(newdata){
-    if(newdata) newdata = JSON.parse(newdata);
+function setProductData(newdata = null){
+    if(!newdata) return;
+    try{
+        newdata = JSON.parse(newdata);
+    }
+    catch(e){console.log(e)}
     list_products = newdata || list_products;
-    let newlistproducts = list_products;
-    window.localStorage.setItem("ListProducts", newlistproducts);
+    window.localStorage.setItem("ListProducts", list_products);
     setArrayProducts();
 }
 
@@ -14,11 +17,16 @@ function getAccountData(){
     return JSON.parse(window.localStorage.getItem("ListAccounts"));
 }
 
-function setAccountData(newdata){
-    if(newdata) newdata = JSON.parse(newdata);
+function setAccountData(newdata = null){
+    if(!newdata) return;
+    try{
+        newdata = JSON.parse(newdata);
+    }
+    catch(e){
+        newdata = newdata;
+    }
     list_accounts = newdata || list_accounts;
-    let newlistaccounts = list_accounts;
-    window.localStorage.setItem("ListAccounts", newlistaccounts);
+    window.localStorage.setItem("ListAccounts", list_accounts);
     setArrayAccounts();
 }
 

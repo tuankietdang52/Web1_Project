@@ -3,7 +3,8 @@
 function setThingsup(){
     addheader();
     addbuttontotop();
-    setProductData();
+    setProductData(list_products);
+    getData();
 }
 
 
