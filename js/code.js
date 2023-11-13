@@ -33,32 +33,32 @@ function addheader(){
             </div>
             <div class="navigation">
                 <li>
-                    <a href="#" class="icon home">
+                    <a href="index.html" class="icon home">
                         <p class="navi-text">Trang chủ</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="icon new">
+                    <a href="tintuc.html" class="icon newnav">
                         <p class="navi-text">Tin tức</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="icon recruit">
+                    <a href="tuyendung.html" class="icon recruit">
                         <p class="navi-text">Tuyển dụng</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="icon info">
+                    <a href="gioithieu.html" class="icon info">
                         <p class="navi-text">Giới thiệu</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="icon fix">
+                    <a href="trungtambaohanh.html" class="icon fix">
                         <p class="navi-text">Bảo hành</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="icon contact">
+                    <a href="lienhe.html" class="icon contact">
                         <p class="navi-text">Liên hệ</p>
                     </a>
                 </li>
@@ -67,7 +67,7 @@ function addheader(){
     </section>
 </header>
 <section class="header-content">
-    <a class="homelogo" href="#"><img src="../img/logo.jpg" alt="logo"></a>
+    <a class="homelogo" href="index.html"><img src="../img/logo.jpg" alt="logo"></a>
     <div class="searchbar-container">
         <div class="searchbox">
             <input type="text" class="searchbar" placeholder="Search">

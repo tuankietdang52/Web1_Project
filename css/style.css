@@ -9,6 +9,12 @@ html{
     scroll-behavior: smooth;
 }
 
+hr{
+    width: 70%;
+    color: #ddd;
+    opacity: 0.5;
+}
+
 .icon{
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
@@ -193,7 +199,7 @@ header{
     content: "\f015";
 }
 
-.icon.new::before{
+.icon.newnav::before{
     content: "\f1ea";
 }
 
