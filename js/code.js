@@ -38,7 +38,7 @@ function addheader(){
                     </a>
                 </li>
                 <li>
-                    <a href="tintuc.html" class="icon newnav">
+                    <a href="tintuc.html" class="icon new">
                         <p class="navi-text">Tin tức</p>
                     </a>
                 </li>
@@ -67,7 +67,7 @@ function addheader(){
     </section>
 </header>
 <section class="header-content">
-    <a class="homelogo" href="index.html"><img src="../img/logo.jpg" alt="logo"></a>
+    <a class="homelogo" href="#"><img src="../img/logo.jpg" alt="logo"></a>
     <div class="searchbar-container">
         <div class="searchbox">
             <input type="text" class="searchbar" placeholder="Search">
