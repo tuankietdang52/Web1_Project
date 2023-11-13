@@ -4,6 +4,7 @@ function setThingsup(){
     addheader();
     addbuttontotop();
     setProductData(list_products);
+    getData();
 }
 
 

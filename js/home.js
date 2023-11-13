@@ -4,10 +4,13 @@ let frameindex = 0;
 let producthot = [];
 let newproduct = [];
 
-$(document).ready(function(){
-    slideshowowl();
+function getData(){
     getProductHot();
     getNewProduct();
+}
+
+$(document).ready(function(){
+    slideshowowl();
 });
 
 function slideshowowl(){
@@ -46,6 +49,7 @@ function writeamountofitemframe(amount, link = '#'){
 }
 
 function getProductHot(){
+    console.log("aaa");
     producthot = sortbyratecount("desc");
     for (let i = 0; i < producthot.length; i++){
         if (producthot[i][0].star <= 2){
@@ -56,6 +60,7 @@ function getProductHot(){
 }
 
 function ReviewProductHot(){
+    console.log("bbb");
     let producthotremain = producthot.length - 5;
     for (let i = 0; i < 5; i++){
         if (!producthot[i]) return;
