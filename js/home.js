@@ -5,6 +5,12 @@ let producthot = [];
 let newproduct = [];
 
 $(document).ready(function(){
+    slideshowowl();
+    getProductHot();
+    getNewProduct();
+});
+
+function slideshowowl(){
     let owl = $('.owl-carousel');
 	owl.owlCarousel({
 		items: 1.5,
@@ -25,7 +31,7 @@ $(document).ready(function(){
             },
         }
 	});
-  });
+}
 
 function writeamountofitemframe(amount, link = '#'){
     let productsect = document.getElementsByClassName("product-container")[frameindex];
@@ -50,7 +56,6 @@ function getProductHot(){
 }
 
 function ReviewProductHot(){
-    getProductHot();
     let producthotremain = producthot.length - 5;
     for (let i = 0; i < 5; i++){
         if (!producthot[i]) return;
@@ -64,7 +69,6 @@ function getNewProduct(){
 }
 
 function ReviewNewProduct(){
-    getNewProduct();
     let newproductremain = newproduct.length - 5;
     for (let i = 0; i < 5; i++){
         if (!newproduct[i]) return;
