@@ -116,4 +116,6 @@ function getData(){
     list_products = getProductData() || list_products;
 }
 
-// :vv??
+function maofac(){
+    let cc = "lmao";
+}
