@@ -9,6 +9,20 @@ function getData(){
     getNewProduct();
 }
 
+function getProductHot(){;
+    producthot = sortbyratecount("desc");
+    for (let i = 0; i < producthot.length; i++){
+        if (producthot[i][0].star <= 2){
+            producthot.splice(i, 1);
+            i--;
+        }
+    }
+}
+
+function getNewProduct(){
+    newproduct = sortnewproduct();
+}
+
 $(document).ready(function(){
     slideshowowl();
 });
@@ -48,35 +62,19 @@ function writeamountofitemframe(amount, link = '#'){
     frameindex++;
 }
 
-function getProductHot(){
-    console.log("aaa");
-    producthot = sortbyratecount("desc");
-    for (let i = 0; i < producthot.length; i++){
-        if (producthot[i][0].star <= 2){
-            producthot.splice(i, 1);
-            i--;
-        }
-    }
-}
-
 function ReviewProductHot(){
-    console.log("bbb");
     let producthotremain = producthot.length - 5;
     for (let i = 0; i < 5; i++){
-        if (!producthot[i]) return;
+        if (!producthot[i]) break;
         writeproduct(i, producthot, "product-hot");
     }
     writeamountofitemframe(producthotremain);
 }
 
-function getNewProduct(){
-    newproduct = sortnewproduct();
-}
-
 function ReviewNewProduct(){
-    let newproductremain = newproduct.length - 5;
+    let newproductremain = newproduct.length >= 5 ? newproduct.length - 5 : 0;
     for (let i = 0; i < 5; i++){
-        if (!newproduct[i]) return;
+        if (!newproduct[i]) break;
         writeproduct(i, newproduct, "new-product");
     }
     writeamountofitemframe(newproductremain);
