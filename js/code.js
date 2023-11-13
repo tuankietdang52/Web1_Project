@@ -118,4 +118,6 @@ function getData(){
 
 function maofac(){
     let cc = "lmao";
+
+    let kkk = "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
 }
