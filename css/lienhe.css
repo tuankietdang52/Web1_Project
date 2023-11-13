@@ -5,7 +5,7 @@ body{
   width: 100%;
   padding: 0;
   margin: 0;
-  height: 100vh;
+  height: 80%;
 }
 html.html__responsive, html.html__responsive body {
   min-width: auto;
