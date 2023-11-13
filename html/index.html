@@ -10,7 +10,7 @@
     <script src="../data/productdata.js"></script>
 
     
-    <!-- Thu vien js va waypoints -->
+    <!-- Thu vien jquery va waypoints -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     
@@ -121,19 +121,25 @@
                 </div>
             </div>
         </div>
-        <div class="just-a-line"></div>
+        <hr>
     </section>
     <section class="product-sect">
-        <div class="product-container">
+        <div class="product-container" style="border: 2px solid orangered; border-radius: 20px;">
             <div class="banner hot">
                 <h1>* Nổi bật nhất *</h1>
             </div>
             <div class="product-hot">
                 <script>ReviewProductHot()</script>
             </div>
-            <a href="#" class="see-all">
-                <h1>Xem tất cả <span>10</span> sản phẩm</h1>
-            </a>
+        </div>
+        <hr>
+        <div class="product-container" style="border: 2px solid blue; border-radius: 20px;">
+            <div class="banner new">
+                <h1>* Sản phẩm mới *</h1>
+            </div>
+            <div class="new-product">
+                <script>ReviewNewProduct()</script>
+            </div>
         </div>
     </section>
     <section style="height: 1000px;"></section>
