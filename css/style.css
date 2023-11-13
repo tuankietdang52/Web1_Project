@@ -426,12 +426,14 @@ header{
     text-align: center;
     line-height: 40px;
   }
-  .copy-right a{
+
+.copy-right a{
     text-decoration: none;
     color: white;
   }
-  .copy-right p{
+
+.copy-right p{
     margin: 0;
     width: 100%;
     height: 100%;
-  }
+}
