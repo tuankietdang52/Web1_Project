@@ -115,9 +115,3 @@ function totop(){
 function getData(){
     list_products = getProductData() || list_products;
 }
-
-function maofac(){
-    let cc = "lmao";
-
-    let kkk = "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk";
-}
