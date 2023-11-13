@@ -3,24 +3,34 @@
 let frameindex = 0;
 let producthot = [];
 let newproduct = [];
+let saleproduct0 = [];
 
 function getData(){
     getProductHot();
     getNewProduct();
+    getSaleProduct0();
 }
 
 function getProductHot(){;
-    producthot = sortbyratecount("desc");
-    for (let i = 0; i < producthot.length; i++){
-        if (producthot[i][0].star <= 2){
-            producthot.splice(i, 1);
-            i--;
+    temparray = sortbyratecount("desc");
+    
+    let index = 0;
+
+    for (let i = 0; i < temparray.length; i++){
+        if (temparray[i][0].star <= 2){
+            continue;
         }
+        producthot[index] = temparray[i];
+        index++;
     }
 }
 
 function getNewProduct(){
-    newproduct = sortnewproduct();
+    newproduct = sortpromoproduct("moiramat");
+}
+
+function getSaleProduct0(){
+    saleproduct0 = sortpromoproduct("tragop");
 }
 
 $(document).ready(function(){
@@ -78,4 +88,13 @@ function ReviewNewProduct(){
         writeproduct(i, newproduct, "new-product");
     }
     writeamountofitemframe(newproductremain);
+}
+
+function ReviewSaleProduct0(){
+    let saleproduct0remain = saleproduct0.length >= 5 ? saleproduct0.length - 5 : 0;
+    for (let i = 0; i < 5; i++){
+        if (!saleproduct0[i]) break;
+        writeproduct(i, saleproduct0, "sale-product-0");
+    }
+    writeamountofitemframe(saleproduct0remain);
 }

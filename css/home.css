@@ -298,14 +298,7 @@
     transition-property: color;
 }
 
-.product-hot{
-    align-self: center;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.new-product{
+.product-frame{
     align-self: center;
     width: 100%;
     display: flex;
@@ -440,4 +433,8 @@
 
 .new{
     background-image: linear-gradient(120deg, #42bcf4 0%, #004c70 50%, #42bcf4 100%)
+}
+
+.sale0{
+    background-image: linear-gradient(120deg, #ff9c00 0%, #ec1f1f 50%, #ff9c00 100%);
 }
