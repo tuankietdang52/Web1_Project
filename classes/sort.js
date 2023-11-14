@@ -1,5 +1,9 @@
-function sortbyratecount(order){
-    let sortarray = arrayproduct;
+function sortbyratecount(order, array = null){
+    let sortarray = [];
+
+    if (array) sortarray = array;
+    else sortarray = arrayproduct;
+
     switch(order){
         case "asc":
             return sortarray.sort((a, b) => a[0].rateCount - b[0].rateCount);
@@ -10,8 +14,12 @@ function sortbyratecount(order){
     }
 }
 
-function sortbyprice(order){
-    let sortarray = arrayproduct;
+function sortbyprice(order, array = null){
+    let sortarray = [];
+    
+    if (array) sortarray = array;
+    else sortarray = arrayproduct;
+
     switch(order){
         case "asc":
             return sortarray.sort((a, b) => a[0].price - b[0].price);
@@ -22,8 +30,12 @@ function sortbyprice(order){
     }
 }
 
-function sortbystar(order){
-    let sortarray = arrayproduct;
+function sortbystar(order, array = null){
+    let sortarray = [];
+    
+    if (array) sortarray = array;
+    else sortarray = arrayproduct;
+
     switch(order){
         case "asc":
             return sortarray.sort((a, b) => a[0].star - b[0].star);
@@ -34,14 +46,32 @@ function sortbystar(order){
     }
 }
 
-function sortpromoproduct(promoname){
-    let index = 0;
-    let array = [];
-    for (let i = 0; i < arrayproduct.length; i++){
-        if (arrayproduct[i][0].promo.name != promoname) continue;
-        array[index] = arrayproduct[i];
-        index++;
+function sortbyamountstar(amount, array = null){
+    let sortarray = [];
+    let temparray = [];
+    
+    if (array) temparray = array;
+    else temparray = arrayproduct;
+
+    for (let i = 0; i < temparray.length; i++){
+        if (temparray[i][0].star <= amount) continue;
+        sortarray.push(temparray[i]);
     }
 
-    return array;
+    return sortarray;
+}
+
+function sortpromoproduct(promoname, array = null){
+    let sortarray = [];
+    let temparray = [];
+    
+    if (array) temparray = array;
+    else temparray = arrayproduct;
+    
+    for (let i = 0; i < temparray.length; i++){
+        if (temparray[i][0].promo.name != promoname) continue;
+        sortarray.push(temparray[i]);
+    }
+
+    return sortarray;
 }
