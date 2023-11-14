@@ -389,6 +389,7 @@ header{
 .scrolltotop-button{
     border: unset;
     position: fixed;
+    z-index: 100;
     right: 20px;
     bottom: 20px;
     height: 50px;
@@ -425,7 +426,7 @@ header{
     color: white;
     text-align: center;
     line-height: 40px;
-  }
+}
 
 .copy-right a{
     text-decoration: none;
