@@ -1,8 +1,5 @@
 function sortbyratecount(order, array = null){
-    let sortarray = [];
-
-    if (array) sortarray = array;
-    else sortarray = arrayproduct;
+    let sortarray = array || arrayproduct;
 
     switch(order){
         case "asc":
@@ -15,10 +12,7 @@ function sortbyratecount(order, array = null){
 }
 
 function sortbyprice(order, array = null){
-    let sortarray = [];
-    
-    if (array) sortarray = array;
-    else sortarray = arrayproduct;
+    let sortarray = array || arrayproduct;
 
     switch(order){
         case "asc":
@@ -30,11 +24,52 @@ function sortbyprice(order, array = null){
     }
 }
 
+function sortbyamountprice(amount1, order, amount2 = 0){
+    switch (order){
+        case "below":
+            return sortbypricebelow(amount1);
+            break;
+        case "above":
+            return sortbypriceabove(amount1);
+        case "mintomax":
+            return sortbymintomax(amount1, amount2);
+        default:
+            return null;
+    }
+}
+
+function sortbypricebelow(amount){
+    let temparray = [];
+    for (let i = 0; i < arrayproduct.length; i++){
+        if (arrayproduct[i][0].numprice > amount) continue;
+
+        temparray.push(arrayproduct[i]);
+    }
+    return temparray;
+}
+
+function sortbypriceabove(amount){
+    let temparray = [];
+    for (let i = 0; i < arrayproduct.length; i++){
+        if (arrayproduct[i][0].numprice < amount) continue;
+
+        temparray.push(arrayproduct[i]);
+    }
+    return temparray;
+}
+
+function sortbymintomax(amount1, amount2){
+    let temparray = [];
+    for (let i = 0; i < arrayproduct.length; i++){
+        if (arrayproduct[i][0].numprice < amount1 || arrayproduct[i][0].numprice > amount2) continue;
+
+        temparray.push(arrayproduct[i]);
+    }
+    return temparray;
+}
+
 function sortbystar(order, array = null){
-    let sortarray = [];
-    
-    if (array) sortarray = array;
-    else sortarray = arrayproduct;
+    let sortarray = array || arrayproduct;
 
     switch(order){
         case "asc":

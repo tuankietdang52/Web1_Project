@@ -5,12 +5,16 @@ let producthot = [];
 let newproduct = [];
 let saleproduct0 = [];
 let shockonlproduct = [];
+let productdiscount = [];
+let cheapproduct = [];
 
 function getData(){
     getProductHot();
     getNewProduct();
     getSaleProduct0();
     getShockOnlProduct();
+    getDiscountProduct();
+    getCheapProduct();
 }
 
 function getProductHot(){;
@@ -28,6 +32,14 @@ function getSaleProduct0(){
 
 function getShockOnlProduct(){
     shockonlproduct = sortpromoproduct("giareonline");
+}
+
+function getDiscountProduct(){
+    productdiscount = sortpromoproduct("giamgia");
+}
+
+function getCheapProduct(){
+    cheapproduct = sortbyamountprice(3000000, "below");
 }
 
 $(document).ready(function(){
@@ -159,6 +171,10 @@ function getProductFrame(parentclassname){
             return saleproduct0;
         case "shock-price-online":
             return shockonlproduct;
+        case "product-discount":
+            return productdiscount;
+        case "cheap-product":
+            return cheapproduct;
         default:
             return null;
     }

@@ -499,3 +499,11 @@
 .shockonl{
     background-image: linear-gradient(120deg, #5de272 0%, #007012 50%, #5de272 100%);
 }
+
+.discount{
+    background-image: linear-gradient(120deg, #ff9c00 0%, #ec1f1f 50%, #ff9c00 100%);
+}
+
+.cheap{
+    background-image: linear-gradient(120deg, #5de272 0%, #007012 50%, #5de272 100%);
+}
