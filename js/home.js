@@ -69,17 +69,15 @@ function slideshowowl(){
 	});
 }
 
-function writeproduct(index, product, sectionclassname){
-    let productcode = product[index][0].masp;
-    let nameproduct =  product[index][0].name;
-    let imgsrc = product[index][0].img;
-    let amountstar = product[index][0].star;
-    let promo = product[index][0].promo.name;
-    let promovalue = product[index][0].promo.value;
-
+function writeproduct(product, sectionclassname){
+    let productcode = product[0].masp;
+    let nameproduct =  product[0].name;
+    let imgsrc = product[0].img;
+    let amountstar = product[0].star;
+    let promo = product[0].promo.name;
+    let promovalue = product[0].promo.value;
 
     let productsect = document.getElementsByClassName(sectionclassname)[0];
-
 
     productsect.innerHTML += (`
     <a href="#" class="product">
@@ -87,9 +85,9 @@ function writeproduct(index, product, sectionclassname){
         ` + writepromotag(promo, promovalue) + `
         <span class="product-name">` + nameproduct + `</span>
         <div class="product-price">` + 
-            writeprice(product[index]) +
+            writeprice(product) +
         `</div>
-        <div class="star-container">` + addstarandratecount(amountstar, product[index]) + `</div>
+        <div class="star-container">` + addstarandratecount(amountstar, product) + `</div>
         <button class="addtocart-button icon"></button>
     </a>
     `);
@@ -185,7 +183,7 @@ function ReviewProduct(parentclassname){
     let productremain = product.length >= 5 ? product.length - 5 : 0;
     for (let i = 0; i < 5; i++){
         if (!product[i]) break;
-        writeproduct(i, product, parentclassname);
+        writeproduct(product[i], parentclassname);
     }
     writeamountremain(productremain);
 }
