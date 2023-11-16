@@ -95,7 +95,7 @@ function addheader(){
 </section>`);
 }
 
-function addfooter() {
+function addfooter(){
     document.body.innerHTML += (`
     <footer class="copy-right">
         <p><a href="index.html">LDD Phone Store</a> - All rights reserved <i class="fa-regular fa-copyright"></i> 2021 - Designed by
