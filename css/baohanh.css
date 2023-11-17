@@ -2,15 +2,13 @@
 section{
 	display: grid;
 	justify-items: center
-	
 }
 table {
 	border-collapse: collapse;
 	margin: 50px;
 	width: 70%;
-	height: 100%;
+	height: 70%;
 	font-size: 14px;
-	
 }
 
 td a {
@@ -29,6 +27,11 @@ td a:hover {
 /* những tr chẵn sẽ có màu khác */
 tr:nth-of-type(even) {background-color: #e6e4e4;}
 
+
+/* fix tràn footer */
+.header-table{
+	padding: 0; 
+}
 .header-table p {
 	height: 60px;
 	line-height: 60px;
@@ -36,6 +39,7 @@ tr:nth-of-type(even) {background-color: #e6e4e4;}
 	font-size: 25px;
 	font-weight: bold;
 	background: #0C9;
+	margin: 0;
 }
 
 .col1 {
