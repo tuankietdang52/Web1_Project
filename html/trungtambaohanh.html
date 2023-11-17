@@ -12,10 +12,11 @@
    
     <link rel="stylesheet" href="../css/baohanh.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
     <!-- js -->
     <script src="../js/code.js"></script>
     <script src="../js/home.js"></script>
-
+    <script src="../js/login.js"></script>
 
 </head>
 
@@ -23,7 +24,7 @@
 
     <script>addheader();</script>
 
-    <section style="min-height: 85vh">
+    <section>
 
 
         <table>
@@ -58,7 +59,7 @@
                     ["76 Nguyễn Đình Chiểu, P 2, Tp. Cao Lãnh, Đồng Tháp"       , "(067)-3874 686"  , "8h00 - 17h00"]
                 ]
 
-                for (var i = 0; i < trungtam.length; i++) {
+                for (var i = 0; i < trungtam.length; i++) { 
                     var link = 'https://maps.google.com/maps?q=' + trungtam[i][0];
                     document.write(`
                         <tr>
@@ -80,5 +81,8 @@
 
 
 </body>
-
+    <script>
+    addfooter();
+    addContainTaiKhoan();
+    </script>
 </html>
