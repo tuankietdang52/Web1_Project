@@ -69,6 +69,8 @@ function slideshowowl(){
 	});
 }
 
+// VIET SAN PHAM VAO HTML //
+
 function writeproduct(product, sectionclassname){
     let productcode = product[0].masp;
     let nameproduct =  product[0].name;
@@ -180,6 +182,9 @@ function getProductFrame(parentclassname){
     }
 }
 
+// KET THUC VIET SAN PHAM //
+
+// viet khung san pham cua trang chu //
 function ReviewProduct(parentclassname){
     let product = getProductFrame(parentclassname);
     let productremain = product.length >= 5 ? product.length - 5 : 0;
@@ -190,11 +195,13 @@ function ReviewProduct(parentclassname){
     writeamountremain(productremain);
 }
 
+// viet filter cua cong ty vao html //
 function companyfilter(){
 
     let splitchar = getNewFilterPath("company");
 
     let filercontainer = document.getElementsByClassName("company-filter-container")[0];
+
     filercontainer.innerHTML += (`
         <a class="company iphone" href="` + splitchar + `company=apple">
             <img src="../img/company/Apple.jpg" alt="apple">
@@ -214,14 +221,61 @@ function companyfilter(){
     `)
 }
 
-function pricefilter(){
-    let fitersect = document.getElementsByClassName("price")[0].children[1];
+//viet filter vao html//
+function writecustomfilter(){
+    let bfpricehref = getNewFilterPath("price");
+    let bfsalehref = getNewFilterPath("promo");
+    let bfstarhref = getNewFilterPath("star");
+    let bfsorthref = getNewFilterPath("sort");
+
+    let fitersect = document.getElementsByClassName("custom-filter-container")[0];
 
     fitersect.innerHTML += (`
-        <a href="?kkk"><div><span>Dưới 2 triệu</span></div></a>
-        <a href="#"><div><span>Từ 2 đến 4 triệu</span></div></a>
-        <a href="#"><div><span>Từ 4 đến 7 triệu</span></div></a>
-        <a href="#"><div><span>Từ 7 đến 13 triệu</span></div></a>
-        <a href="#"><div><span>Trên 13 triệu</span></div></a>
+        <div class="filter price">
+            <div class="filter-box">
+                <span class="filter-box-txt">Giá tiền  </span>
+            </div>
+            <div class="filter-choice">
+                <a href="` + bfpricehref + `price=0-2m"><div><span>Dưới 2 triệu</span></div></a>
+                <a href="` + bfpricehref + `price=2m-4m"><div><span>Từ 2 đến 4 triệu</span></div></a>
+                <a href="` + bfpricehref + `price=4m-7m"><div><span>Từ 4 đến 7 triệu</span></div></a>
+                <a href="` + bfpricehref + `price=7m-13m"><div><span>Từ 7 đến 13 triệu</span></div></a>
+                <a href="` + bfpricehref + `price=>13m"><div><span>Trên 13 triệu</span></div></a>
+            </div>
+        </div>
+        <div class="filter sale">
+            <div class="filter-box">
+                <span class="filter-box-txt">Khuyến mãi  </span>
+            </div>
+            <div class="filter-choice">
+                <a href="` + bfsalehref + `promo=discount"><div><span>Giảm giá</span></div></a>
+                <a href="` + bfsalehref + `promo=installment"><div><span>Trả góp</span></div></a>
+                <a href="` + bfsalehref + `promo=newproduct"><div><span>Mới ra mắt</span></div></a>
+                <a href="` + bfsalehref + `promo=cheaponl"><div><span>Giá rẻ online</span></div></a>
+            </div>
+        </div>
+        <div class="filter star">
+            <div class="filter-box">
+                <span class="filter-box-txt">Số lượng sao  </span>
+            </div>
+            <div class="filter-choice">
+                <a href="` + bfstarhref + `star=2-5"><div><span>Trên 2 sao</span></div></a>
+                <a href="` + bfstarhref + `star=3-5"><div><span>Trên 3 sao</span></div></a>
+                <a href="` + bfstarhref + `star=4-5"><div><span>Trên 4 sao</span></div></a>
+            </div>
+        </div>
+        <div class="filter sort">
+            <div class="filter-box">
+                <span class="filter-box-txt">Sắp xếp </span>
+            </div>
+            <div class="filter-choice">
+                <a href="` + bfsorthref + `sort=priceasc"><div><span>Giá tăng dần</span></div></a>
+                <a href="` + bfsorthref + `sort=pricedesc"><div><span>Giá giảm dần</span></div></a>
+                <a href="` + bfsorthref + `sort=starasc"><div><span>Sao tăng dần</span></div></a>
+                <a href="` + bfsorthref + `sort=stardesc"><div><span>Sao giảm dần</span></div></a>
+                <a href="` + bfsorthref + `sort=a-z"><div><span>Tên A-Z</span></div></a>
+                <a href="` + bfsorthref + `sort=z-a"><div><span>Tên Z-A</span></div></a>
+            </div>
+        </div>
     `)
 }
