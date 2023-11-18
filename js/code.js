@@ -1,17 +1,22 @@
 // JS cho thuoc tinh chung //
 
 function setThingsup(){
-    addheader();
-    addbuttontotop();
     setProductData(list_products);
     getData();
+    
+    addheader();
+    addbuttontotop();
 }
 
+function getData(){
+    list_products = getProductData() || list_products;
+}
 
 // Header //
 
-function addheader(){ 
-    document.write(`<header>
+function addheader(){
+    document.write(`
+<header>
     <section class="navigation-sect">
         <div class="navigation-container">
             <div class="contact-us">
@@ -103,7 +108,8 @@ function addheader(){
             Giỏ hàng
         </a>
     </div>
-</section>`);
+</section>
+`);
 }
 
 function addfooter(){
@@ -115,6 +121,7 @@ function addfooter(){
     `)
 }
 
+// them button len dau trang //
 function addbuttontotop(){
    document.body.innerHTML += '<button class="icon scrolltotop-button" onclick="totop()"></button>' 
 }
@@ -123,7 +130,29 @@ function totop(){
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+// ket thuc phan button len dau trang //
 
-function getData(){
-    list_products = getProductData() || list_products;
+//loc filter//
+function splitlink(){
+    let current = window.location.href.toString().split(/[?&]/);
+    return current;
+}
+
+//tao path cho filter//
+function getNewFilterPath(filtername){
+
+    let current = splitlink();
+    
+    let newcurrent = "?";
+
+    if (current.length == 1) return newcurrent;
+    
+    for (let i = 1; i < current.length; i++){
+        let filterpath = current[i].split("=");
+        if (filterpath[0].includes(filtername)) continue;
+        
+        newcurrent += current[i] + "&";
+    }
+
+    return newcurrent;
 }

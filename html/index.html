@@ -61,69 +61,10 @@
     <section class="filter-sect">
         <img class="sale-ads" src="../img/banners/blackFriday.gif" alt="blackFriday"> 
         <div class="company-filter-container">
-            <a class="company iphone" href="#">
-                <img src="../img/company/Apple.jpg" alt="samsung">
-            </a>
-            <a class="company samsung" href="#">
-                <img src="../img/company/Samsung.jpg" alt="samsung">
-            </a>
-            <a class="company huawei" href="#">
-                <img src="../img/company/Huawei.jpg" alt="samsung">
-            </a>
-            <a class="company oppo" href="#">
-                <img src="../img/company/Oppo.jpg" alt="samsung">
-            </a>
-            <a class="company xiaomi" href="#">
-                <img src="../img/company/Xiaomi.png" alt="samsung">
-            </a>
+            <script>companyfilter()</script>
         </div>
         <div class="custom-filter-container">
-            <div class="filter price" href="#">
-                <div class="filter-box">
-                    <span class="filter-box-txt">Giá tiền  </span>
-                </div>
-                <div class="filter-choice">
-                    <a href="#"><div><span>Dưới 2 triệu</span></div></a>
-                    <a href="#"><div><span>Từ 2 đến 4 triệu</span></div></a>
-                    <a href="#"><div><span>Từ 4 đến 7 triệu</span></div></a>
-                    <a href="#"><div><span>Từ 7 đến 13 triệu</span></div></a>
-                    <a href="#"><div><span>Trên 13 triệu</span></div></a>
-                </div>
-            </div>
-            <div class="filter sale" href="#">
-                <div class="filter-box">
-                    <span class="filter-box-txt">Khuyến mãi  </span>
-                </div>
-                <div class="filter-choice">
-                    <a href="#"><div><span>Giảm giá</span></div></a>
-                    <a href="#"><div><span>Trả góp</span></div></a>
-                    <a href="#"><div><span>Mới ra mắt</span></div></a>
-                    <a href="#"><div><span>Giá rẻ online</span></div></a>
-                </div>
-            </div>
-            <div class="filter star" href="#">
-                <div class="filter-box">
-                    <span class="filter-box-txt">Số lượng sao  </span>
-                </div>
-                <div class="filter-choice">
-                    <a href="#"><div><span>Trên 2 sao</span></div></a>
-                    <a href="#"><div><span>Trên 3 sao</span></div></a>
-                    <a href="#"><div><span>Trên 4 sao</span></div></a>
-                </div>
-            </div>
-            <div class="filter sort" href="#">
-                <div class="filter-box">
-                    <span class="filter-box-txt">Sắp xếp </span>
-                </div>
-                <div class="filter-choice">
-                    <a href="#"><div><span>Giá tăng dần</span></div></a>
-                    <a href="#"><div><span>Giá giảm dần</span></div></a>
-                    <a href="#"><div><span>Sao tăng dần</span></div></a>
-                    <a href="#"><div><span>Sao giảm dần</span></div></a>
-                    <a href="#"><div><span>Tên A-Z</span></div></a>
-                    <a href="#"><div><span>Tên Z-A</span></div></a>
-                </div>
-            </div>
+            <script>writecustomfilter()</script>
         </div>
         <hr>
     </section>
@@ -195,7 +136,8 @@
         </div>
     </section>
     <script>
-        addfooter(); addContainTaiKhoan();
+        addfooter(); 
+        addContainTaiKhoan();
     </script>
 </body>
 </html>
