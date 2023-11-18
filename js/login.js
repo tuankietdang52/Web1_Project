@@ -70,11 +70,8 @@ function getListUser(){
     return l;
 }
 
-function setListUser(l, callback) {
+function setListUser(l) {
     window.localStorage.setItem('ListUser', JSON.stringify(l));
-    if (callback) {
-        callback();
-    }
 }
 
 //  Hàm update User sau khi chỉnh sửa thông tin gì đó 
