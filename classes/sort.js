@@ -28,7 +28,6 @@ function sortbyamountprice(amount1, order, amount2 = 0){
     switch (order){
         case "below":
             return sortbypricebelow(amount1);
-            break;
         case "above":
             return sortbypriceabove(amount1);
         case "mintomax":

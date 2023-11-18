@@ -73,31 +73,30 @@ function writeproduct(product, sectionclassname){
     let productcode = product[0].masp;
     let nameproduct =  product[0].name;
     let imgsrc = product[0].img;
-    let amountstar = product[0].star;
-    let promo = product[0].promo.name;
-    let promovalue = product[0].promo.value;
 
     let productsect = document.getElementsByClassName(sectionclassname)[0];
 
     productsect.innerHTML += (`
     <a href="#" class="product">
         <img class="product-img" src="` + imgsrc + `" alt="` + productcode + `">
-        ` + writepromotag(promo, promovalue) + `
+        ` + writepromotag(product) + `
         <span class="product-name">` + nameproduct + `</span>
         <div class="product-price">` + 
             writeprice(product) +
         `</div>
-        <div class="star-container">` + addstarandratecount(amountstar, product) + `</div>
+        <div class="star-container">` + addstarandratecount(product) + `</div>
         <button class="addtocart-button icon"></button>
     </a>
     `);
 }
 
-function addstarandratecount(amount, product){
+function addstarandratecount(product){
     let star = "";
     let i = 0;
+    let amountstar = product[0].star;
+
     while (i < 5){
-        if (i < amount) star += '<i class="fa fa-star"></i>';
+        if (i < amountstar) star += '<i class="fa fa-star"></i>';
         else star += '<i class="fa fa-star-o"></i>';
         i++;
     }
@@ -124,9 +123,12 @@ function writeprice(product){
     }
 }
 
-function writepromotag(promo, value){
+function writepromotag(product){
+    let promo = product[0].promo.name;
+    let promovalue = product[0].promo.value;
+
     if (promo == "") return "";
-    return editpromotag(promo, value);
+    return editpromotag(promo, promovalue);
 }
 
 function editpromotag(promo, value){
