@@ -84,10 +84,14 @@ function addheader(){
         </div>
     </div>
     <div class="user-option">
-        <a href="#" class="user-option-container">
+        
+    <a href="#" class="user-option-container">
             <i class="icon account user-option-effect"></i>
             Tài khoản
         </a>
+        
+        
+        
         <a href="#" class="user-option-container">
             <i class="icon cart user-option-effect"></i>
             Giỏ hàng
@@ -100,7 +104,7 @@ function addheader(){
 function addfooter(){
     document.body.innerHTML += (`
     <footer class="copy-right">
-        <p><a href="index.html">LDD Phone Store</a> - All rights reserved <i class="fa-regular fa-copyright"></i> 2021 - Designed by
+        <p><a href="index.html">LDD Phone Store</a> - All rights reserved <i class="fa-regular fa-copyright"></i> 2023 - Designed by
             <span style="color: whitesomke; font-weight: bold">group 16th</span></p>
     </footer>
     `)
