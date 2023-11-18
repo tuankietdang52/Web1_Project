@@ -10,7 +10,7 @@ function setThingsup(){
 
 // Header //
 
-function addheader(){
+function addheader(){ 
     document.write(`<header>
     <section class="navigation-sect">
         <div class="navigation-container">
@@ -83,13 +83,20 @@ function addheader(){
         </div>
     </div>
     <div class="user-option">
-        
-    <a href="#" class="user-option-container">
+    
+    <div class="user">
+
+    <a class="user-option-container" onclick="checkTaiKhoan();">
             <i class="icon account user-option-effect"></i>
-            Tài khoản
+            Tài khoản 
         </a>
-        
-        
+
+    <div class="menuUser hide">
+    <a href="nguoidung.html"> Trang người dùng</a>
+    <a onclick="if(window.confirm('Xác nhận đăng xuất ?')) logOut();">Đăng xuất</a>
+    </div>
+
+    </div>    
         
         <a href="#" class="user-option-container">
             <i class="icon cart user-option-effect"></i>
