@@ -3,7 +3,7 @@ window.onload = function(){
     let tabHeaderElements =  document.querySelectorAll(".tab-header > a");
     let tabBody =  document.querySelector(".tab-body");
     let tabBodyElements =  document.querySelectorAll(".tab-body > div");
-    let tabuser = document.querySelectorAll(".user-option > a");
+    let tabuser = document.querySelectorAll(".user > a");
     let div = document.getElementsByClassName("containTaikhoan")[0];
     let tabclose = document.getElementsByClassName("close");
     console.log(tabclose);
