@@ -336,7 +336,7 @@ header{
 }
 /* menu member */
 
-/* .user{
+.user{
     position: relative;
     top : 30px;
     float: left;
@@ -366,7 +366,7 @@ header{
     background-color: #999;
     color: #eee;
     font-weight: bold;
-} */
+}
 
 
 .user-option-container{
