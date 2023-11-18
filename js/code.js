@@ -124,6 +124,25 @@ function getData(){
 }
 
 function splitlink(){
-    let current = window.location.href.toString().split("?");
+    let current = window.location.href.toString().split(/[?&]/);
     return current;
+}
+
+function getNewFilterPath(filtername){
+
+    let current = splitlink();
+    
+    let newcurrent = "?";
+
+    if (current.length == 1) return newcurrent;
+    
+    for (let i = 1; i < current.length; i++){
+        if (current[i].includes(filtername)) continue;
+        
+        newcurrent += current[i];
+
+        newcurrent += "&";
+    }
+
+    return newcurrent;
 }

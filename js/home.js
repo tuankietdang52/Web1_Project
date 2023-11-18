@@ -189,3 +189,39 @@ function ReviewProduct(parentclassname){
     }
     writeamountremain(productremain);
 }
+
+function companyfilter(){
+
+    let splitchar = getNewFilterPath("company");
+
+    let filercontainer = document.getElementsByClassName("company-filter-container")[0];
+    filercontainer.innerHTML += (`
+        <a class="company iphone" href="` + splitchar + `company=apple">
+            <img src="../img/company/Apple.jpg" alt="apple">
+        </a>
+        <a class="company samsung" href="` + splitchar + `company=samsung">
+            <img src="../img/company/Samsung.jpg" alt="samsung">
+        </a>
+        <a class="company huawei" href="` + splitchar + `company=huawei">
+            <img src="../img/company/Huawei.jpg" alt="huawei">
+        </a>
+        <a class="company oppo" href="` + splitchar + `company=oppo">
+            <img src="../img/company/Oppo.jpg" alt="oppo">
+        </a>
+        <a class="company xiaomi" href="` + splitchar + `company=xiaomi">
+            <img src="../img/company/Xiaomi.png" alt="xiaomi">
+        </a>
+    `)
+}
+
+function pricefilter(){
+    let fitersect = document.getElementsByClassName("price")[0].children[1];
+
+    fitersect.innerHTML += (`
+        <a href="?kkk"><div><span>Dưới 2 triệu</span></div></a>
+        <a href="#"><div><span>Từ 2 đến 4 triệu</span></div></a>
+        <a href="#"><div><span>Từ 4 đến 7 triệu</span></div></a>
+        <a href="#"><div><span>Từ 7 đến 13 triệu</span></div></a>
+        <a href="#"><div><span>Trên 13 triệu</span></div></a>
+    `)
+}
