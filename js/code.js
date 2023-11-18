@@ -10,7 +10,7 @@ function setThingsup(){
 
 // Header //
 
-function addheader(){
+function addheader(){ 
     document.write(`<header>
     <section class="navigation-sect">
         <div class="navigation-container">
