@@ -265,6 +265,7 @@
     width: 50%;
     justify-self: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -292,10 +293,10 @@
 }
 
 .filter-button i{
-    transform: translateY(1px) rotate(0deg);
+    transform: rotate(0deg);
     font-weight: 600;
     font-size: 15px;
-    transition: transform 0.4s ease-in, color 0.4s;
+    transition: transform 0.2s ease-in, color 0.4s;
 }
 
 /* Product Section */
