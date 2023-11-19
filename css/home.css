@@ -260,6 +260,44 @@
     height: 50px;
 }
 
+.filter-button-container{
+    display: none;
+    width: 50%;
+    justify-self: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter-button{
+    border: unset;
+    border-radius: 5px;
+    padding: 0px 10px 0px 10px;
+    height: 34px;
+    background-color: #1191f8;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    place-items: center;
+    gap: 5px;
+}
+
+.filter-button:hover > i{
+    transform: rotate(180deg);
+    color: red;
+}
+
+.filter-button span{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.filter-button i{
+    transform: translateY(1px) rotate(0deg);
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.4s ease-in, color 0.4s;
+}
+
 /* Product Section */
 
 .product-sect{

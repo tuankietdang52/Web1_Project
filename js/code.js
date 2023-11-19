@@ -132,13 +132,13 @@ function totop(){
 }
 // ket thuc phan button len dau trang //
 
-//loc filter//
+// loc filter //
 function splitlink(){
     let current = window.location.href.toString().split(/[?&]/);
     return current;
 }
 
-//tao path cho filter//
+// tao path cho filter //
 function getNewFilterPath(filtername){
 
     let current = splitlink();
@@ -153,6 +153,25 @@ function getNewFilterPath(filtername){
         
         newcurrent += current[i] + "&";
     }
+
+    return newcurrent;
+}
+
+// xoa path filter //
+function RemoveFilter(filtername){
+    let current = splitlink();
+    
+    let newcurrent = "?";
+    
+    for (let i = 1; i < current.length; i++){
+        let filterpath = current[i].split("=");
+        if (filterpath[0].includes(filtername)) continue;
+
+        newcurrent += current[i] + "&";
+    }
+
+    let ampersand_redundant_pos = newcurrent.length - 1;
+    newcurrent = newcurrent[ampersand_redundant_pos] == "&" ? newcurrent.slice(0, ampersand_redundant_pos) : newcurrent;
 
     return newcurrent;
 }
