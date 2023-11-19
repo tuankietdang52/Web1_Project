@@ -203,19 +203,19 @@ function companyfilter(){
     let filercontainer = document.getElementsByClassName("company-filter-container")[0];
 
     filercontainer.innerHTML += (`
-        <a class="company iphone" href="` + splitchar + `company=apple">
+        <a class="company iphone" href="` + splitchar + `company=Apple">
             <img src="../img/company/Apple.jpg" alt="apple">
         </a>
-        <a class="company samsung" href="` + splitchar + `company=samsung">
+        <a class="company samsung" href="` + splitchar + `company=Samsung">
             <img src="../img/company/Samsung.jpg" alt="samsung">
         </a>
-        <a class="company huawei" href="` + splitchar + `company=huawei">
+        <a class="company huawei" href="` + splitchar + `company=Huawei">
             <img src="../img/company/Huawei.jpg" alt="huawei">
         </a>
-        <a class="company oppo" href="` + splitchar + `company=oppo">
+        <a class="company oppo" href="` + splitchar + `company=Oppo">
             <img src="../img/company/Oppo.jpg" alt="oppo">
         </a>
-        <a class="company xiaomi" href="` + splitchar + `company=xiaomi">
+        <a class="company xiaomi" href="` + splitchar + `company=Xiaomi">
             <img src="../img/company/Xiaomi.png" alt="xiaomi">
         </a>
     `)
@@ -248,10 +248,10 @@ function writecustomfilter(){
                 <span class="filter-box-txt">Khuyến mãi  </span>
             </div>
             <div class="filter-choice">
-                <a href="` + bfsalehref + `promo=discount"><div><span>Giảm giá</span></div></a>
-                <a href="` + bfsalehref + `promo=installment"><div><span>Trả góp</span></div></a>
-                <a href="` + bfsalehref + `promo=newproduct"><div><span>Mới ra mắt</span></div></a>
-                <a href="` + bfsalehref + `promo=cheaponl"><div><span>Giá rẻ online</span></div></a>
+                <a href="` + bfsalehref + `promo=giamgia"><div><span>Giảm giá</span></div></a>
+                <a href="` + bfsalehref + `promo=tragop"><div><span>Trả góp</span></div></a>
+                <a href="` + bfsalehref + `promo=moiramat"><div><span>Mới ra mắt</span></div></a>
+                <a href="` + bfsalehref + `promo=giareonline"><div><span>Giá rẻ online</span></div></a>
             </div>
         </div>
         <div class="filter star">
@@ -259,9 +259,9 @@ function writecustomfilter(){
                 <span class="filter-box-txt">Số lượng sao  </span>
             </div>
             <div class="filter-choice">
-                <a href="` + bfstarhref + `star=2-5"><div><span>Trên 2 sao</span></div></a>
-                <a href="` + bfstarhref + `star=3-5"><div><span>Trên 3 sao</span></div></a>
-                <a href="` + bfstarhref + `star=4-5"><div><span>Trên 4 sao</span></div></a>
+                <a href="` + bfstarhref + `star=2"><div><span>Trên 2 sao</span></div></a>
+                <a href="` + bfstarhref + `star=3"><div><span>Trên 3 sao</span></div></a>
+                <a href="` + bfstarhref + `star=4"><div><span>Trên 4 sao</span></div></a>
             </div>
         </div>
         <div class="filter sort">
@@ -320,18 +320,66 @@ function getFilterProduct(){
     return filterproduct;
 }
 
-function filter(filterdescription, filterproduct){
-    let pro = [];
+function filter(filterpath, filterproduct){
+    let filterpathsplit = filterpath.split("=");
+    let filtertype = filterpathsplit[0];
+    let filterdescription = filterpathsplit[1];
+
+    switch (filtertype){
+        case "company":
+            return filtercompany(filterdescription, filterproduct);
+        case "price":
+            return filterprice(filterdescription, filterproduct);
+        case "promo":
+            return filterpromo(filterdescription, filterproduct);
+        case "star":
+            return filterstar(filterdescription, filterproduct);
+        case "sort":
+            return filtersort(filterdescription, filterproduct);
+    }
+}
+
+function filtercompany(filterdescription, filterproduct){
+    return sortbycompany(filterdescription, filterproduct);
+}
+
+function filterprice(filterdescription, filterproduct){
     switch (filterdescription){
-        case "price=0-2m":
+        case "0-2m":
             return sortbyamountprice(2000000, "below", filterproduct);
-        case "price=2m-4m":
+        case "2m-4m":
             return sortbyamountprice(2000000, "mintomax", filterproduct, 4000000);
-        case "price=4m-7m":
+        case "4m-7m":
             return sortbyamountprice(4000000, "mintomax", filterproduct, 7000000);
-        case "price=7m-13m":
+        case "7m-13m":
             return sortbyamountprice(7000000, "mintomax", filterproduct, 13000000);
-        case "price=above13m":
+        case "above13m":
             return sortbyamountprice(13000000, "above", filterproduct);
+    }
+}
+
+function filterpromo(filterdescription, filterproduct){
+    return sortpromoproduct(filterdescription, filterproduct);
+}
+
+function filterstar(filterdescription, filterproduct){
+    let staramount = parseInt(filterdescription);
+    return sortbyamountstar(staramount, filterproduct);
+}
+
+function filtersort(filterdescription, filterproduct){
+    switch(filterdescription){
+        case "priceasc":
+            return sortbyprice("asc", filterproduct);
+        case "pricedesc":
+            return sortbyprice("desc", filterproduct);
+        case "starasc":
+            return sortbystar("asc", filterproduct);
+        case "stardesc":
+            return sortbystar("desc", filterproduct);
+        case "a-z":
+            return sortbyname("asc", filterproduct);
+        case "z-a":
+            return sortbyname("desc", filterproduct); 
     }
 }
