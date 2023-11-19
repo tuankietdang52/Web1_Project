@@ -151,7 +151,7 @@ function editpromotag(promo, value){
     }
 }
 
-function writeamountremain(amount, link = '#'){
+function writeamountremain(amount, link){
     let productsect = document.getElementsByClassName("product-container")[frameindex];
     productsect.innerHTML += (`
         <a href="`+ link + `" class="see-all"></a>
@@ -185,14 +185,14 @@ function getProductFrame(parentclassname){
 // KET THUC VIET SAN PHAM //
 
 // viet khung san pham cua trang chu //
-function ReviewProduct(parentclassname){
+function ReviewProduct(parentclassname, link = "#"){
     let product = getProductFrame(parentclassname);
     let productremain = product.length >= 5 ? product.length - 5 : 0;
     for (let i = 0; i < 5; i++){
         if (!product[i]) break;
         writeproduct(product[i], parentclassname);
     }
-    writeamountremain(productremain);
+    writeamountremain(productremain, link);
 }
 
 // viet filter cua cong ty vao html //
@@ -273,6 +273,8 @@ function writecustomfilter(){
                 <a href="` + bfsorthref + `sort=pricedesc"><div><span>Giá giảm dần</span></div></a>
                 <a href="` + bfsorthref + `sort=starasc"><div><span>Sao tăng dần</span></div></a>
                 <a href="` + bfsorthref + `sort=stardesc"><div><span>Sao giảm dần</span></div></a>
+                <a href="` + bfsorthref + `sort=rateasc"><div><span>Đánh giá tăng dần</span></div></a>
+                <a href="` + bfsorthref + `sort=ratedesc"><div><span>Đánh giá giảm dần</span></div></a>
                 <a href="` + bfsorthref + `sort=a-z"><div><span>Tên A-Z</span></div></a>
                 <a href="` + bfsorthref + `sort=z-a"><div><span>Tên Z-A</span></div></a>
             </div>
@@ -422,6 +424,10 @@ function getSortFilterText(filterdescription){
             return "Sao tăng dần";
         case "stardesc":
             return "Sao giảm dần";
+        case "rateasc":
+            return "Đánh giá tăng dần";
+        case "ratedesc":
+            return "Đánh giá giảm dần";
         case "a-z":
             return "A-Z";
         case "z-a":
@@ -467,6 +473,10 @@ function getFilterSort(filterdescription, filterproduct){
             return sortbystar("asc", filterproduct);
         case "stardesc":
             return sortbystar("desc", filterproduct);
+        case "rateasc":
+            return sortbyratecount("asc",filterproduct);
+        case "ratedesc":
+            return sortbyratecount("desc",filterproduct);
         case "a-z":
             return sortbyname("asc", filterproduct);
         case "z-a":
