@@ -474,3 +474,14 @@ header{
     width: 100%;
     height: 100%;
 }
+
+.noproduct-container{
+    display: grid;
+    width: 100%;
+    place-items: center;
+}
+
+.noproduct{
+    color: red;
+    font-size: 1.5vw;
+}

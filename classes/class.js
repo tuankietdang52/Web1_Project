@@ -1,3 +1,6 @@
+let arrayproduct = [];
+let arrayaccounts = [];
+
 class Product{
     constructor(name, company, img, price, star, rateCount, promo, detail, masp){
         this.name = name;
@@ -30,6 +33,3 @@ class Promo{
         this.value = value;
     }
 }
-
-let arrayproduct = [];
-let arrayaccounts = [];

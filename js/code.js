@@ -156,3 +156,13 @@ function getNewFilterPath(filtername){
 
     return newcurrent;
 }
+
+function writenoproduct(classname){
+    let sect = document.getElementsByClassName(classname)[0];
+
+    sect.innerHTML += (`
+        <div class="noproduct-container">
+            <h1 class="noproduct">Không tìm thấy sản phẩm</h1>
+        </div>
+    `)
+}
