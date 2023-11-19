@@ -14,6 +14,7 @@ class Product{
         this.masp = masp; 
         this.numprice = this.toNumPrice(price);
         this.promovaluenum = this.toNumPrice(this.promo.value);
+        this.beforesaleprice = this.checkCheapOnlPromo();
     }
 
     toNumPrice(num){
@@ -24,6 +25,13 @@ class Product{
             tempnumprice += num[i];
         }
         return parseFloat(tempnumprice);
+    }
+
+    checkCheapOnlPromo(){
+        if (this.promo.name != "giareonline") return;
+
+        this.beforesaleprice = this.numprice;
+        this.numprice = this.promovaluenum;
     }
 }
 

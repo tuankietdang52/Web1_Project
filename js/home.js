@@ -198,24 +198,24 @@ function ReviewProduct(parentclassname){
 // viet filter cua cong ty vao html //
 function companyfilter(){
 
-    let splitchar = getNewFilterPath("company");
+    let companyhref = getNewFilterPath("company");
 
     let filercontainer = document.getElementsByClassName("company-filter-container")[0];
 
     filercontainer.innerHTML += (`
-        <a class="company iphone" href="` + splitchar + `company=Apple">
+        <a class="company iphone" href="` + companyhref + `company=Apple">
             <img src="../img/company/Apple.jpg" alt="apple">
         </a>
-        <a class="company samsung" href="` + splitchar + `company=Samsung">
+        <a class="company samsung" href="` + companyhref + `company=Samsung">
             <img src="../img/company/Samsung.jpg" alt="samsung">
         </a>
-        <a class="company huawei" href="` + splitchar + `company=Huawei">
+        <a class="company huawei" href="` + companyhref + `company=Huawei">
             <img src="../img/company/Huawei.jpg" alt="huawei">
         </a>
-        <a class="company oppo" href="` + splitchar + `company=Oppo">
+        <a class="company oppo" href="` + companyhref + `company=Oppo">
             <img src="../img/company/Oppo.jpg" alt="oppo">
         </a>
-        <a class="company xiaomi" href="` + splitchar + `company=Xiaomi">
+        <a class="company xiaomi" href="` + companyhref + `company=Xiaomi">
             <img src="../img/company/Xiaomi.png" alt="xiaomi">
         </a>
     `)
@@ -293,7 +293,10 @@ function writefiltersect(){
     clearproductframe();
 
     let filterproductsect = document.getElementsByClassName("filter-product-sect")[0];
+    let filterbuttonsect = document.getElementsByClassName("filter-button-container")[0];
+
     filterproductsect.style.display = "grid";
+    filterbuttonsect.style.display = "flex";
     writerfilterproduct();
 }
 
@@ -324,26 +327,113 @@ function filter(filterpath, filterproduct){
     let filterpathsplit = filterpath.split("=");
     let filtertype = filterpathsplit[0];
     let filterdescription = filterpathsplit[1];
+    writeFilterButton(filtertype, filterdescription);
 
     switch (filtertype){
         case "company":
-            return filtercompany(filterdescription, filterproduct);
+            return getFilterCompany(filterdescription, filterproduct);
         case "price":
-            return filterprice(filterdescription, filterproduct);
+            return getFilterPrice(filterdescription, filterproduct);
         case "promo":
-            return filterpromo(filterdescription, filterproduct);
+            return getFilterPromo(filterdescription, filterproduct);
         case "star":
-            return filterstar(filterdescription, filterproduct);
+            return getFilterStar(filterdescription, filterproduct);
         case "sort":
-            return filtersort(filterdescription, filterproduct);
+            return getFilterSort(filterdescription, filterproduct);
     }
 }
 
-function filtercompany(filterdescription, filterproduct){
+function writeFilterButton(filtertype, filterdescription){
+    let removepath = splitlink().length <= 2 ? "index.html" : RemoveFilter(filtertype);
+
+    let filterbuttonsect = document.getElementsByClassName("filter-button-container")[0];
+
+    let text = getFilterText(filtertype, filterdescription);
+
+    filterbuttonsect.innerHTML += (`
+        <a href="` + removepath + `" class="filter-button">
+            <span>` + text + `</span>
+            <i class="fa-solid fa-x"></i>
+        </a>
+    `)
+}
+
+function getFilterText(filtertype, filterdescription){
+    switch (filtertype){
+        case "company":
+            return filterdescription;
+        case "price":
+            return getPriceFilterText(filterdescription);
+        case "promo":
+            return getPromoFilterText(filterdescription);
+        case "star":
+            return getStarFilterText(filterdescription);
+        case "sort":
+            return getSortFilterText(filterdescription);
+    }
+}
+
+function getPriceFilterText(filterdescription){
+    switch (filterdescription){
+        case "0-2m":
+            return "Dưới 2 triệu";
+        case "2m-4m":
+            return "Từ 2 triệu đến 4 triệu";
+        case "4m-7m":
+            return "Từ 4 triệu đến 7 triệu";
+        case "7m-13m":
+            return "Từ 7 triệu đến 13 triệu";
+        case "above13m":
+            return "Trên 13 triệu";
+    }
+}
+
+function getPromoFilterText(filterdescription){
+    switch (filterdescription){
+        case "giamgia":
+            return "Giảm giá";
+        case "tragop":
+            return "Trả góp";
+        case "moiramat":
+            return "Mới ra mắt";
+        case "giareonline":
+            return "Giá rẻ online";
+    }
+}
+
+function getStarFilterText(filterdescription){
+    switch (filterdescription){
+        case "2":
+            return "Trên 2 sao";
+        case "3":
+            return "Trên 3 sao";
+        case "4":
+            return "Trên 4 sao";
+    }
+}
+
+function getSortFilterText(filterdescription){
+    switch (filterdescription){
+        case "priceasc":
+            return "Giá tăng dần";
+        case "pricedesc":
+            return "Giá giảm dần";
+        case "starasc":
+            return "Sao tăng dần";
+        case "stardesc":
+            return "Sao giảm dần";
+        case "a-z":
+            return "A-Z";
+        case "z-a":
+            return "Z-A";
+    }
+}
+
+function getFilterCompany(filterdescription, filterproduct){
     return sortbycompany(filterdescription, filterproduct);
 }
 
-function filterprice(filterdescription, filterproduct){
+function getFilterPrice(filterdescription, filterproduct){
     switch (filterdescription){
         case "0-2m":
             return sortbyamountprice(2000000, "below", filterproduct);
@@ -358,16 +448,16 @@ function filterprice(filterdescription, filterproduct){
     }
 }
 
-function filterpromo(filterdescription, filterproduct){
+function getFilterPromo(filterdescription, filterproduct){
     return sortpromoproduct(filterdescription, filterproduct);
 }
 
-function filterstar(filterdescription, filterproduct){
+function getFilterStar(filterdescription, filterproduct){
     let staramount = parseInt(filterdescription);
     return sortbyamountstar(staramount, filterproduct);
 }
 
-function filtersort(filterdescription, filterproduct){
+function getFilterSort(filterdescription, filterproduct){
     switch(filterdescription){
         case "priceasc":
             return sortbyprice("asc", filterproduct);

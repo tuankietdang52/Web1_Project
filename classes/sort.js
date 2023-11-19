@@ -16,9 +16,9 @@ function sortbyprice(order, array = null){
 
     switch (order){
         case "asc":
-            return sortarray.sort((a, b) => a[0].price - b[0].price);
+            return sortarray.sort((a, b) => a[0].numprice - b[0].numprice);
         case "desc":
-            return sortarray.sort((a, b) => b[0].price - a[0].price);
+            return sortarray.sort((a, b) => b[0].numprice - a[0].numprice);
         default:
             return;
     }
@@ -35,9 +35,7 @@ function sortbyname(order, array = null){
         default:
             return;
     }
-    
 }
-
 
 function sortbyamountprice(amount1, order, array = null, amount2 = 0){
     let sortarray = array || arrayproduct;
