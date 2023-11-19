@@ -1,7 +1,7 @@
 function sortbyratecount(order, array = null){
     let sortarray = array || arrayproduct;
 
-    switch(order){
+    switch (order){
         case "asc":
             return sortarray.sort((a, b) => a[0].rateCount - b[0].rateCount);
         case "desc":
@@ -14,7 +14,7 @@ function sortbyratecount(order, array = null){
 function sortbyprice(order, array = null){
     let sortarray = array || arrayproduct;
 
-    switch(order){
+    switch (order){
         case "asc":
             return sortarray.sort((a, b) => a[0].price - b[0].price);
         case "desc":
@@ -23,6 +23,21 @@ function sortbyprice(order, array = null){
             return;
     }
 }
+
+function sortbyname(order, array = null){
+    let sortarray = array || arrayproduct;
+    
+    switch (order){
+        case "asc":
+            return sortarray.sort((a, b) => a[0].name.toLowerCase().localeCompare(b[0].name.toLowerCase()));
+        case "desc":
+            return sortarray.sort((a, b) => b[0].name.toLowerCase().localeCompare(a[0].name.toLowerCase()));
+        default:
+            return;
+    }
+    
+}
+
 
 function sortbyamountprice(amount1, order, array = null, amount2 = 0){
     let sortarray = array || arrayproduct;
@@ -111,6 +126,19 @@ function sortpromoproduct(promoname, array = null){
     
     for (let i = 0; i < temparray.length; i++){
         if (temparray[i][0].promo.name != promoname) continue;
+        sortarray.push(temparray[i]);
+    }
+
+    return sortarray;
+}
+
+function sortbycompany(companyname, array = null){
+    let temparray = array || arrayproduct;
+    let sortarray = [];
+
+    for (let i = 0; i < temparray.length; i++){
+        if (temparray[i][0].company != companyname) continue;
+
         sortarray.push(temparray[i]);
     }
 
