@@ -509,6 +509,12 @@
     background-image: linear-gradient(120deg, #5de272 0%, #007012 50%, #5de272 100%);
 }
 
+.filter-product-sect{
+    display: none;
+    width: 100%;
+    place-items: center;
+}
+
 .customer-profit-sect{
     height: 250px;
     width: 100%;
@@ -538,8 +544,3 @@
 .customer-profit-container li a{
     text-decoration: none;
 }
-
-
-
-
-

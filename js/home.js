@@ -240,7 +240,7 @@ function writecustomfilter(){
                 <a href="` + bfpricehref + `price=2m-4m"><div><span>Từ 2 đến 4 triệu</span></div></a>
                 <a href="` + bfpricehref + `price=4m-7m"><div><span>Từ 4 đến 7 triệu</span></div></a>
                 <a href="` + bfpricehref + `price=7m-13m"><div><span>Từ 7 đến 13 triệu</span></div></a>
-                <a href="` + bfpricehref + `price=>13m"><div><span>Trên 13 triệu</span></div></a>
+                <a href="` + bfpricehref + `price=above13m"><div><span>Trên 13 triệu</span></div></a>
             </div>
         </div>
         <div class="filter sale">
@@ -278,4 +278,60 @@ function writecustomfilter(){
             </div>
         </div>
     `)
+}
+
+// trang index khi co filter //
+function clearproductframe(){
+    let productcontainer = document.getElementsByClassName("product-sect")[0];
+    productcontainer.style.display = "none";
+
+}
+
+function writefiltersect(){
+    if (splitlink().length <= 1) return;
+
+    clearproductframe();
+
+    let filterproductsect = document.getElementsByClassName("filter-product-sect")[0];
+    filterproductsect.style.display = "grid";
+    writerfilterproduct();
+}
+
+function writerfilterproduct(){
+    let filterproduct = getFilterProduct();
+
+    if (filterproduct.length == 0) writenoproduct("filter-product-sect");
+
+
+    for (let i = 0; i < filterproduct.length; i++){
+        writeproduct(filterproduct[i], "filter-product");
+    }
+}
+
+function getFilterProduct(){
+    let current = splitlink();
+
+    let filterproduct = arrayproduct;
+
+    for (let i = 1; i < current.length; i++){
+        filterproduct = filter(current[i], filterproduct);
+    }
+
+    return filterproduct;
+}
+
+function filter(filterdescription, filterproduct){
+    let pro = [];
+    switch (filterdescription){
+        case "price=0-2m":
+            return sortbyamountprice(2000000, "below", filterproduct);
+        case "price=2m-4m":
+            return sortbyamountprice(2000000, "mintomax", filterproduct, 4000000);
+        case "price=4m-7m":
+            return sortbyamountprice(4000000, "mintomax", filterproduct, 7000000);
+        case "price=7m-13m":
+            return sortbyamountprice(7000000, "mintomax", filterproduct, 13000000);
+        case "price=above13m":
+            return sortbyamountprice(13000000, "above", filterproduct);
+    }
 }

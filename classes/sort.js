@@ -24,45 +24,52 @@ function sortbyprice(order, array = null){
     }
 }
 
-function sortbyamountprice(amount1, order, amount2 = 0){
+function sortbyamountprice(amount1, order, array = null, amount2 = 0){
+    let sortarray = array || arrayproduct;
     switch (order){
         case "below":
-            return sortbypricebelow(amount1);
+            return sortbypricebelow(amount1, sortarray);
         case "above":
-            return sortbypriceabove(amount1);
+            return sortbypriceabove(amount1, sortarray);
         case "mintomax":
-            return sortbymintomax(amount1, amount2);
+            return sortbymintomax(amount1, amount2, sortarray);
         default:
             return null;
     }
 }
 
-function sortbypricebelow(amount){
+function sortbypricebelow(amount, array){
     let temparray = [];
-    for (let i = 0; i < arrayproduct.length; i++){
-        if (arrayproduct[i][0].numprice > amount) continue;
+    let price = 0;
+    for (let i = 0; i < array.length; i++){
+        price = array[i][0].promo.name == "giareonline" ? array[i][0].promovaluenum : array[i][0].numprice;
+        if (price > amount) continue;
 
-        temparray.push(arrayproduct[i]);
+        temparray.push(array[i]);
     }
     return temparray;
 }
 
-function sortbypriceabove(amount){
+function sortbypriceabove(amount, array){
     let temparray = [];
-    for (let i = 0; i < arrayproduct.length; i++){
-        if (arrayproduct[i][0].numprice < amount) continue;
+    let price = 0;
+    for (let i = 0; i < array.length; i++){
+        price = array[i][0].promo.name == "giareonline" ? array[i][0].promovaluenum : array[i][0].numprice;
+        if (price < amount) continue;
 
-        temparray.push(arrayproduct[i]);
+        temparray.push(array[i]);
     }
     return temparray;
 }
 
-function sortbymintomax(amount1, amount2){
+function sortbymintomax(amount1, amount2, array){
     let temparray = [];
-    for (let i = 0; i < arrayproduct.length; i++){
-        if (arrayproduct[i][0].numprice < amount1 || arrayproduct[i][0].numprice > amount2) continue;
+    let price = 0;
+    for (let i = 0; i < array.length; i++){
+        price = array[i][0].promo.name == "giareonline" ? array[i][0].promovaluenum : array[i][0].numprice;
+        if (price < amount1 || price > amount2) continue;
 
-        temparray.push(arrayproduct[i]);
+        temparray.push(array[i]);
     }
     return temparray;
 }
