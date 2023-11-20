@@ -8,6 +8,7 @@ function setProductData(newdata = null){
         newdata = JSON.parse(newdata);
     }
     catch(e){console.log(e)}
+
     list_products = newdata || list_products;
     window.localStorage.setItem("ListProducts", list_products);
     setArrayProducts();
@@ -23,8 +24,9 @@ function setAccountData(newdata = null){
         newdata = JSON.parse(newdata);
     }
     catch(e){
-        newdata = newdata;
+        console.log(e);
     }
+    
     list_accounts = newdata || list_accounts;
     window.localStorage.setItem("ListAccounts", list_accounts);
     setArrayAccounts();

@@ -41,8 +41,7 @@
     </script>
 <body>
 
-    <!-- Slideshow section -->
-
+    <!-- slideshow section -->
     <section class="slideshow-container">
         <div class="slideshow">
             <div class="owl-carousel">
@@ -58,109 +57,62 @@
             </div>
         </div>
     </section>
+    <!-- end slideshow sect  -->
+
+    <!-- filter section -->
     <section class="filter-sect">
         <img class="sale-ads" src="../img/banners/blackFriday.gif" alt="blackFriday"> 
         <div class="company-filter-container">
-            <a class="company iphone" href="#">
-                <img src="../img/company/Apple.jpg" alt="samsung">
-            </a>
-            <a class="company samsung" href="#">
-                <img src="../img/company/Samsung.jpg" alt="samsung">
-            </a>
-            <a class="company huawei" href="#">
-                <img src="../img/company/Huawei.jpg" alt="samsung">
-            </a>
-            <a class="company oppo" href="#">
-                <img src="../img/company/Oppo.jpg" alt="samsung">
-            </a>
-            <a class="company xiaomi" href="#">
-                <img src="../img/company/Xiaomi.png" alt="samsung">
-            </a>
+            <script>companyfilter()</script>
         </div>
         <div class="custom-filter-container">
-            <div class="filter price" href="#">
-                <div class="filter-box">
-                    <span class="filter-box-txt">Giá tiền  </span>
-                </div>
-                <div class="filter-choice">
-                    <a href="#"><div><span>Dưới 2 triệu</span></div></a>
-                    <a href="#"><div><span>Từ 2 đến 4 triệu</span></div></a>
-                    <a href="#"><div><span>Từ 4 đến 7 triệu</span></div></a>
-                    <a href="#"><div><span>Từ 7 đến 13 triệu</span></div></a>
-                    <a href="#"><div><span>Trên 13 triệu</span></div></a>
-                </div>
-            </div>
-            <div class="filter sale" href="#">
-                <div class="filter-box">
-                    <span class="filter-box-txt">Khuyến mãi  </span>
-                </div>
-                <div class="filter-choice">
-                    <a href="#"><div><span>Giảm giá</span></div></a>
-                    <a href="#"><div><span>Trả góp</span></div></a>
-                    <a href="#"><div><span>Mới ra mắt</span></div></a>
-                    <a href="#"><div><span>Giá rẻ online</span></div></a>
-                </div>
-            </div>
-            <div class="filter star" href="#">
-                <div class="filter-box">
-                    <span class="filter-box-txt">Số lượng sao  </span>
-                </div>
-                <div class="filter-choice">
-                    <a href="#"><div><span>Trên 2 sao</span></div></a>
-                    <a href="#"><div><span>Trên 3 sao</span></div></a>
-                    <a href="#"><div><span>Trên 4 sao</span></div></a>
-                </div>
-            </div>
-            <div class="filter sort" href="#">
-                <div class="filter-box">
-                    <span class="filter-box-txt">Sắp xếp </span>
-                </div>
-                <div class="filter-choice">
-                    <a href="#"><div><span>Giá tăng dần</span></div></a>
-                    <a href="#"><div><span>Giá giảm dần</span></div></a>
-                    <a href="#"><div><span>Sao tăng dần</span></div></a>
-                    <a href="#"><div><span>Sao giảm dần</span></div></a>
-                    <a href="#"><div><span>Tên A-Z</span></div></a>
-                    <a href="#"><div><span>Tên Z-A</span></div></a>
-                </div>
-            </div>
+            <script>writecustomfilter()</script>
+        </div>
+        <div class="filter-button-container">
+            <a href="../html/index.html" class="filter-button">
+                <span>Xoá bộ lọc</span>
+                <i class="fa-solid fa-x"></i>
+            </a>
         </div>
         <hr>
     </section>
+    <!-- end filter section -->
+
+    <!-- product frame section -->
     <section class="product-sect">
         <div class="product-container" style="border-color: orangered;">
             <div class="banner hot">
-                <h1>* Nổi bật nhất *</h1>
+                <h1>* NỔI BẬT NHẤT *</h1>
             </div>
             <div class="product-frame product-hot">
-                <script>ReviewProduct("product-hot")</script>
+                <script>ReviewProduct("product-hot", "?star=2&sort=ratedesc")</script>
             </div>
         </div>
         <hr>
         <div class="product-container" style="border-color: blue;">
             <div class="banner new">
-                <h1>* Sản phẩm mới *</h1>
+                <h1>* SẢN PHẨM MỚI *</h1>
             </div>
             <div class="product-frame new-product">
-                <script>ReviewProduct("new-product")</script>
+                <script>ReviewProduct("new-product", "?promo=moiramat")</script>
             </div>
         </div>
         <hr>
         <div class="product-container" style="border-color: orangered;">
             <div class="banner sale0">
-                <h1>* Trả góp 0% *</h1>
+                <h1>* TRẢ GÓP 0% *</h1>
             </div>
             <div class="product-frame sale-product-0">
-                <script>ReviewProduct("sale-product-0")</script>
+                <script>ReviewProduct("sale-product-0", "?promo=tragop")</script>
             </div>
         </div>
         <hr>
         <div class="product-container" style="border-color: #5de272;">
             <div class="banner shockonl">
-                <h1>* Giá rẻ online *</h1>
+                <h1>* GIÁ SỐC ONLINE *</h1>
             </div>
             <div class="product-frame shock-price-online">
-                <script>ReviewProduct("shock-price-online")</script>
+                <script>ReviewProduct("shock-price-online", "?promo=giareonline")</script>
             </div>
         </div>
         <hr>
@@ -169,7 +121,7 @@
                 <h1>* Giảm giá lớn *</h1>
             </div>
             <div class="product-frame product-discount">
-                <script>ReviewProduct("product-discount")</script>
+                <script>ReviewProduct("product-discount", "?promo=giamgia")</script>
             </div>
         </div>
         <hr>
@@ -178,10 +130,24 @@
                 <h1>* Giá rẻ cho mọi nhà *</h1>
             </div>
             <div class="product-frame cheap-product">
-                <script>ReviewProduct("cheap-product")</script>
+                <script>ReviewProduct("cheap-product", "?price=0-2m")</script>
             </div>
         </div>
     </section>
+    <!-- end product frame section -->
+
+    <!-- filter product section -->
+    <section class="filter-product-sect">
+        <div class="product-container" style="border: unset;">
+            <div class="product-frame filter-product">
+
+            </div> 
+        </div>
+        <script>writefiltersect()</script>
+    </section>
+    <!-- end filter product section -->
+
+    <!-- customer profit section  -->
     <section class="customer-profit-sect">
         <div class="customer-profit-container">
             <li>Giao hàng hỏa tốc trong 1 giờ</li>
@@ -194,8 +160,13 @@
             </li>
         </div>
     </section>
-</body>
+    <!-- end customer profit section -->
+
+    <!-- footer -->
     <script>
-        addfooter(); addContainTaiKhoan();
+        addfooter(); 
+        addContainTaiKhoan();
     </script>
-    </html>
+    <!-- end footer -->
+</body>
+</html>
