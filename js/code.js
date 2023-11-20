@@ -80,11 +80,11 @@ function addheader(){
             <button class="searchbutton">Tìm kiếm</button>
         </div>
         <div class="keyword"><span>Từ khóa:</span> 
-            <li><a href="#">Samsung</a></li>
-            <li><a href="#">Iphone</a></li>
-            <li><a href="#">Huawei</a></li>
-            <li><a href="#">Oppo</a></li>
-            <li><a href="#">Xiaomi</a></li>
+            <li><a href="index.html?company=Samsung">Samsung</a></li>
+            <li><a href="index.html?company=Iphone">Iphone</a></li>
+            <li><a href="index.html?company=Huawei">Huawei</a></li>
+            <li><a href="index.html?company=Oppo">Oppo</a></li>
+            <li><a href="index.html?company=Xiaomi">Xiaomi</a></li>
         </div>
     </div>
     <div class="user-option">
