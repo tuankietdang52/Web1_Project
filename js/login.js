@@ -6,12 +6,16 @@ window.onload = function(){
     let tabuser = document.querySelectorAll(".user > a");
     let div = document.getElementsByClassName("containTaikhoan")[0];
     let tabclose = document.getElementsByClassName("close");
-    console.log(tabclose);
-    tabuser[0].addEventListener("click",function() {
-        div.style.transform='scale(1)';
-            });
-    tabclose[0].addEventListener("click",function(){
-        div.style.transform='scale(0)';
+    tabuser[0].addEventListener("click", function() {
+        // Check if the user is logged in
+        if (!getCurrentUser()) {
+            // If not logged in, show the login form
+            div.style.transform = 'scale(1)';
+        }
+    });
+
+    tabclose[0].addEventListener("click", function() {
+        div.style.transform = 'scale(0)';
     });
     for(let i = 0; i <tabHeaderElements.length;i++) {
     tabHeaderElements[i].addEventListener("click",function(){
@@ -21,7 +25,7 @@ window.onload = function(){
         tabBodyElements[i].classList.add("active");
     });
     }
-    capNhat_ThongTin_CurrentUser();
+        capNhat_ThongTin_CurrentUser();
 
 }
 // đối tượng user
@@ -70,50 +74,48 @@ function getListUser(){
     return l;
 }
 
-function setListUser(l, callback) {
+function setListUser(l) {
     window.localStorage.setItem('ListUser', JSON.stringify(l));
-    if (callback) {
-        callback();
-    }
 }
 
 //  Hàm update User sau khi chỉnh sửa thông tin gì đó 
-function updateListUser(user,newData){
+function updateListUser(u, newData) {
     var list = getListUser();
-    for ( var i =0;ilist.length;i++){
-        if ( equalUser(user,list[i]) ){
-        list[i] = (newData ? newData :user)
+    for (var i = 0; i < list.length; i++) {
+        if (equalUser(u, list[i])) {
+            list[i] = (newData ? newData : u);
+        }
     }
-}
     setListUser(list);
 }
 
-function logIn(form){
+function logIn(form) {
     // get dữ liệu từ form
-   var name = form.username.value;
-   var pass = form.pass.value;
-   var newUser = new User(name,pass);
+    var name = form.username.value;
+    var pass = form.pass.value;
+    var newUser = new User(name, pass);
 
     // lấy dữ liệu list User in localStorage
-   var listUser = getListUser();
+    var listUser = getListUser();
 
-   for ( var u of listUser ){
-       if ( equalUser(newUser,u)){
-           if ( u.off){    
-               alert('tài khoản này đang bị khóa,không thể đăng nhập')
-               return false;
-           }
-           setCurrentUser(u);
-        //   Reload lại trang - sau khi reload sẽ cập nhật luôn giỏ hàng khi hàm setupEventTaiKhoan chạy
-           location.reload();
-           return false;
-       }
-   }
+    for (var u of listUser) {
+        if (equalUser(newUser, u)) {
+            if (u.off) {
+                alert('tài khoản này đang bị khóa, không thể đăng nhập');
+                return false;
+            }
+            setCurrentUser(u);
+            // Reload lại trang - sau khi reload sẽ cập nhật luôn giỏ hàng khi hàm setupEventTaiKhoan chạy
+            location.reload();
+            return false;
+        }
+    }
 
-   alert('Nhập sai tên tài khoản hoặc mật khẩu !!!');
-   form.username.focus();
-   return false;
+    alert('Nhập sai tên tài khoản hoặc mật khẩu !!!');
+    form.username.focus();
+    return false;
 }
+
 
 function signUp(form){
     var ho = form.ho.value;
@@ -140,7 +142,7 @@ function signUp(form){
     for ( var u of listUser){
         if ( newUser.username === u.username){
             alert('Tên đăng nhập đã có người sử dụng !!');
-            return false
+            return false;
         }
     }
 
@@ -155,19 +157,15 @@ function signUp(form){
 
     return false;
 
-}   
+}  
+
 // Tải lại trang sau khi đăng xuất
 function logOut(){
     window.localStorage.removeItem('CurrentUser');
     location.reload();
 }
 
-// HIển thi form tài khoản , giá trụ truyền vào true hoặc false trong application local
-function showTaiKhoan(show) {
-    var value = (show ? "scale(1)" : "scale(0)");
-    var div = document.getElementsByClassName('containTaikhoan')[0];
-    div.style.transform = value;
-}
+
 
 function capNhat_ThongTin_CurrentUser() {
 
