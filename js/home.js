@@ -342,6 +342,8 @@ function filter(filterpath, filterproduct){
             return getFilterStar(filterdescription, filterproduct);
         case "sort":
             return getFilterSort(filterdescription, filterproduct);
+        case "search":
+            return getSearchProduct(filterdescription);
     }
 }
 
@@ -372,6 +374,8 @@ function getFilterText(filtertype, filterdescription){
             return getStarFilterText(filterdescription);
         case "sort":
             return getSortFilterText(filterdescription);
+        case "search":
+            return getSearchFilterText(filterdescription);
     }
 }
 
