@@ -11,7 +11,7 @@ function setThingsup(){
 // Header //
 
 function addheader(){ 
-    document.write(`<header>
+        document.write(`<header>
     <section class="navigation-sect">
         <div class="navigation-container">
             <div class="contact-us">
