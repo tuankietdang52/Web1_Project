@@ -1,5 +1,5 @@
 function getProductData(){
-    return JSON.parse(window.localStorage.getItem("ListProducts"));
+    return window.localStorage.getItem("ListProducts");
 }
 
 function setProductData(newdata = null){
@@ -15,7 +15,7 @@ function setProductData(newdata = null){
 }
 
 function getAccountData(){
-    return JSON.parse(window.localStorage.getItem("ListAccounts"));
+    return window.localStorage.getItem("ListAccounts");
 }
 
 function setAccountData(newdata = null){
