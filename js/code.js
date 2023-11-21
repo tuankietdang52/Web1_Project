@@ -80,7 +80,7 @@ function addheader(){
         </div>
         <div class="keyword"><span>Từ khóa:</span> 
             <li><a href="index.html?company=Samsung">Samsung</a></li>
-            <li><a href="index.html?company=Iphone">Iphone</a></li>
+            <li><a href="index.html?company=Apple">Iphone</a></li>
             <li><a href="index.html?company=Huawei">Huawei</a></li>
             <li><a href="index.html?company=Oppo">Oppo</a></li>
             <li><a href="index.html?company=Xiaomi">Xiaomi</a></li>
@@ -245,7 +245,7 @@ function getSearchProduct(value, type = "filter"){
 function CompareCheck(value, productname){
 
     // check ten vat pham co chua nhung chuoi la nhap khong //
-    
+
     let input = value.split(" ");
 
     for (let i = 0; i < input.length; i++){
@@ -265,7 +265,7 @@ function addProducttoSearchDropDown(product){
     let result_dropdown = document.getElementsByClassName("searchresult-dropdown")[0];
     
     result_dropdown.innerHTML += (`
-        <a href="?` + product[0].masp + `" class="search-product">
+        <a href="index.html?` + product[0].masp + `" class="search-product">
             <span>` + product[0].name + `</span>
         </a>
     `)
