@@ -1,7 +1,8 @@
 // JS cho thuoc tinh chung //
+setProductData(list_products);
+getData();
+
 function setThingsup(){
-    setProductData(list_products);
-    getData() 
     addheader();
     addbuttontotop();
 }
@@ -130,6 +131,140 @@ function totop(){
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 // ket thuc phan button len dau trang //
+
+// CAC HAM DUNG CHUNG //
+
+// VIET SAN PHAM VA KHUNG SAN PHAM //
+
+// viet san pham //
+
+function writeproduct(product, sectionclassname){
+    let productcode = product[0].masp;
+    let nameproduct =  product[0].name;
+    let imgsrc = product[0].img;
+
+    let productsect = document.getElementsByClassName(sectionclassname)[0];
+
+    productsect.innerHTML += (`
+    <a href="chitietsanpham.html?` + product[0].masp + `" class="product">
+        <img class="product-img" src="` + imgsrc + `" alt="` + productcode + `">
+        ` + writepromotag(product) + `
+        <span class="product-name">` + nameproduct + `</span>
+        <div class="product-price">` + 
+            writeprice(product) +
+        `</div>
+        <div class="star-container">` + addstarandratecount(product) + `</div>
+        <button class="addtocart-button icon"></button>
+    </a>
+    `);
+}
+
+function addstarandratecount(product){
+    let star = "";
+    let i = 0;
+    let amountstar = product[0].star;
+
+    while (i < 5){
+        if (i < amountstar) star += '<i class="fa fa-star"></i>';
+        else star += '<i class="fa fa-star-o"></i>';
+        i++;
+    }
+
+    let ratecount = product[0].rateCount;
+    let ratecounttag = `<span class="ratecountdisplay">` + ratecount + " đánh giá" + `</span>`;
+    star += ratecounttag;
+
+    return star;
+}
+
+function writeprice(product){
+    switch (product[0].promo.name){
+        case "giareonline":
+            return (`
+                <strong>` + product[0].promo.value +  `đ</strong>
+                <span>` + product[0].price + `đ<span>
+            `);
+
+        default:
+            return (`
+                <strong>` + product[0].price + `đ</strong>
+            `)
+    }
+}
+
+function writepromotag(product){
+    let promo = product[0].promo.name;
+    let promovalue = product[0].promo.value;
+
+    if (promo == "") return "";
+    return editpromotag(promo, promovalue);
+}
+
+function editpromotag(promo, value){
+    switch (promo){
+        case "moiramat":
+            return "<label class='promotag moiramat'>Mới ra mắt</label>";
+        case "tragop":
+            return "<label class='promotag tragop'>Trả góp " + value + "%</label>";
+        case "giareonline":
+            return "<label class='promotag giareonl'>Giá rẻ online</label>";
+        case "giamgia":
+            return (`
+                <label class='promotag giamgia'>
+                    <i class="fa-solid fa-bolt"></i>
+                    Giảm ` + value + `đ
+                </label>
+            `);
+    }
+}
+
+function writeamountremain(amount, link){
+    let productsect = document.getElementsByClassName("product-container")[frameindex];
+    productsect.innerHTML += (`
+        <a href="`+ link + `" class="see-all"></a>
+    `)
+    let seeallbutton = document.getElementsByClassName("see-all")[frameindex];
+    seeallbutton.innerHTML += (`
+         <h1>Xem tất cả <span>` + amount + `</span> sản phẩm</h1>
+    `)
+    frameindex++;
+}
+
+function getProductFrame(parentclassname){
+    switch (parentclassname){
+        case "product-hot":
+            return producthot;
+        case "new-product":
+            return newproduct;
+        case "sale-product-0":
+            return saleproduct0;
+        case "shock-price-online":
+            return shockonlproduct;
+        case "product-discount":
+            return productdiscount;
+        case "cheap-product":
+            return cheapproduct;
+        case "suggest-product":
+            return randomproduct;
+        default:
+            return null;
+    }
+}
+
+// ket thuc viet san pham //
+
+// viet khung san pham cua trang chu //
+function ReviewProduct(parentclassname, link = ""){
+    let product = getProductFrame(parentclassname);
+    let productremain = product.length >= 5 ? product.length - 5 : 0;
+    for (let i = 0; i < 5; i++){
+        if (!product[i]) break;
+        writeproduct(product[i], parentclassname);
+    }
+    if (link != "") writeamountremain(productremain, link);
+}
+
+// KET THUC VIET SAN PHAM VA KHUNG //
 
 // loc filter //
 function splitlink(){
@@ -265,7 +400,7 @@ function addProducttoSearchDropDown(product){
     let result_dropdown = document.getElementsByClassName("searchresult-dropdown")[0];
     
     result_dropdown.innerHTML += (`
-        <a href="index.html?` + product[0].masp + `" class="search-product">
+        <a href="chitietsanpham.html?` + product[0].masp + `" class="search-product">
             <span>` + product[0].name + `</span>
         </a>
     `)
