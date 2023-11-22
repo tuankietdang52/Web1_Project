@@ -1,9 +1,7 @@
 // JS cho thuoc tinh chung //
-
 function setThingsup(){
     setProductData(list_products);
-    getData();
-    
+    getData() 
     addheader();
     addbuttontotop();
 }
@@ -76,15 +74,16 @@ function addheader(){
     <a class="homelogo" href="index.html"><img src="../img/logo.jpg" alt="logo"></a>
     <div class="searchbar-container">
         <div class="searchbox">
-            <input type="text" class="searchbar" placeholder="Search">
-            <button class="searchbutton">Tìm kiếm</button>
+            <input type="text" class="searchbar" onkeyup="Searching(event)" placeholder="Search">
+            <a href="#" class="searchbutton">Tìm kiếm</a>
+            <div class="searchresult-dropdown"></div>
         </div>
         <div class="keyword"><span>Từ khóa:</span> 
-            <li><a href="#">Samsung</a></li>
-            <li><a href="#">Iphone</a></li>
-            <li><a href="#">Huawei</a></li>
-            <li><a href="#">Oppo</a></li>
-            <li><a href="#">Xiaomi</a></li>
+            <li><a href="index.html?company=Samsung">Samsung</a></li>
+            <li><a href="index.html?company=Apple">Iphone</a></li>
+            <li><a href="index.html?company=Huawei">Huawei</a></li>
+            <li><a href="index.html?company=Oppo">Oppo</a></li>
+            <li><a href="index.html?company=Xiaomi">Xiaomi</a></li>
         </div>
     </div>
     <div class="user-option">
@@ -92,9 +91,9 @@ function addheader(){
     <div class="user">
 
     <a class="user-option-container" onclick="checkTaiKhoan();">
-            <i class="icon account user-option-effect"></i>
-            Tài khoản 
-        </a>
+        <i class="icon account user-option-effect"></i>
+        Tài khoản 
+    </a>
 
     <div class="menuUser hide">
     <a href="nguoidung.html"> Trang người dùng</a>
@@ -184,4 +183,98 @@ function writenoproduct(classname){
             <h1 class="noproduct">Không tìm thấy sản phẩm</h1>
         </div>
     `)
+}
+
+function getSearchValue(){
+    let value = document.getElementsByClassName("searchbar")[0].value;
+    return value;
+}
+
+function Searching(e){
+    if (e.keyCode === 13) Search();
+
+
+    let value = getSearchValue().toLowerCase();
+    let result_dropdown = document.getElementsByClassName("searchresult-dropdown")[0];
+
+    if (!value){
+        result_dropdown.style.display = "none";
+        return;
+    }
+    
+    getSearchProduct(value, "dropdown");
+    result_dropdown.style.display = "grid";
+}
+
+
+function Search(){  
+    let value = getSearchValue();
+    if (!value) return;
+
+    let search = document.getElementsByClassName("searchbutton")[0];
+
+    search.click();
+}
+
+function getSearchProduct(value, type = "filter"){
+
+    // ham nay co 2 dang la show product o phan tim kiem va lay product khi click search //
+    // filter lay product, dropdown show product //
+
+    let result_dropdown = document.getElementsByClassName("searchresult-dropdown")[0];
+    result_dropdown.innerHTML = "";
+    
+    value = value.toLowerCase();
+    
+    if (type == "filter") value = getSearchFilterText(value);
+
+    let searchproduct = [];
+
+    for (let i = 0; i < arrayproduct.length; i++){
+        let productname = arrayproduct[i][0].name.toLowerCase();
+        if (!CompareCheck(value, productname)) continue;
+        
+        if (type == "filter") searchproduct.push(arrayproduct[i]);
+        else if (type == "dropdown") addProducttoSearchDropDown(arrayproduct[i]);
+    }
+    
+    getSearchPath(value);
+    return searchproduct;
+}
+
+function CompareCheck(value, productname){
+
+    // check ten vat pham co chua nhung chuoi la nhap khong //
+
+    let input = value.split(" ");
+
+    for (let i = 0; i < input.length; i++){
+        if (!productname.includes(input[i])) return false;
+    }
+
+    return true;
+}
+
+function getSearchFilterText(filterdescription){
+    //replace %20 thanh dau cach //
+    return filterdescription.replace(new RegExp("%20", "g"), " ");
+}
+
+function addProducttoSearchDropDown(product){
+    // show product o phan tim kiem (chua click tim kiem) //
+    let result_dropdown = document.getElementsByClassName("searchresult-dropdown")[0];
+    
+    result_dropdown.innerHTML += (`
+        <a href="index.html?` + product[0].masp + `" class="search-product">
+            <span>` + product[0].name + `</span>
+        </a>
+    `)
+}
+
+function getSearchPath(value){
+    let searchbutton = document.getElementsByClassName("searchbutton")[0];
+    
+    let path = "index.html?search=" + value;
+
+    searchbutton.setAttribute("href", path);
 }

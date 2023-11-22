@@ -261,6 +261,7 @@ header{
 .searchbox{
     display: flex;
     width: 100%;
+    position: relative;
 }
 
 .searchbar{
@@ -279,9 +280,11 @@ header{
 .searchbutton{
     width: 30%;
     background-color: rgb(209, 209, 209);
+    border: 2px solid black;
     border-left: none;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    text-decoration: none;
     display: flex;
     gap: 2%;
     flex-wrap: wrap;
@@ -292,6 +295,33 @@ header{
     justify-content: center;
     transition: color 0.4s;
     transition-property: color;
+}
+
+.searchresult-dropdown{
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 70.3%;
+    top: 35px;
+    z-index: 110;
+    border: 1px solid black;
+    border-top: none;
+}
+
+.search-product{
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    border: 1px solid rgb(187, 185, 185);
+    font-size: 1vw;
+}
+
+.search-product:hover{
+    background-color: rgb(155, 154, 154);
 }
 
 .searchbutton::before{
@@ -369,7 +399,6 @@ header{
     color: #eee;
     font-weight: bold;
 }
-
 
 .user-option-container{
     align-self: center;
