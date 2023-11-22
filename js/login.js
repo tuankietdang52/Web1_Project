@@ -1,4 +1,20 @@
+var adminInfo = [{
+    "username": "admin",
+    "pass": "123"
+}];
+function khoiTao(){
+    adminInfo = getListAdmin() || adminInfo;
+
+    EventLogin();
+    capNhat_ThongTin_CurrentUser();
+}
 window.onload = function(){
+        khoiTao();
+}
+
+
+
+function EventLogin(){
     let tabHeader =  document.querySelector(".tab-header");
     let tabHeaderElements =  document.querySelectorAll(".tab-header > a");
     let tabBody =  document.querySelector(".tab-body");
@@ -25,9 +41,8 @@ window.onload = function(){
         tabBodyElements[i].classList.add("active");
     });
     }
-        capNhat_ThongTin_CurrentUser();
-
 }
+
 // đối tượng user
 function User(username, pass, ho, ten, email, products, donhang) {
 	this.ho = ho || '';
@@ -43,10 +58,7 @@ function equalUser(u1, u2) {
 	return (u1.username == u2.username && u1.pass == u2.pass);
 }
 // end đôi tượng user
-var adminInfo =[{
-    "username" :  "admin",
-    "pass"  :"adadad"
-}]
+
 function getListAdmin(){
     return JSON.parse(window.localStorage.getItem('ListAdmin'));
 }
@@ -107,6 +119,14 @@ function logIn(form) {
             setCurrentUser(u);
             // Reload lại trang - sau khi reload sẽ cập nhật luôn giỏ hàng khi hàm setupEventTaiKhoan chạy
             location.reload();
+            return false;
+        }
+    }
+    for ( var ad of adminInfo){
+        if ( equalUser(newUser,ad) ){
+            alert('Xin chào admin..');
+            window.localStorage.setItem('admin',true);
+            window.location.assign('admin.html');
             return false;
         }
     }
