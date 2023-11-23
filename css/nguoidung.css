@@ -80,3 +80,9 @@
 #khungDoiMatKhau button:hover {
     background-color: rgb(120, 212, 120);
 }
+
+#butDoiMatKhau span{
+    font: initial;
+    font-weight: bold;
+    font-size: 1em;
+}

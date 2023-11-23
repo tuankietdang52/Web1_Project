@@ -48,7 +48,9 @@ function addInfoUser(user) {
         <tr>
             <td>Mật khẩu: </td>
             <td style="text-align: center;"> 
-                <i class="fa fa-pencil" id="butDoiMatKhau" onclick="openChangePass()"> Đổi mật khẩu</i> 
+                <i class="fa fa-pencil" id="butDoiMatKhau" onclick="openChangePass()">
+                    <span>Đổi mật khẩu</span>
+                </i> 
             </td>
             <td></td>
         </tr>
