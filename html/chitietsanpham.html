@@ -23,12 +23,51 @@
     <script src="../js/code.js"></script>
 
     <!-- javascript -->
+    <script src="../js/chitietsanpham.js"></script>
 
+    <!-- css -->
+    <link rel="stylesheet" href="../css/chitietsanpham.css">
 
 </head>
 <body>
     <script>
         setThingsup();
+    </script>
+    <body>
+        <!-- product detail sect -->
+
+        <section class="product-detail-sect">
+            <div class="product-name-container">
+                <script>writeNameandReview()</script>
+            </div>
+            <hr>
+            <div class="product-detail-container">
+                <script>writeProductDetail()</script>
+            </div>
+        </section>
+
+        <!-- end product detail sect -->
+        <!-- product frame section -->
+
+        <section class="product-frame-sect">
+            <div class="product-container" style="border-color: #434aa8;">
+                <div class="banner suggest">
+                    <h1>* Bạn có thể thích *</h1>
+                </div>
+                <div class="product-frame suggest-product">
+                    <script>ReviewProduct("suggest-product")</script>
+                </div>
+            </div>
+        </section>
+
+        <!-- end product frame -->
+
+    </body>
+    <section style="height: 200px;">
+        <!-- blank section -->
+    </section>
+    <script>
+        addfooter();
     </script>
 </body>
 </html>

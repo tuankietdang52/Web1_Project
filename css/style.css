@@ -465,6 +465,7 @@ header{
     background-color: rgb(204, 202, 202);
     transition: width 0.2s, height 0.2s, background-color 0.2s;
     transition-property: width, height, background-color;
+    cursor: pointer;
 }
 
 .scrolltotop-button::after{
@@ -513,4 +514,256 @@ header{
 .noproduct{
     color: red;
     font-size: 1.5vw;
+}
+
+/* STYLE DUNG CHUNG */
+
+/* Product Section */
+
+.product-frame-sect{
+    transform: translateY(70px);
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    gap: 100px;
+}
+
+.product-container{
+    width: 69.8%;
+    height: max-content;
+    display: grid;
+    justify-items: center;
+    border: 2px solid;
+    border-radius: 20px;
+    position: relative;
+}
+
+.banner{
+    position: absolute;
+    z-index: 10;
+    width: 98%;
+    height: 50px;
+    top: -30px;
+    border-radius: 20px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.product-container h1{
+    color: white;
+    font-weight: bold;
+    font-size: 1.5vw;
+    position: absolute;
+    transition: color 0.2s;
+    transition-property: color;
+}
+
+.product-frame{
+    align-self: center;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-container .product{
+    margin: 3% 0% 3% 0%;
+    height: 400px;
+    flex-basis: 263.65px;
+    display: grid;
+    grid-template-rows: 280px 35px 20px 65px;
+    align-items: center;
+    border: 1px solid rgb(203, 200, 200);
+    text-decoration: none;
+    color: unset;
+    position: relative;
+}
+
+.product-container .product:hover > .product-img{
+    transform: translateY(-15px);
+}
+
+.product-container .product:hover > .product-name{
+    color: #288ad6;
+}
+
+.product-container .product-img{
+    justify-self: center;
+    width: 90%;
+    background-image: url("../img/products/nokia-51-plus-black-18thangbh-400x400.jpg");
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.2s;
+    transition-property: transform;
+}
+
+.product-container .promotag{
+    position: absolute;
+    height: 25px;
+    width: max-content;
+    font-size: 15px;
+    top: 240px;
+    left: 20px;
+    display: flex;
+    place-items: center;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    padding: 0px 10px 0px 10px;
+}
+
+.product-container .promotag.moiramat{
+    background-color: #1191f8;
+}
+
+.product-container .promotag.tragop{
+    background-color: #f28902;
+}
+
+.product-container .promotag.giamgia{
+    padding: 0px 10px 0px 20px;
+    background-image: linear-gradient(90deg, #ff9c00 0%, #ec1f1f 100%);
+}
+
+.product-container .promotag.giareonl{
+    background-color: #3fb846;
+}
+
+.product-container .fa-bolt{
+    position: absolute;
+    border: 1px solid  none;
+    background-color: #f21;
+    border-radius: 50px;
+    height: 25px;
+    width: 25px;
+    transform: translateX(-30px);
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+}
+
+.product-container .product-name{
+    margin-left: 6%;
+    font-size: 20px;
+    font-weight: initial;
+    justify-self: flex-start;
+}
+
+.product-container .product-price{
+    margin-left: 6%;
+    font-size: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.product-container .product-price strong{
+    color: red;
+}
+
+.product-container .product-price span{
+    color: black;
+    font-weight: normal;
+    text-decoration: line-through;
+}
+
+.product-container .star-container{
+    transform: translateX(5%);
+    height: 100%;
+    display: flex;
+}
+
+.product-container .fa-star{
+    align-self: center;
+    color: orange;
+    font-size: 14px;
+}
+
+.product-container .fa-star-o{
+    align-self: center;
+    color: orange;
+}
+
+.product-container .ratecountdisplay{
+    transform: translate(5%, 4%);
+    align-self: center;
+    color: gray;
+    font-size: 15px;
+}
+
+.product-container .addtocart-button{
+    border: unset;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    border: 2px solid rgb(199, 199, 199);
+    background-color: white;
+    border-radius: 50px;
+    display: grid;
+    place-items: center;
+}
+
+.product-container .addtocart-button::after{
+    content: "\2b";
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
+}
+
+.product-container.addtocart-button:hover{
+    background-color: rgb(199, 199, 199);
+    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.2);
+}
+
+.product-container .addtocart-button:hover::after{
+    color: black;
+}
+
+.product-container .see-all{
+    position: absolute;
+    z-index: 10;
+    width: 98%;
+    height: 50px;
+    bottom: -30px;
+    border-radius: 20px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background-color: rgb(214, 214, 214);
+    text-decoration: none;
+    transition: background-color 0.2s;
+    transition-property: background-color;
+}
+
+.product-container .see-all:hover{
+    background-color: rgb(196, 196, 196);
+}
+
+.product-container .see-all:hover > h1{
+    color: black !important;
+}
+
+.product-container .hot{
+    background-image: linear-gradient(120deg, #ff9c00 0%, #ec1f1f 50%, #ff9c00 100%);
+}
+
+.product-container .new{
+    background-image: linear-gradient(120deg, #42bcf4 0%, #004c70 50%, #42bcf4 100%)
+}
+
+.product-container .sale0{
+    background-image: linear-gradient(120deg, #ff9c00 0%, #ec1f1f 50%, #ff9c00 100%);
+}
+
+.product-container .shockonl{
+    background-image: linear-gradient(120deg, #5de272 0%, #007012 50%, #5de272 100%);
+}
+
+.product-container .discount{
+    background-image: linear-gradient(120deg, #ff9c00 0%, #ec1f1f 50%, #ff9c00 100%);
+}
+
+.product-container .cheap{
+    background-image: linear-gradient(120deg, #5de272 0%, #007012 50%, #5de272 100%);
 }

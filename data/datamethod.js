@@ -41,7 +41,8 @@ function setArrayProducts(){
     if (list_products.length <= 0) return;
     for (let i = 0; i < list_products.length; i++){
         let promo = new Promo(list_products[i].promo.name, list_products[i].promo.value);
-        let product = new Product(list_products[i].name, list_products[i].company, list_products[i].img, list_products[i].price, list_products[i].star, list_products[i].rateCount, promo, list_products[i].detail, list_products[i].masp);
+        let detail = new Detail(list_products[i].detail.screen, list_products[i].detail.os, list_products[i].detail.camera, list_products[i].detail.cameraFront, list_products[i].detail.cpu, list_products[i].detail.ram, list_products[i].detail.rom, list_products[i].detail.microUSB, list_products[i].detail.battery)
+        let product = new Product(list_products[i].name, list_products[i].company, list_products[i].img, list_products[i].price, list_products[i].star, list_products[i].rateCount, promo, detail, list_products[i].masp);
         arrayproduct.push([product]);
     }
 }
