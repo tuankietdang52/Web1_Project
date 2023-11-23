@@ -154,7 +154,7 @@ function writeproduct(product, sectionclassname){
             writeprice(product) +
         `</div>
         <div class="star-container">` + addstarandratecount(product) + `</div>
-        <button class="addtocart-button icon"></button>
+        <button class="addtocart-button icon" onclick="Addproducttocart(event);"></button>
     </a>
     `);
 }
@@ -412,4 +412,10 @@ function getSearchPath(value){
     let path = "index.html?search=" + value;
 
     searchbutton.setAttribute("href", path);
+}
+
+function Addproducttocart(e){
+    e.preventDefault();
+    // e.stopPropagation();
+    alert("wow");
 }
