@@ -1,8 +1,6 @@
 
 var currentUser;
 var tongTienTatCaDonHang = 0;
-
-//copy object để chắc chắn rằng k bị lỗi ở các phần dữ liệu khác
 function copyObject(o) {
     return JSON.parse(JSON.stringify(o));
 }
@@ -19,11 +17,11 @@ window.onload = function(){
                 setCurrentUser(u);
             }
         }
+
         addTatCaDonHang(currentUser); // hàm này cần chạy trước để tính được tổng tiền tất cả đơn hàng 
         addInfoUser(currentUser);
     
     } else {
-        // chưa đăng nhập thì hiện ra
         var warning = `<h2 style="color: red; font-weight:bold; text-align:center; font-size: 2em; padding: 50px;">
                             Bạn chưa đăng nhập !!
                         </h2>`;
@@ -33,7 +31,7 @@ window.onload = function(){
 
 }
 
-// khi đã đăng nhập thì hiện ra đoạn bên dưới 
+
 function addInfoUser(user) {
     if (!user) return;
     document.getElementsByClassName('infoUser')[0].innerHTML = `
@@ -50,7 +48,9 @@ function addInfoUser(user) {
         <tr>
             <td>Mật khẩu: </td>
             <td style="text-align: center;"> 
-            <i class="fa fa-pencil" id="butDoiMatKhau" onclick="openChangePass()"></i>   
+                <i class="fa fa-pencil" id="butDoiMatKhau" onclick="openChangePass()">
+                    <span>Đổi mật khẩu</span>
+                </i> 
             </td>
             <td></td>
         </tr>
@@ -109,7 +109,7 @@ function addInfoUser(user) {
     </table>`;
 }
 
-// event ẩn hiện khung đổi mật khẩu
+
 function openChangePass(){
     var khungChangePass = document.querySelector('#khungDoiMatKhau');
     var actived = khungChangePass.classList.contains('active');
@@ -119,7 +119,43 @@ function openChangePass(){
     khungChangePass.classList.add('active');
 }
 
-// check và đổi mật khẩu mới
+
+
+// function changePass(){
+//     var khungChangePass = document.querySelector('#khungDoiMatKhau');
+//     var tagInput = khungChangePass.getElementsByTagName('input');
+//     // kiểm tra mật khẩu cũ là phần tử thứ 0 
+//     if ( tagInput[0].value != currentUser.pass){
+//         alert('Sai mật khẩu !!!');
+//         tagInput[0].focus();
+//         return;
+//     }
+//     // Nhắc nhở password mới là phần tử thứ 1
+//     if ( tagInput[1] ==''){
+//         alert('Chưa nhập mật khẩu mới !!!')
+//         tagInput[1].focus();
+//         return;
+//     }
+//     // Xác nhận mật khẩu mới là phẩn tử thứ 2
+//     if ( tagInput[2] != tagInput[1]){
+//         alert('Mật khẩu không khớp !!!')
+//         tagInput[2].focus();
+//         return;
+//     }
+
+//     var copyCurrentUser = copyOject(currentUser);
+//     currentUser.pass = tagInput[1].value;
+//     // cập nhật list sản phẩm trong localstorage
+//     setCurrentUser(currentUser);
+//     updateListUer(copyCurrentUser,currentUser);  
+    
+//     // cập nhật trên header 
+//     capNhat_ThongTin_CurrentUser();
+
+//     // Thông báo
+//     addAlertBox('thay đổi mật khẩu mật thành công.','#5f5','#000',4000)
+//     openChangePass();
+// }
 function changePass() {
     var khungChangePass = document.getElementById('khungDoiMatKhau');
     var inputTag = khungChangePass.getElementsByTagName('input');
@@ -159,58 +195,14 @@ function changePass() {
     openChangePass();
 }
 
-// đổi các thông tin còn lại của user
-    function changeInfo(iTag,info){
-        var inputTag = iTag.parentElement.previousElementSibling.getElementsByTagName('input')[0];
-        if ( !inputTag.readOnly && inputTag.value != ''){
-            if ( info === 'username' ){
-                var listUser = getListUser();
-                for ( var u of listUser){
-                    if ( u.username == inputTag.value && u.username != currentUser.username){
-                        alert('Ten da co nguoi su dung !!');
-                        inputTag.value = currentUser.username;
-                        return;
-                    }
-                }
-                // đổi tên trong list đơn hàng
-                
-            } else if ( info == 'email' ){
-                var listUser = getListUser();
-                for ( var u of listUser){
-                    if ( u.email == inputTag.value && u.username != currentUser.username){
-                        alert('Email da co nguoi su dung !!');
-                        inputTag.value = currentUser.email;
-                        return;
-                    }
-                }
-            }
-            
-            var temp = copyObject(currentUser);
-            currentUser[info] = inputTag.value;
-            
-            setCurrentUser(currentUser);
-            updateListUser(temp,currentUser);
 
-            capNhat_ThongTin_CurrentUser();
-            iTag.innerHTML='';
-        } else {
-            iTag.innerHTML ='OK';
-
-            inputTag.focus();
-            var v = inputTag.value;
-            inputTag.value ='';
-            inputTag.value = v;
-        }
-        inputTag.readOnly = !inputTag.readOnly;y 
-    }
+ function changeInfo(iTag,info){
+    var inputTag = iTag.parentElement.previousElementSibling.getElementsByTagName('input');
 
 
-
-
+}
 
 //  Khung đơn đặt hàng 
-
-
 
 function addTatCaDonHang(user){
     if ( !user){
@@ -223,4 +215,3 @@ function addTatCaDonHang(user){
     }
     
 }
-

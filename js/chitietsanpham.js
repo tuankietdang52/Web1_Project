@@ -252,9 +252,7 @@ function toTextPrice(price){
         text += pricetext[i];
         count++;
 
-        if (count % 3 != 0) continue;
-
-        if (pricetext[i - 1]) text += ".";
+        if (count % 3 == 0 && pricetext[i - 1]) text += ".";
     }
 
     text = ReverseString(text);
@@ -263,7 +261,7 @@ function toTextPrice(price){
 
 function ReverseString(str){
     // tách, đảo ngược, ghép //
-    return str.split('').reverse().join('')
+    return str.split('').reverse().join('');
 }
 
 function getSystemDetail(systemitem){
