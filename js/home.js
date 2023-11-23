@@ -162,7 +162,7 @@ function writecustomfilter(){
 
 // trang index khi co filter //
 function clearproductframe(){
-    let productcontainer = document.getElementsByClassName("product-sect")[0];
+    let productcontainer = document.getElementsByClassName("product-frame-sect")[0];
     productcontainer.style.display = "none";
 
 }
