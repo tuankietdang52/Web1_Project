@@ -48,3 +48,35 @@ function checkpromoprice(product, promoname){
             return -1;
     }
 }
+// get set data của admin
+function getListAdmin(){
+    return JSON.parse(window.localStorage.getItem('ListAdmin'));
+}
+function setListAdmin(l) {
+    window.localStorage.setItem('ListAdmin', JSON.stringify(l));
+}
+
+
+// Get data của user ( list user )
+// Hàm get set cho người dùng đã login vào trang
+function getCurrentUser() {
+    return JSON.parse(window.localStorage.getItem('CurrentUser'));  //Lấy dữ liệu từ localstorage
+}
+
+function setCurrentUser(user) {
+    window.localStorage.setItem('CurrentUser', JSON.stringify(user));
+}
+
+// Hàm get set cho người dùng
+function getListUser(){
+    var data = JSON.parse(window.localStorage.getItem('ListUser')) || []
+    var l = [] ;
+    for ( var d of data ){
+        l.push(d);
+    }
+    return l;
+}
+
+function setListUser(l) {
+    window.localStorage.setItem('ListUser', JSON.stringify(l));
+}

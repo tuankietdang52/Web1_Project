@@ -1,5 +1,22 @@
 let arrayproduct = [];
 let arrayaccounts = [];
+// đối tượng user
+function User(username, pass, ho, ten, email, products, donhang) {
+	this.ho = ho || '';
+	this.ten = ten || '';
+	this.email = email || '';
+	this.username = username;
+	this.pass = pass;
+	this.products = products || [];
+	this.donhang = donhang || [];
+}
+
+function equalUser(u1, u2) {
+	return (u1.username == u2.username && u1.pass == u2.pass);
+}
+// end đôi tượng user
+
+
 
 class Product{
     constructor(name, company, img, price, star, rateCount, promo, detail, masp){
