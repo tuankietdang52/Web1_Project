@@ -13,7 +13,6 @@ window.onload = function(){
 }
 
 
-
 function EventLogin(){
     let tabHeader =  document.querySelector(".tab-header");
     let tabHeaderElements =  document.querySelectorAll(".tab-header > a");
@@ -43,53 +42,7 @@ function EventLogin(){
     }
 }
 
-// đối tượng user
-function User(username, pass, ho, ten, email, products, donhang) {
-	this.ho = ho || '';
-	this.ten = ten || '';
-	this.email = email || '';
-	this.username = username;
-	this.pass = pass;
-	this.products = products || [];
-	this.donhang = donhang || [];
-}
-
-function equalUser(u1, u2) {
-	return (u1.username == u2.username && u1.pass == u2.pass);
-}
-// end đôi tượng user
-
-function getListAdmin(){
-    return JSON.parse(window.localStorage.getItem('ListAdmin'));
-}
-function setListAdmin(l) {
-    window.localStorage.setItem('ListAdmin', JSON.stringify(l));
-}
 // --------------------------- Form login ----------------------------------- 
-
-// Hàm get set cho người dùng đã login vào trang
-function getCurrentUser() {
-    return JSON.parse(window.localStorage.getItem('CurrentUser'));  //Lấy dữ liệu từ localstorage
-}
-
-function setCurrentUser(user) {
-    window.localStorage.setItem('CurrentUser', JSON.stringify(user));
-}
-
-// Hàm get set cho người dùng
-function getListUser(){
-    var data = JSON.parse(window.localStorage.getItem('ListUser')) || []
-    var l = [] ;
-    for ( var d of data ){
-        l.push(d);
-    }
-    return l;
-}
-
-function setListUser(l) {
-    window.localStorage.setItem('ListUser', JSON.stringify(l));
-}
-
 //  Hàm update User sau khi chỉnh sửa thông tin gì đó 
 function updateListUser(u, newData) {
     var list = getListUser();
