@@ -1,6 +1,4 @@
-let admin = [{
+var adminInfo = [{
     "username": "admin",
-    "password": "shibalmao"
+    "pass": "123"
 }];
-
-let list_accounts = [];
