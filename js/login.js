@@ -1,10 +1,6 @@
-var adminInfo = [{
-    "username": "admin",
-    "pass": "123"
-}];
 function khoiTao(){
     adminInfo = getListAdmin() || adminInfo;
-
+    list_products = getProductData() || list_products;
     EventLogin();
     capNhat_ThongTin_CurrentUser();
 }
@@ -152,6 +148,7 @@ function capNhat_ThongTin_CurrentUser() {
 
 
         if (userElement) {
+            
             var usernameNode = userElement.getElementsByTagName('a')[0].childNodes[2];
 
             if (usernameNode) {

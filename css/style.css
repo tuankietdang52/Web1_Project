@@ -32,6 +32,12 @@ header{
     justify-items: center;
 }
 
+.cart{
+    position: relative;
+    top:3px;
+}
+
+
     /* Navigation */
 
 .navigation-sect{

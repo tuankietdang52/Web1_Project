@@ -72,7 +72,7 @@ function addheader(){
             </div>
         </div>
     </section>
-</header>
+
 <section class="header-content">
     <a class="homelogo" href="index.html"><img src="../img/logo.jpg" alt="logo"></a>
     <div class="searchbar-container">
@@ -102,15 +102,19 @@ function addheader(){
     <a href="nguoidung.html"> Trang người dùng</a>
     <a onclick="if(window.confirm('Xác nhận đăng xuất ?')) logOut();">Đăng xuất</a>
     </div>
-
     </div>    
-        
-        <a href="#" class="user-option-container">
+    
+    <div class="cart">
+        <a href="giohang.html" class="user-option-container">
             <i class="icon cart user-option-effect"></i>
-            Giỏ hàng
+            <span>Giỏ hàng</span>
+            <span class="cart-number"></span>
         </a>
     </div>
+
+</div>
 </section>
+</header>
 `);
 }
 
@@ -156,7 +160,7 @@ function writeproduct(product, sectionclassname){
             writeprice(product) +
         `</div>
         <div class="star-container">` + addstarandratecount(product) + `</div>
-        <button class="addtocart-button icon" onclick="Addproducttocart(event);"></button>
+        <button class="addtocart-button icon" onclick="Addproducttocart(event); return false;"></button>
     </a>
     `);
 }
@@ -418,5 +422,71 @@ function getSearchPath(value){
 
 function Addproducttocart(e){
     e.preventDefault();
-    alert("wow");
+    var masp = product[0].masp;
+    var name = product[0].name;
+    themVaoGioHang(masp,name);
+}
+// thêm vào giỏ hàng
+function animateCartNumber() {
+    // Hiệu ứng cho icon giỏ hàng
+    var cn = document.getElementsByClassName('cart-number')[0];
+    cn.style.transform = 'scale(2)';
+    cn.style.backgroundColor = 'rgba(255, 0, 0, 0.8)';
+    cn.style.color = 'white';
+    setTimeout(function () {
+        cn.style.transform = 'scale(1)';
+        cn.style.backgroundColor = 'transparent';
+        cn.style.color = 'red';
+    }, 1200);
+}
+
+function themVaoGioHang(masp, name) {
+    var user = getCurrentUser();
+    if (!user) {
+        alert('Bạn cần đăng nhập để mua hàng !');
+        return;
+    }
+    if (user.off) {
+        addAlertBox('Tài khoản của bạn đã bị khóa bởi Admin.', '#aa0000', '#fff', 10000);
+        return;
+    }
+    var t = new Date();
+    var daCoSanPham = false;;
+
+    for (var i = 0; i < user.products.length; i++) { // check trùng sản phẩm
+        if (user.products[i].ma == masp) {
+            user.products[i].soluong++;
+            daCoSanPham = true;
+            break;
+        }
+    }
+
+    if (!daCoSanPham) { // nếu không trùng thì mới thêm sản phẩm vào user.products
+        user.products.push({
+            "ma": masp,
+            "soluong": 1,
+            "date": t
+        });
+    }
+
+    animateCartNumber();
+    addAlertBox('Đã thêm ' + tensp + ' vào giỏ.', '#17c671', '#fff', 3500);
+
+    setCurrentUser(user); // cập nhật giỏ hàng cho user hiện tại
+    updateListUser(user); // cập nhật list user
+    capNhat_ThongTin_CurrentUser(); // cập nhật giỏ hàng
+}
+function addAlertBox(text, bgcolor, textcolor, time) {
+    var al = document.getElementById('alert');
+    al.childNodes[0].nodeValue = text;
+    al.style.backgroundColor = bgcolor;
+    al.style.opacity = 1;
+    al.style.zIndex = 200;
+
+    if (textcolor) al.style.color = textcolor;
+    if (time)
+        setTimeout(function () {
+            al.style.opacity = 0;
+            al.style.zIndex = 0;
+        }, time);
 }
