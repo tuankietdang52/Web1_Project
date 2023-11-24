@@ -1,3 +1,5 @@
+// PRODUCT DATA //
+
 function getProductData(){
     return JSON.parse(window.localStorage.getItem("ListProducts"));
 }
@@ -35,6 +37,8 @@ function checkpromoprice(product, promoname){
             return -1;
     }
 }
+
+//  ACCOUNT //
 
 // get set data của admin
 function getListAdmin(){
@@ -76,5 +80,33 @@ function setArrayAccounts(){
     for (let i = 0; i < userdata.length; i++){
         let user = new User(userdata[i].username, userdata[i].pass, userdata[i].ho, userdata[i].ten, userdata[i].email, userdata[i].products, userdata[i].donhang);
         arrayaccounts.push(user);
+    }
+}
+
+function capNhat_ThongTin_CurrentUser() {
+
+    var u = getCurrentUser();
+
+    //  Get the menuUser element
+    var menuUser = document.getElementsByClassName('menuUser')[0];
+
+    if (u) {
+        var userElement = document.getElementsByClassName('user')[0];
+
+
+        if (userElement) {
+            
+            var usernameNode = userElement.getElementsByTagName('a')[0].childNodes[2];
+
+            if (usernameNode) {
+                usernameNode.nodeValue = ' ' + u.username;
+            }
+
+            //  Hiển thị menu người dùng
+            menuUser.style.display = 'block';
+        }
+    } else if (menuUser) {
+        //  User is not logged in, ẩn menu người dùng
+        menuUser.style.display = 'none';
     }
 }
