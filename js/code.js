@@ -1,6 +1,6 @@
 // JS cho thuoc tinh chung //
-setProductData(list_products);
 getData();
+setProductData(list_products);
 
 function setThingsup(){
     addheader();
@@ -416,6 +416,5 @@ function getSearchPath(value){
 
 function Addproducttocart(e){
     e.preventDefault();
-    // e.stopPropagation();
     alert("wow");
 }
