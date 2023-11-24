@@ -1,5 +1,6 @@
 let arrayproduct = [];
 let arrayaccounts = [];
+
 // đối tượng user
 function User(username, pass, ho, ten, email, products, donhang) {
 	this.ho = ho || '';
@@ -14,6 +15,18 @@ function User(username, pass, ho, ten, email, products, donhang) {
 function equalUser(u1, u2) {
 	return (u1.username == u2.username && u1.pass == u2.pass);
 }
+
+function getProductCartAmount(){
+    let user = getCurrentUser();
+    let amount = 0;
+
+    for (let i = 0; i < user.products.length; i++){
+        amount += user.products[i].soluong;
+    }
+
+    return amount;
+}
+
 // end đôi tượng user
 
 
