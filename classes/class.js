@@ -1,5 +1,6 @@
 let arrayproduct = [];
 let arrayaccounts = [];
+
 // đối tượng user
 function User(username, pass, ho, ten, email, products, donhang) {
 	this.ho = ho || '';

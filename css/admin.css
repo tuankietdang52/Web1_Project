@@ -1,0 +1,122 @@
+/* CSS cho thuoc tinh chung */
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+hr{
+    width: 70%;
+    color: #ddd;
+    opacity: 0.5;
+}
+
+.icon{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header */
+
+header{
+    width: 100%;
+    background-color: #3a4149;
+    display: grid;
+}
+
+header h1{
+    color: white;
+}
+
+.main-content-sect{
+    background-color: #2f353a;
+    display: flex;
+    width: 100%;
+    height: 1000px;
+}
+
+.menu{
+    list-style: none;
+    width: 13%;
+    border: 1px solid #23282c;
+}
+
+.menu-title{
+    display: grid;
+    place-items: center;
+}
+
+.menu-title h1{
+    color: white;
+    font-size: 1.4vw;
+}
+
+.menu li{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 5%;
+    color: white;
+    font-size: 1.3vw;
+    cursor: pointer;
+}
+
+
+.active{
+    background-color: #20a8d8;
+}
+
+.active i{
+    transform: translateX(100%);
+}
+
+
+.active span{
+    transform: translateX(30%);
+}
+
+.nonactive{
+    background-color: #2f353a;
+    transition: background-color 0.5s;
+}
+
+.nonactive i, .nonactive span{
+    transition: transform 0.5s
+}
+
+.nonactive:hover{
+    background-color: #4a7b8d;
+}
+
+.nonactive:hover > i{
+    transform: translateX(100%);
+}
+
+.nonactive:hover > span{
+    transform: translateX(30%);
+}
+
+.main-content-container{
+    width: 83%;
+    height: 1000px;
+}
+
+.main-content-sect section{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.chart-content-sect{
+    display: grid !important;
+}

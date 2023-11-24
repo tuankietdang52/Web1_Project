@@ -1,6 +1,7 @@
 // JS cho thuoc tinh chung //
 getData();
 setProductData(list_products);
+setListUser(list_accounts);
 
 function setThingsup(){
     addheader();
@@ -9,6 +10,7 @@ function setThingsup(){
 
 function getData(){
     list_products = getProductData() || list_products;
+    list_accounts = getListUser() || list_accounts;
 }
 
 // Header //
