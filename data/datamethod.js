@@ -1,5 +1,5 @@
 function getProductData(){
-    return window.localStorage.getItem("ListProducts");
+    return JSON.parse(window.localStorage.getItem("ListProducts"));
 }
 
 function setProductData(newdata = null){

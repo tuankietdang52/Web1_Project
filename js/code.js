@@ -102,12 +102,12 @@ function addheader(){
     </div>
 
     </div>    
-        
+
         <a href="#" class="user-option-container">
             <i class="icon cart user-option-effect"></i>
             Giỏ hàng
         </a>
-    </div>
+        </div>
 </section>
 `);
 }
@@ -417,4 +417,8 @@ function getSearchPath(value){
 function Addproducttocart(e){
     e.preventDefault();
     alert("wow");
+    
+
+
+    
 }
