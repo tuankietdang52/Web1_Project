@@ -1,5 +1,6 @@
 var currentUser;
-var tongTienTatCaDonHang = 0;
+var tongTienTatCaDonHang = 0; // lưu tổng tiền từ tất cả các đơn hàng đã mua
+var tongSanPhamTatCaDonHang = 0;
 
 //copy object để chắc chắn rằng k bị lỗi ở các phần dữ liệu khác
 function copyObject(o) {
@@ -222,6 +223,34 @@ function addTatCaDonHang(user){
             `;
         return;
     }
+    if (user) {
+        document.getElementsByClassName('listDonHang')[0].innerHTML += `
+            <h3 style="width=100%; padding: 50px; color: green; font-size: 2em; text-align: center"> 
+                Xin chào ` + currentUser.username + `. Bạn chưa có đơn hàng nào.
+            </h3>`;
+        return;
+    }
+    for ( donHang of user.donhang){
+        addDonHang(donHang);
+    }    
     
 }
-
+function addDonHang(dh){
+    var NodeListDonHang = document.querySelectorAll('.listDonHang')[0];
+    var add = `
+        <table class="listDonHang">
+            <tr>
+                <th colpan="6">
+                    <h1>Đơn hàng ngày:  ` + new Date(dh.ngaymua).toLocaleString + `</h1>
+                </th> 
+            </tr>
+            <tr>
+                <th>STT</th>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Thời gian thêm vào giỏ</th>
+            </tr>
+    `
+}
