@@ -1,62 +1,63 @@
-var currentUser; // user hien tai
-  window.onload = function(){
+var currentuser; // user hiện tại, biến toàn cục
+window.onload = function () {
     khoiTao();
-    currentUser = getCurrentUser();
-    if (currentUser) {
-        // cập nhật từ list user, do trong admin chỉ tác động tới listuser
-        var listUser = getListUser();
-        for (var u of listUser) {
-            if (equalUser(currentUser, u)) {
-                currentUser = u;
-                setCurrentUser(u);
-            }
-        }
-				addProductToTable(currentUser);
-    } else {
-        // chưa đăng nhập thì hiện ra
-        var warning = `<h2 style="color: red; font-weight:bold; text-align:center; font-size: 2em; padding: 50px;">
-                            Bạn chưa đăng nhập !!
-                        </h2>`;
-        document.getElementsByClassName('listSanPham')[0].innerHTML = warning;
-    }
+
+
+	currentuser = getCurrentUser();
+	addProductToTable(currentuser);
 }
-  function addProductToTable(user) {
-    var table = document.getElementsByClassName('listSanPham')[0];
-  
-    var s = `
-        <tr>
-          <th>STT</th>
-          <th>Sản phẩm</th>
-          <th>Giá</th>
-          <th>Số lượng</th>
-          <th>Thành tiền</th>
-          <th>Thời gian</th>
-          <th>Xóa</th>
-        </tr>`;
-        if (user.products.length == 0) {
-           s += `
-            <tr>
-              <td colspan="7"> 
-                <h1 style="color:green; background-color:white; font-weight:bold; text-align:center; padding: 15px 0;">
-                  Giỏ hàng trống !!
-                </h1> 
-              </td>
-            </tr>
-          `;
-          table.innerHTML = s;
 
-          return;
-        }
-    var tongtien =0;
-    for (var i = 0; i < user.products.length; i++) {
-      var masp = user.products[i].ma;
-      var soluongSp = user.products[i].soluong;
-      var p = timKiemTheoMa(list_products, masp);
-      var price = (p.promo.name == 'giareonline' ? p.promo.value : p.price);
-      var thoigian = new Date(user.products[i].date).toLocaleString();
-      var thanhtien = stringToNum(price) * soluongSp;
+function addProductToTable(user) {
+	var table = document.getElementsByClassName('listSanPham')[0];
 
-       s += `
+	var s = `
+		<tbody>
+			<tr>
+				<th>STT</th>
+				<th>Sản phẩm</th>
+				<th>Giá</th>
+				<th>Số lượng</th>
+				<th>Thành tiền</th>
+				<th>Thời gian</th>
+				<th>Xóa</th>
+			</tr>`;
+
+	if (!user) {
+		s += `
+			<tr>
+				<td colspan="7"> 
+					<h1 style="color:red; background-color:white; font-weight:bold; text-align:center; padding: 15px 0;">
+						Bạn chưa đăng nhập !!
+					</h1> 
+				</td>
+			</tr>
+		`;
+		table.innerHTML = s;
+		return;
+	} else if (user.products.length == 0) {
+		s += `
+			<tr>
+				<td colspan="7"> 
+					<h1 style="color:green; background-color:white; font-weight:bold; text-align:center; padding: 15px 0;">
+						Giỏ hàng trống !!
+					</h1> 
+				</td>
+			</tr>
+		`;
+		table.innerHTML = s;
+		return;
+	}
+
+	var totalPrice = 0;
+	for (var i = 0; i < user.products.length; i++) {
+		var masp = user.products[i].ma;
+		var soluongSp = user.products[i].soluong;
+		var p = timKiemTheoMa(list_products, masp);
+		var price = (p.promo.name == 'giareonline' ? p.promo.value : p.price);
+		var thoigian = new Date(user.products[i].date).toLocaleString();
+		var thanhtien = stringToNum(price) * soluongSp;
+
+		s += `
 			<tr>
 				<td>` + (i + 1) + `</td>
 				<td class="noPadding imgHide">
@@ -76,56 +77,69 @@ var currentUser; // user hien tai
 				<td class="noPadding"> <i class="fa fa-trash" onclick="xoaSanPhamTrongGioHang(` + i + `)"></i> </td>
 			</tr>
 		`;
-    tongtien += thanhtien;
+		// Chú ý nháy cho đúng ở giamsoluong, tangsoluong
+		totalPrice += thanhtien;
 	}
-  s += `
-  <tr style="font-weight:bold; text-align:center">
-    <td colspan="4">TỔNG TIỀN: </td>
-    <td class="alignRight">` + numToString(totalPrice) + ` ₫</td>
-    <td class="thanhtoan" onclick="thanhToan()"> Thanh Toán </td>
-    <td class="xoaHet" onclick="xoaHet()"> Xóa hết </td>
-  </tr>
-</tbody>
-`;
-table.innerHTML = s;
 
+	s += `
+			<tr style="font-weight:bold; text-align:center">
+				<td colspan="4">TỔNG TIỀN: </td>
+				<td class="alignRight">` + numToString(totalPrice) + ` ₫</td>
+				<td class="thanhtoan" onclick="thanhToan()"> Thanh Toán </td>
+				<td class="xoaHet" onclick="xoaHet()"> Xóa hết </td>
+			</tr>
+		</tbody>
+	`;
+
+	table.innerHTML = s;
 }
+
 function xoaSanPhamTrongGioHang(i) {
 	if (window.confirm('Xác nhận hủy mua')) {
-		currentUser.products.splice(i, 1);
+		currentuser.products.splice(i, 1);
 		capNhatMoiThu();
 	}
 }
+
 function thanhToan() {
-	if (!currentUser.products.length) {
+	var c_user = getCurrentUser();
+	if(c_user.off) {
+        alert('Tài khoản của bạn hiện đang bị khóa nên không thể mua hàng!');
+        addAlertBox('Tài khoản của bạn đã bị khóa bởi Admin.', '#aa0000', '#fff', 10000);
+        return;
+	}
+	
+	if (!currentuser.products.length) {
 		addAlertBox('Không có mặt hàng nào cần thanh toán !!', '#ffb400', '#fff', 2000);
 		return;
 	}
 	if (window.confirm('Thanh toán giỏ hàng ?')) {
-		currentUser.donhang.push({
-			"sp": currentUser.products,
+		currentuser.donhang.push({
+			"sp": currentuser.products,
 			"ngaymua": new Date(),
 			"tinhTrang": 'Đang chờ xử lý'
 		});
-		currentUser.products = [];
+		currentuser.products = [];
 		capNhatMoiThu();
 		addAlertBox('Các sản phẩm đã được gửi vào đơn hàng và chờ xử lý.', '#17c671', '#fff', 4000);
 	}
 }
+
 function xoaHet() {
-	if (currentUser.products.length) {
+	if (currentuser.products.length) {
 		if (window.confirm('Bạn có chắc chắn muốn xóa hết sản phẩm trong giỏ !!')) {
-			currentUser.products = [];
+			currentuser.products = [];
 			capNhatMoiThu();
 		}
 	}
 }
+
 // Cập nhật số lượng lúc nhập số lượng vào input
 function capNhatSoLuongFromInput(inp, masp) {
 	var soLuongMoi = Number(inp.value);
 	if (!soLuongMoi || soLuongMoi <= 0) soLuongMoi = 1;
 
-	for (var p of currentUser.products) {
+	for (var p of currentuser.products) {
 		if (p.ma == masp) {
 			p.soluong = soLuongMoi;
 		}
@@ -135,17 +149,17 @@ function capNhatSoLuongFromInput(inp, masp) {
 }
 
 function tangSoLuong(masp) {
-	for (var p of currentUser.products) {
+	for (var p of currentuser.products) {
 		if (p.ma == masp) {
 			p.soluong++;
 		}
 	}
 
 	capNhatMoiThu();
-}   
+}
 
 function giamSoLuong(masp) {
-	for (var p of currentUser.products) {
+	for (var p of currentuser.products) {
 		if (p.ma == masp) {
 			if (p.soluong > 1) {
 				p.soluong--;
@@ -159,19 +173,29 @@ function giamSoLuong(masp) {
 }
 
 function capNhatMoiThu() { // Mọi thứ
+	animateCartNumber();
+
 	// cập nhật danh sách sản phẩm trong localstorage
-	setCurrentUser(currentUser);
-	updateListUser(currentUser);
+	setCurrentUser(currentuser);
+	updateListUser(currentuser);
 
 	// cập nhật danh sách sản phẩm ở table
-	addProductToTable(currentUser);
+	addProductToTable(currentuser);
 
 	// Cập nhật trên header
 	capNhat_ThongTin_CurrentUser();
 }
 
+
 function timKiemTheoMa(list, ma) {
-    for (var l of list) {
-        if (l.masp == ma) return l;
-    }
+	for (var l of list) {
+		if (l.masp == ma) return l;
+	}
+}
+function numToString(num, char) {
+    return num.toLocaleString().split(',').join(char || '.');
+}
+
+function stringToNum(str, char) {
+    return Number(str.split(char || '.').join(''));
 }

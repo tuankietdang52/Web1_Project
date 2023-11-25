@@ -24,8 +24,8 @@
 .infoUser input{
     font-size: 20px;
     border-radius: 5px;
-    text-align: center;
-    transition-duration: .15s;
+	text-align: center;
+transition-duration: .15s;
     border: 1px solid #aaa;
 }
 .infoUser input:read-only{
@@ -35,16 +35,16 @@
 .infoUser .fa-pencil{
     text-align: center;
     border-radius: 5px;
-    font-size: 1em;
+font-size: 1em;
     padding :7px;
     transition-duration: .2s;
     cursor: pointer;
-    min-width: 70px;
+    min-width: 70px; 
 }
 
 .infoUser .fa-pencil:hover{
     background-color: #ccc;
-    color: #444;
+    color: #444; 
 }
 
 /* Change password */
@@ -76,7 +76,7 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
-}
+    }
 #khungDoiMatKhau button:hover {
     background-color: rgb(120, 212, 120);
 }
@@ -84,5 +84,5 @@
 #butDoiMatKhau span{
     font: initial;
     font-weight: bold;
-    font-size: 1em;
-}
+        font-size: 1em;
+    }
