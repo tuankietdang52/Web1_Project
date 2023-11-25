@@ -1,3 +1,5 @@
+// PRODUCT DATA //
+
 function getProductData(){
     return JSON.parse(window.localStorage.getItem("ListProducts"));
 }
@@ -14,11 +16,6 @@ function setProductData(newdata = null){
     setArrayProducts();
 }
 
-function checkAdmin(account){
-    if (account != admin) return false;
-    else return true;
-}
-
 function setArrayProducts(){
     if (list_products.length <= 0) return;
     for (let i = 0; i < list_products.length; i++){
@@ -28,14 +25,6 @@ function setArrayProducts(){
         arrayproduct.push([product]);
     }
 }
-
-function setArrayAccounts(){
-    if (list_accounts.length <= 0) return;
-    for (let i = 0; i < list_accounts.length; i++){
-        arrayaccounts.push([product]);
-    }
-}
-
 
 // dung sau //
 function checkpromoprice(product, promoname){
@@ -48,6 +37,9 @@ function checkpromoprice(product, promoname){
             return -1;
     }
 }
+
+//  ACCOUNT //
+
 // get set data của admin
 function getListAdmin(){
     return JSON.parse(window.localStorage.getItem('ListAdmin'));
@@ -79,4 +71,42 @@ function getListUser(){
 
 function setListUser(l) {
     window.localStorage.setItem('ListUser', JSON.stringify(l));
+    setArrayAccounts();
+}
+
+function setArrayAccounts(){
+    let userdata = getListUser();
+
+    for (let i = 0; i < userdata.length; i++){
+        let user = new User(userdata[i].username, userdata[i].pass, userdata[i].ho, userdata[i].ten, userdata[i].email, userdata[i].products, userdata[i].donhang);
+        arrayaccounts.push(user);
+    }
+}
+
+function capNhat_ThongTin_CurrentUser() {
+
+    var u = getCurrentUser();
+
+    //  Get the menuUser element
+    var menuUser = document.getElementsByClassName('menuUser')[0];
+
+    if (u) {
+        var userElement = document.getElementsByClassName('user')[0];
+
+
+        if (userElement) {
+            
+            var usernameNode = userElement.getElementsByTagName('a')[0].childNodes[2];
+
+            if (usernameNode) {
+                usernameNode.nodeValue = ' ' + u.username;
+            }
+
+            //  Hiển thị menu người dùng
+            menuUser.style.display = 'block';
+        }
+    } else if (menuUser) {
+        //  User is not logged in, ẩn menu người dùng
+        menuUser.style.display = 'none';
+    }
 }

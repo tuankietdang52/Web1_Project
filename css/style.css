@@ -34,9 +34,8 @@ header{
 
 .cart{
     position: relative;
-    top:3px;
+    display: grid;
 }
-
 
     /* Navigation */
 
@@ -374,9 +373,8 @@ header{
 
 .user{
     position: relative;
-    top : 30px;
-    float: left;
-    display: table-cell;
+    display: grid;
+    place-items: center;
 }
 .user:hover > .menuUser {
     z-index: 20;
@@ -384,13 +382,16 @@ header{
 }
 .user .menuUser {
     position: absolute;
-    left: 0;
+    right: -12px;
+    top: 70%;
+    width: 170%;
     text-align: center;
     border-radius: 5px;
     background-color: #eee;
     transition-duration: .15s;
     transform: translateY(0) scale(0);
 }
+
 .user .menuUser a{
     display: block;
     padding: 10px;
@@ -428,6 +429,7 @@ header{
     padding: 10px 12px;
     border: 2px solid black;
     border-radius: 50%;
+    /* position: relative; */
     transition: background-color 0.4s;
     transition-property: background-color;
 }
@@ -447,8 +449,17 @@ header{
     content: "\f007";
 }
 
-.cart{
-    display: grid;
+.cart-number{
+    font: initial;
+    font-size: 1.2vw;
+    position: absolute;
+    top: 70%;
+    left: 60%;
+    z-index: 130;
+    color: red;
+    transition: transform 0.5s, background-color 0.5s;
+    border-radius: 50%;
+    padding: 10px 12px;
 }
 
 .icon.cart.user-option-effect::before{
@@ -490,6 +501,18 @@ header{
 
 .scrolltotop-button:hover::after{
     font-size: 30px;
+}
+
+.alert-box{
+    position: fixed;
+    z-index: 110;
+    right: 20px;
+    bottom: 50px;
+    height: 100px;
+    padding: 0px 10px 0px 20px;
+    display: grid;
+    place-items: center;
+    opacity: 0;
 }
 
 .copy-right{

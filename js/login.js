@@ -135,36 +135,6 @@ function logOut(){
 }
 
 
-
-function capNhat_ThongTin_CurrentUser() {
-
-    var u = getCurrentUser();
-
-    //  Get the menuUser element
-    var menuUser = document.getElementsByClassName('menuUser')[0];
-
-    if (u) {
-        var userElement = document.getElementsByClassName('user')[0];
-
-
-        if (userElement) {
-            
-            var usernameNode = userElement.getElementsByTagName('a')[0].childNodes[2];
-
-            if (usernameNode) {
-                usernameNode.nodeValue = ' ' + u.username;
-            }
-
-            //  Hiển thị menu người dùng
-            menuUser.style.display = 'block';
-        }
-    } else if (menuUser) {
-        //  User is not logged in, ẩn menu người dùng
-        menuUser.style.display = 'none';
-    }
-}
-
-
 function addContainTaiKhoan(){
 document.write(`<div class="containTaikhoan">
 <span class="close" /*onclick="showTaiKhoan(false);"*/>&times;</span>

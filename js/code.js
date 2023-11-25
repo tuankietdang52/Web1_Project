@@ -1,14 +1,18 @@
 // JS cho thuoc tinh chung //
 getData();
 setProductData(list_products);
+setListUser(list_accounts);
 
 function setThingsup(){
     addheader();
-    addbuttontotop();
+    addButtonToTop();
+    addAlertBox();
+    increaseProductCartAmount();
 }
 
 function getData(){
     list_products = getProductData() || list_products;
+    list_accounts = getListUser() || list_accounts;
 }
 
 // Header //
@@ -70,7 +74,7 @@ function addheader(){
             </div>
         </div>
     </section>
-
+</header>
 <section class="header-content">
     <a class="homelogo" href="index.html"><img src="../img/logo.jpg" alt="logo"></a>
     <div class="searchbar-container">
@@ -104,15 +108,15 @@ function addheader(){
     
     <div class="cart">
         <a href="giohang.html" class="user-option-container">
-            <i class="icon cart user-option-effect"></i>
+            <i class="icon cart user-option-effect">
+                <span class="cart-number"></span>
+            </i>
             <span>Giỏ hàng</span>
-            <span class="cart-number"></span>
         </a>
     </div>
 
 </div>
 </section>
-</header>
 `);
 }
 
@@ -126,7 +130,7 @@ function addfooter(){
 }
 
 // them button len dau trang //
-function addbuttontotop(){
+function addButtonToTop(){
    document.body.innerHTML += '<button class="icon scrolltotop-button" onclick="totop()"></button>' 
 }
 
@@ -135,6 +139,16 @@ function totop(){
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 // ket thuc phan button len dau trang //
+
+// alert box khi lua chon //
+
+function addAlertBox(){
+    document.body.innerHTML += (`
+        <div class="alert-box">
+            <h2></h2>
+        </div>
+    `)
+}
 
 // CAC HAM DUNG CHUNG //
 
@@ -152,18 +166,18 @@ function writeproduct(product, sectionclassname){
     productsect.innerHTML += (`
     <a href="chitietsanpham.html?` + product[0].masp + `" class="product">
         <img class="product-img" src="` + imgsrc + `" alt="` + productcode + `">
-        ` + writepromotag(product) + `
+        ` + writePromoTag(product) + `
         <span class="product-name">` + nameproduct + `</span>
         <div class="product-price">` + 
-            writeprice(product) +
+            writePrice(product) +
         `</div>
-        <div class="star-container">` + addstarandratecount(product) + `</div>
-        <button class="addtocart-button icon" onclick="Addproducttocart(event); return false;"></button>
+        <div class="star-container">` + addStarAndRatecount(product) + `</div>
+        <button class="addtocart-button icon" onclick="Addproducttocart(event, '` + productcode + `', '` + nameproduct + `');"></button>
     </a>
     `);
 }
 
-function addstarandratecount(product){
+function addStarAndRatecount(product){
     let star = "";
     let i = 0;
     let amountstar = product[0].star;
@@ -181,7 +195,7 @@ function addstarandratecount(product){
     return star;
 }
 
-function writeprice(product){
+function writePrice(product){
     switch (product[0].promo.name){
         case "giareonline":
             return (`
@@ -196,15 +210,15 @@ function writeprice(product){
     }
 }
 
-function writepromotag(product){
+function writePromoTag(product){
     let promo = product[0].promo.name;
     let promovalue = product[0].promo.value;
 
     if (promo == "") return "";
-    return editpromotag(promo, promovalue);
+    return editPromoTag(promo, promovalue);
 }
 
-function editpromotag(promo, value){
+function editPromoTag(promo, value){
     switch (promo){
         case "moiramat":
             return "<label class='promotag moiramat'>Mới ra mắt</label>";
@@ -222,7 +236,7 @@ function editpromotag(promo, value){
     }
 }
 
-function writeamountremain(amount, link){
+function writeAmountRemain(amount, link){
     let productsect = document.getElementsByClassName("product-container")[frameindex];
     productsect.innerHTML += (`
         <a href="`+ link + `" class="see-all"></a>
@@ -265,7 +279,7 @@ function ReviewProduct(parentclassname, link = ""){
         if (!product[i]) break;
         writeproduct(product[i], parentclassname);
     }
-    if (link != "") writeamountremain(productremain, link);
+    if (link != "") writeAmountRemain(productremain, link);
 }
 
 // KET THUC VIET SAN PHAM VA KHUNG //
@@ -383,7 +397,7 @@ function getSearchProduct(value, type = "filter"){
 
 function CompareCheck(value, productname){
 
-    // check ten vat pham co chua nhung chuoi la nhap khong //
+    // check ten vat pham co chua nhung chuoi da nhap khong //
 
     let input = value.split(" ");
 
@@ -418,17 +432,27 @@ function getSearchPath(value){
     searchbutton.setAttribute("href", path);
 }
 
-function Addproducttocart(e){
+function Addproducttocart(e, productcode, name){
     e.preventDefault();
-    var masp = product[0].masp;
-    var name = product[0].name;
-    themVaoGioHang(masp,name);
+    
+    themVaoGioHang(productcode, name);
+    increaseProductCartAmount();
 }
+
+// tang so luong vat pham trong gio hang //
+
+function increaseProductCartAmount(){
+    let cart_num = document.getElementsByClassName("cart-number")[0];
+    let amount = getProductCartAmount();
+
+    cart_num.innerHTML = amount;
+}
+
 // thêm vào giỏ hàng
 function animateCartNumber() {
     // Hiệu ứng cho icon giỏ hàng
-    var cn = document.getElementsByClassName('cart-number')[0];
-    cn.style.transform = 'scale(2)';
+    let cn = document.getElementsByClassName('cart-number')[0];
+    cn.style.transform = 'scale(1.5)';
     cn.style.backgroundColor = 'rgba(255, 0, 0, 0.8)';
     cn.style.color = 'white';
     setTimeout(function () {
@@ -468,15 +492,19 @@ function themVaoGioHang(masp, name) {
     }
 
     animateCartNumber();
-    addAlertBox('Đã thêm ' + tensp + ' vào giỏ.', '#17c671', '#fff', 3500);
+    editAlertBox('Đã thêm ' + name + ' vào giỏ.', 'rgba(23, 198, 113, 0.749)', '#fff', 3500);
 
     setCurrentUser(user); // cập nhật giỏ hàng cho user hiện tại
     updateListUser(user); // cập nhật list user
     capNhat_ThongTin_CurrentUser(); // cập nhật giỏ hàng
 }
-function addAlertBox(text, bgcolor, textcolor, time) {
-    var al = document.getElementById('alert');
-    al.childNodes[0].nodeValue = text;
+
+function editAlertBox(text, bgcolor, textcolor, time) {
+    let al = document.getElementsByClassName('alert-box')[0];
+
+    let altext = al.querySelector("h2");
+    altext.innerHTML = text;
+
     al.style.backgroundColor = bgcolor;
     al.style.opacity = 1;
     al.style.zIndex = 200;

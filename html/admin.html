@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
     <!-- data -->
     <script src="../data/accountdata.js"></script>
     <script src="../data/datamethod.js"></script>
@@ -22,21 +22,46 @@
     <!-- Thu vien icon -->
     <script src="https://kit.fontawesome.com/843b9d6718.js" crossorigin="anonymous"></script>
 
-    <!-- javascript chung -->
+    <!-- chung -->
     <script src="../classes/sort.js"></script>
     <script src="../classes/class.js"></script>
-    
+
     <!-- javascript -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/login.css">
-     <script src="../js/code.js"></script>
-    <script src="../js/home.js"></script>
-    <script src="../js/login.js"></script>
-    <script src="../js/nguoidung.js"></script>
-    n
+    <script src="../js/admin.js"></script>
+    
+    <!-- css -->
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
+
 <body>
-    <h1>hello</h1>
+    <header>
+        <h1>Smartphone Store - Admin</h1>
+    </header>
+    <section class="main-content-sect">
+        <aside class="menu">
+            <div class="menu-title"><h1>MENU</h1></div>
+            <li class="active" onclick="menuchange(this)">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Thống kê</span>
+            </li>
+            <li class="nonactive" onclick="menuchange(this)">
+                <i class="fa-solid fa-mobile"></i>
+                <span>Sản phẩm</span>
+            </li>
+            <li class="nonactive" onclick="menuchange(this)">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Đơn hàng</span>
+            </li>
+            <li class="nonactive" onclick="menuchange(this)">
+                <i class="fa-solid fa-person"></i>
+                <span>Khách hàng</span>
+            </li>
+        </aside>
+        <div class="main-content-container">
+            <section class="chart-content-sect"></section>
+
+            <section class="product-content-sect"></section>
+        </div>
+    </section>
 </body>
 </html>
