@@ -173,17 +173,19 @@ function giamSoLuong(masp) {
 }
 
 function capNhatMoiThu() { // Mọi thứ
-	animateCartNumber();
-
+	
 	// cập nhật danh sách sản phẩm trong localstorage
 	setCurrentUser(currentuser);
 	updateListUser(currentuser);
-
+	
 	// cập nhật danh sách sản phẩm ở table
 	addProductToTable(currentuser);
-
+	
 	// Cập nhật trên header
 	capNhat_ThongTin_CurrentUser();
+	
+	adjustProductCartAmount();
+	animateCartNumber();
 }
 
 

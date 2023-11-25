@@ -7,7 +7,7 @@ function setThingsup(){
     addheader();
     addButtonToTop();
     addAlertBox();
-    increaseProductCartAmount();
+    adjustProductCartAmount();
 }
 
 function getData(){
@@ -436,12 +436,12 @@ function Addproducttocart(e, productcode, name){
     e.preventDefault();
     
     themVaoGioHang(productcode, name);
-    increaseProductCartAmount();
+    adjustProductCartAmount();
 }
 
 // tang so luong vat pham trong gio hang //
 
-function increaseProductCartAmount(){
+function adjustProductCartAmount(){
     let cart_num = document.getElementsByClassName("cart-number")[0];
     let amount = getProductCartAmount();
 
