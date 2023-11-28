@@ -164,6 +164,7 @@ function changePass() {
 // đổi các thông tin còn lại của user
     function changeInfo(iTag,info){
         var inputTag = iTag.parentElement.previousElementSibling.getElementsByTagName('input')[0];
+        
         if ( !inputTag.readOnly && inputTag.value != ''){
             if ( info === 'username' ){
                 var listUser = getListUser();
@@ -203,7 +204,8 @@ function changePass() {
             inputTag.value ='';
             inputTag.value = v;
         }
-        inputTag.readOnly = !inputTag.readOnly;y 
+        inputTag.readOnly = !inputTag.readOnly;
+  
     }
 
 
