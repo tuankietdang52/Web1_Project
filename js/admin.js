@@ -1,21 +1,8 @@
-getData();
-setProductData(list_products);
-setListUser(list_accounts);
+const menuoption = ["chart", "product", "order", "user"];
+let choice = menuoption[0];
 
-window.onload = function(){
-    let defaultcontent = document.getElementsByClassName("chart-content-sect")[0];
 
-    defaultcontent.style.display = "grid";
-}
-
-function getData(){
-    list_products = getProductData() || list_products;
-    list_accounts = getListUser() || list_accounts;
-}
-
-function Menuchange(clickelement, content){
-    if (clickelement.className == "active") return;
-
+function Menuchange(clickelement){
     let menu = document.getElementsByClassName("menu")[0];
 
     for (let i = 0; i < menu.children.length; i++){
@@ -25,12 +12,10 @@ function Menuchange(clickelement, content){
     }
 
     clickelement.className = "active";
-    changeContent(content);
+    choice = findchoice();
+    changecontent(choice);
 }
 
-function dangXuat() {
-    window.localStorage.removeItem('admin');
-}
 function findchoice(){
     let menu = document.getElementsByClassName("menu")[0];
 
@@ -59,11 +44,7 @@ function changecontent(choice){
             break;
     }
 
-    for (let i = 0; i < contentsect.children.length; i++){
-        contentsect.children[i].style.display = "none";
-    }
-
-    showcontent.style.display = "flex";
+    changedisplay(showcontent);
 }
 
 function changedisplay(showcontent){

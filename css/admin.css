@@ -295,8 +295,12 @@ header h1{
 .logOut{
     color: white;
     text-decoration: none;
-    
 }
-.logOut:hover{
-    margin-left : 20px;
+
+.logOut i{
+    rotate: 180deg;
+}
+
+.logOut:hover > li > i{
+    transform: translateX(-100%);
 }
