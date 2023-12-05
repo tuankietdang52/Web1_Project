@@ -23,7 +23,7 @@
     <script src="https://kit.fontawesome.com/843b9d6718.js" crossorigin="anonymous"></script>
 
     <!-- chung -->
-    <script src="../classes/sort.js"></script>
+    <script src="../classes/sortandnfind.js"></script>
     <script src="../classes/class.js"></script>
 
     <!-- javascript -->
@@ -34,33 +34,71 @@
 </head>
 
 <body>
+    <div class="change-container">
+        <button class="close" onclick="closeChangeTab()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
     <header>
         <h1>Smartphone Store - Admin</h1>
     </header>
     <section class="main-content-sect">
         <aside class="menu">
             <div class="menu-title"><h1>MENU</h1></div>
-            <li class="active" onclick="menuchange(this)">
+            <li class="active" onclick="Menuchange(this, 'thongke')">
                 <i class="fa-solid fa-chart-pie"></i>
                 <span>Thống kê</span>
             </li>
-            <li class="nonactive" onclick="menuchange(this)">
+            <li class="nonactive" onclick="Menuchange(this, 'sanpham')">
                 <i class="fa-solid fa-mobile"></i>
                 <span>Sản phẩm</span>
             </li>
-            <li class="nonactive" onclick="menuchange(this)">
+            <li class="nonactive" onclick="Menuchange(this, 'donhang')">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span>Đơn hàng</span>
             </li>
-            <li class="nonactive" onclick="menuchange(this)">
+            <li class="nonactive" onclick="Menuchange(this, 'khachhang')">
                 <i class="fa-solid fa-person"></i>
                 <span>Khách hàng</span>
             </li>
+            <hr>
+            <a class="nonactive admin-logout" href="index.html">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
         </aside>
         <div class="main-content-container">
             <section class="chart-content-sect"></section>
 
-            <section class="product-content-sect"></section>
+            <section class="product-content-sect">
+               <div class="table-title-container">
+                    <div class="number">
+                        <span>STT</span>
+                    </div>
+                    <div class="product-code">
+                        <span>Mã</span>
+                    </div>
+                    <div class="product-name">
+                        <span>Tên</span>
+                    </div>
+                    <div class="product-price">
+                        <span>Giá</span>
+                    </div>
+                    <div class="product-promo">
+                        <span>Khuyến mãi</span>
+                    </div>
+                    <div class="action">
+                        <span>Hành động</span>
+                    </div>
+               </div>
+               <div class="product-data-container">
+                    <script>writeListProduct()</script>
+               </div> 
+            </section>
+
+            <section class="order-content-sect"></section>
+
+            <section class="customer-content-sect"></section>
         </div>
     </section>
 </body>

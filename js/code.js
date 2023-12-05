@@ -92,33 +92,143 @@ function addheader(){
         </div>
     </div>
     <div class="user-option">
-    
-    <div class="user">
-
-    <a class="user-option-container" onclick="checkTaiKhoan();">
-        <i class="icon account user-option-effect"></i>
-        Tài khoản 
-    </a>
-
-    <div class="menuUser hide">
-    <a href="nguoidung.html"> Trang người dùng</a>
-    <a onclick="if(window.confirm('Xác nhận đăng xuất ?')) logOut();">Đăng xuất</a>
+        <div class="user">
+            <a class="user-option-container">
+                <i class="icon account user-option-effect"></i>
+                Tài khoản 
+            </a>
+            <div class="menuUser hide">
+                <a href="nguoidung.html"> Trang người dùng</a>
+                <a onclick="if(window.confirm('Xác nhận đăng xuất ?')) logOut();">Đăng xuất</a>
+            </div>
+        </div>    
+        <div class="cart">
+            <a href="giohang.html" class="user-option-container">
+                <i class="icon cart user-option-effect">
+                    <span class="cart-number"></span>
+                </i>
+                <span>Giỏ hàng</span>
+            </a>
+        </div>
     </div>
-    </div>    
-    
-    <div class="cart">
-        <a href="giohang.html" class="user-option-container">
-            <i class="icon cart user-option-effect">
-                <span class="cart-number"></span>
-            </i>
-            <span>Giỏ hàng</span>
-        </a>
-    </div>
-
-</div>
+<!-- For mobile -->
+    <button class="mobile-menu" onclick="addMenu()">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 </section>
+<div class="menu-sect">
+    <div class="menu-container">
+        <div class="menu">
+            <div class="mobile searchbox">
+                <input type="text" class="searchbar" onkeyup="Searching(event)" placeholder="Search">
+                <a href="#" class="searchbutton">Tìm kiếm</a>
+                <div class="searchresult-dropdown"></div>
+            </div>
+            <hr>
+            <div class="mobile-user-option">
+                <div class="user">
+                    <a class="user-option-container">
+                        <i class="icon account user-option-effect"></i>
+                        Tài khoản 
+                    </a>
+                    <div class="menuUser hide">
+                        <a href="nguoidung.html"> Trang người dùng</a>
+                        <a onclick="if(window.confirm('Xác nhận đăng xuất ?')) logOut();">Đăng xuất</a>
+                    </div>
+                </div>    
+                <div class="cart">
+                    <a href="giohang.html" class="user-option-container">
+                        <i class="icon cart user-option-effect">
+                            <span class="cart-number"></span>
+                        </i>
+                        <span>Giỏ hàng</span>
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class="mobile-navigation-container">
+                <li>
+                    <a href="index.html" class="icon home">
+                        <p class="navi-text">Trang chủ</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="tintuc.html" class="icon newnav">
+                        <p class="navi-text">Tin tức</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="tuyendung.html" class="icon recruit">
+                        <p class="navi-text">Tuyển dụng</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="gioithieu.html" class="icon info">
+                        <p class="navi-text">Giới thiệu</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="trungtambaohanh.html" class="icon fix">
+                        <p class="navi-text">Bảo hành</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="lienhe.html" class="icon contact">
+                        <p class="navi-text">Liên hệ</p>
+                    </a>
+                </li>
+                <hr>
+                <div class="contact-us">
+                    <li>
+                        <a class="icon fb" href="#">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon twitter" href="#">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon google" href="#">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon youtube" href="#">
+                        </a>
+                    </li>
+                </div>
+            </div>
+            <hr>
+            <button class="close-menu" onclick="closeMenu()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- End Mobile Page -->
 `);
 }
+
+// RESPONSIVE WEB //
+
+function addMenu(){
+    let menu = document.getElementsByClassName("menu-container")[0];
+    menu.style.transform = "translateX(0)";
+
+    let menusect = document.getElementsByClassName("menu-sect")[0];
+    menusect.style.transform = "translateX(0)";
+}
+
+function closeMenu(){
+    let menu = document.getElementsByClassName("menu-container")[0];
+    menu.style.transform = "translateX(1500px)";
+    
+    setTimeout(() => {
+        let menusect = document.getElementsByClassName("menu-sect")[0];
+        menusect.style.transform = "translateX(1500px)";
+    }, 200);
+}
+
+// Footer //
 
 function addfooter(){
     document.body.innerHTML += (`
@@ -156,7 +266,7 @@ function addAlertBox(){
 
 // viet san pham //
 
-function writeproduct(product, sectionclassname){
+function writeProduct(product, sectionclassname){
     let productcode = product[0].masp;
     let nameproduct =  product[0].name;
     let imgsrc = product[0].img;
@@ -164,7 +274,7 @@ function writeproduct(product, sectionclassname){
     let productsect = document.getElementsByClassName(sectionclassname)[0];
 
     productsect.innerHTML += (`
-    <a href="chitietsanpham.html?` + product[0].masp + `" class="product">
+    <a href="chitietsanpham.html?` + productcode + `" class="product">
         <img class="product-img" src="` + imgsrc + `" alt="` + productcode + `">
         ` + writePromoTag(product) + `
         <span class="product-name">` + nameproduct + `</span>
@@ -277,7 +387,7 @@ function ReviewProduct(parentclassname, link = ""){
     let productremain = product.length >= 5 ? product.length - 5 : 0;
     for (let i = 0; i < 5; i++){
         if (!product[i]) break;
-        writeproduct(product[i], parentclassname);
+        writeProduct(product[i], parentclassname);
     }
     if (link != "") writeAmountRemain(productremain, link);
 }
@@ -328,7 +438,7 @@ function RemoveFilter(filtername){
     return newcurrent;
 }
 
-function writenoproduct(classname){
+function writeNoProduct(classname){
     let sect = document.getElementsByClassName(classname)[0];
 
     sect.innerHTML += (`
@@ -338,44 +448,39 @@ function writenoproduct(classname){
     `)
 }
 
-function getSearchValue(){
-    let value = document.getElementsByClassName("searchbar")[0].value;
-    return value;
-}
-
 function Searching(e){
-    if (e.keyCode === 13) Search();
+    let searchbarsect = e.target.parentElement;
+    let searchbar = searchbarsect.getElementsByClassName("searchbar")[0].value;
+    let searchbutton = searchbarsect.getElementsByClassName("searchbutton")[0];
 
+    if (e.keyCode === 13) Search(searchbutton);
 
-    let value = getSearchValue().toLowerCase();
-    let result_dropdown = document.getElementsByClassName("searchresult-dropdown")[0];
+    let value = searchbar.toLowerCase();
+    let result_dropdown = searchbarsect.getElementsByClassName("searchresult-dropdown")[0];
 
     if (!value){
         result_dropdown.style.display = "none";
         return;
     }
     
-    getSearchProduct(value, "dropdown");
+    getSearchProduct(value, "dropdown", result_dropdown);
     result_dropdown.style.display = "grid";
 }
 
 
-function Search(){  
+function Search(searchbutton){  
     let value = getSearchValue();
     if (!value) return;
 
-    let search = document.getElementsByClassName("searchbutton")[0];
-
-    search.click();
+    searchbutton.click();
 }
 
-function getSearchProduct(value, type = "filter"){
+function getSearchProduct(value, type = "filter", result_dropdown = null){
 
     // ham nay co 2 dang la show product o phan tim kiem va lay product khi click search //
     // filter lay product, dropdown show product //
 
-    let result_dropdown = document.getElementsByClassName("searchresult-dropdown")[0];
-    result_dropdown.innerHTML = "";
+    if (result_dropdown) result_dropdown.innerHTML = "";
     
     value = value.toLowerCase();
     
@@ -388,7 +493,7 @@ function getSearchProduct(value, type = "filter"){
         if (!CompareCheck(value, productname)) continue;
         
         if (type == "filter") searchproduct.push(arrayproduct[i]);
-        else if (type == "dropdown") addProducttoSearchDropDown(arrayproduct[i]);
+        else if (type == "dropdown") addProducttoSearchDropDown(arrayproduct[i], result_dropdown);
     }
     
     getSearchPath(value);
@@ -413,9 +518,8 @@ function getSearchFilterText(filterdescription){
     return filterdescription.replace(new RegExp("%20", "g"), " ");
 }
 
-function addProducttoSearchDropDown(product){
+function addProducttoSearchDropDown(product, result_dropdown){
     // show product o phan tim kiem (chua click tim kiem) //
-    let result_dropdown = document.getElementsByClassName("searchresult-dropdown")[0];
     
     result_dropdown.innerHTML += (`
         <a href="chitietsanpham.html?` + product[0].masp + `" class="search-product">
@@ -442,10 +546,13 @@ function Addproducttocart(e, productcode, name){
 // tang so luong vat pham trong gio hang //
 
 function adjustProductCartAmount(){
-    let cart_num = document.getElementsByClassName("cart-number")[0];
+    let cart_num = document.getElementsByClassName("cart-number");
     let amount = getProductCartAmount();
 
-    cart_num.innerHTML = amount;
+    for (let i = 0; i < 2; i++){
+        cart_num[0].innerHTML = amount;
+        cart_num[1].innerHTML = amount;
+    }
 }
 
 // thêm vào giỏ hàng

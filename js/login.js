@@ -25,9 +25,18 @@ function EventLogin(){
         }
     });
 
+    tabuser[1].addEventListener("click", function() {
+        // Check if the user is logged in
+        if (!getCurrentUser()) {
+            // If not logged in, show the login form
+            div.style.transform = 'scale(1)';
+        }
+    });
+
     tabclose[0].addEventListener("click", function() {
         div.style.transform = 'scale(0)';
     });
+
     for(let i = 0; i <tabHeaderElements.length;i++) {
     tabHeaderElements[i].addEventListener("click",function(){
         tabHeader.querySelector(".active").classList.remove("active");

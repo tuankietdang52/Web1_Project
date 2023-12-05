@@ -107,7 +107,7 @@ header h1{
 }
 
 .main-content-container{
-    width: 83%;
+    width: 87%;
     height: 1000px;
 }
 
@@ -115,8 +115,198 @@ header h1{
     width: 100%;
     height: 100%;
     display: none;
+    flex-direction: column;
+    opacity: 0;
+    animation-name: showup;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
 }
 
-.chart-content-sect{
-    display: grid !important;
+@keyframes showup{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.admin-logout{
+    margin-top: 15%;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 5%;
+    color: white;
+    font-size: 1.3vw;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.admin-logout i{
+    rotate: 180deg;
+}
+
+.admin-logout:hover > i{
+    transform: translateX(-100%) !important;
+}
+
+.change-container{
+    width: 100%;
+    height: 1000px;
+    transform: scale(0);
+    position: fixed;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.516);
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    transition: transform 0.2s;
+}
+
+.close{
+    border: unset;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    cursor: pointer;
+}
+
+.close:hover{
+    color: red;
+}
+
+.close i{
+    font-size: 3vw;
+}
+
+ /* PRODUCT SECT */
+
+.table-title-container{
+    width: 99.4%;
+    display: flex;
+}
+
+.table-title-container div{
+    display: grid;
+    place-items: center;
+    color: white;
+    font-weight: bold;
+    height: 50px;
+    background-color: #3e464d;
+    border: 1px solid #23282c;
+}
+
+.number{
+    width: 4%;
+}
+
+.product-code{
+    width: 10%;
+}
+
+.product-name{
+    width: 35%;
+}
+
+.product-price{
+    width: 16%;
+}
+
+.product-promo{
+    width: 20%;
+}
+
+.action{
+    width: 15%;
+    display: flex;
+}
+
+.action button{
+    border: unset;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.action button{
+    font-size: 1vw;
+}
+
+.adjust-button:hover{
+    color: #63c2de;
+}
+
+.remove-button:hover{
+    color: red;
+}
+
+.product-data-container{
+    height: 500px;
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid #23282c;
+}
+
+.product-data-container::-webkit-scrollbar{
+    width: 10px;
+}
+
+.product-data-container::-webkit-scrollbar-track{
+    background-color: white;
+}
+
+.product-data-container::-webkit-scrollbar-thumb{
+    background-color: gray;
+}
+
+.product-data-container::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(188, 188, 188);
+}
+
+.product-data{
+    width: 100%;
+    display: flex;
+    background-color: #2f353a;
+}
+
+.product-data div, .product-data a{
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    place-content: center;
+    color: white;
+    border: 1px solid #23282c;
+}
+
+.product-data a{
+    text-decoration: none;
+}
+
+.product-data a:hover{
+    text-decoration: underline;
+}
+
+.product-data:nth-child(even){
+    background-color: #3e4144;
+}
+
+.product-change-container{
+    width: 50%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    background-color: #2f353a;
+    border: 2px solid #23282c;
+}
+
+.product-title{
+    width: 100%;
+    background-color: #3e464d;
+    color: white;
+    display: grid;
+    place-items: center;
+    border-bottom: 2px solid #23282c;
 }
