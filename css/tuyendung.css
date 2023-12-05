@@ -6,11 +6,13 @@
     width: 100%;
 }
 .tuyendung-header{
-    background-color: bisque;
     height: 40px;
     line-height: 40px;
-    font-size: 16px;
+    font-size: 30px;
+    font-weight: bold;
     padding-left: 10px;
+    color : red;
+    
 }
 .tuyendung-info{
 	margin: 10px;

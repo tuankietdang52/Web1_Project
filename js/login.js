@@ -24,15 +24,7 @@ function EventLogin(){
             div.style.transform = 'scale(1)';
         }
     });
-
-    tabuser[1].addEventListener("click", function() {
-        // Check if the user is logged in
-        if (!getCurrentUser()) {
-            // If not logged in, show the login form
-            div.style.transform = 'scale(1)';
-        }
-    });
-
+ 
     tabclose[0].addEventListener("click", function() {
         div.style.transform = 'scale(0)';
     });
