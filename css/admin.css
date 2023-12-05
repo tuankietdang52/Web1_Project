@@ -1,5 +1,4 @@
 /* CSS cho thuoc tinh chung */
-
 html, body{
     margin: 0;
     padding: 0;
@@ -40,7 +39,7 @@ header h1{
     background-color: #2f353a;
     display: flex;
     width: 100%;
-    height: 1000px;
+    min-height: 1000px;
 }
 
 .menu{
@@ -108,15 +107,186 @@ header h1{
 
 .main-content-container{
     width: 83%;
-    height: 1000px;
+    min-height: 1000px;
 }
 
 .main-content-sect section{
     width: 100%;
     height: 100%;
+    padding: 20px 0 0 10px;
     display: none;
 }
 
 .chart-content-sect{
-    display: grid !important;
+    display: block;
+}
+
+.main-content-sect table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+}
+
+.main-content-sect table thead tr{
+    background-color: #20a8d8;
+    color: white;
+}
+
+.main-content-sect table thead tr td{
+    padding: 10px;
+    text-align: left;
+}
+
+
+.main-content-sect table tbody tr td{
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #ddd;
+}
+
+.main-content-sect table tbody tr td:first-child{
+    width: 20%;
+}
+
+.main-content-sect table tbody tr td:last-child{
+    width: 10%;
+}
+
+.main-content-sect table tbody tr td img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.main-content-sect table tbody tr td button {
+    width: 100%;
+    height: 30px;
+    border: none;
+    background-color: #20a8d8;
+    color: white;
+    cursor: pointer;
+}
+
+.main-content-sect table tbody tr td button:hover{
+    background-color: #4a7b8d;
+}
+
+.main-content-sect table tbody tr td button.btn-delete {
+    background-color: #dc3545;
+}
+
+.main-content-sect table tbody tr td button.btn-delete:hover{
+    background-color: #c82333;
+}
+
+.product-detail-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: #dddddd4b;
+    padding: 20px;
+}
+
+.product-detail-container .product-detail-body {
+    width: 70%;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.product-detail-container .product-detail-body .product-detail-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+}
+
+
+.product-detail-container .product-detail-body .product-detail-header h1 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.product-detail-container .product-detail-body .product-detail-header span {
+    font-size: 20px;
+    color: #20a8d8;
+    cursor: pointer;
+}
+
+.product-detail-container .product-detail-value {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.product-detail-container .product-detail-value table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.product-detail-container .product-detail-value table tr td {
+    padding: 5px 0;
+}
+
+.product-detail-container .product-detail-value table tr td input,
+.product-detail-container .product-detail-value table tr td select {
+    width: 170px;
+    height: 30px;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    outline: none;
+}
+
+.product-detail-container .product-detail-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.product-detail-container .product-detail-btn button {
+    width: 100px;
+    height: 30px;
+    border: none;
+    background-color: #20a8d8;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+.product-detail-container .product-detail-btn button:hover {
+    background-color: #4a7b8d;
+}
+
+.btn-create {
+    padding: 10px 20px;
+    border: none;
+    background-color: #20d83f;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.btn-create:hover {
+    background-color: #4a8d50;
+}
+
+.logOut{
+    color: white;
+    text-decoration: none;
+    
+}
+.logOut:hover{
+    margin-left : 20px;
 }

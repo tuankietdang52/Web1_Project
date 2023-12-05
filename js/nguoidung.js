@@ -100,12 +100,12 @@ function addInfoUser(user) {
         </tr>
         <tr>
             <td>Tổng tiền đã mua: </td>
-            <td> <input type="text" value="" readonly> </td>
+            <td> <input type="text" value="` + numToString(tongTienTatCaDonHang) + `₫" readonly> </td>
             <td></td>
         </tr>
         <tr>
             <td>Số lượng sản phẩm đã mua: </td>
-            <td> <input type="text" value="" readonly> </td>
+            <td> <input type="text" value="` + tongSanPhamTatCaDonHang + `" readonly> </td>
             <td></td>
         </tr>
     </table>`;
@@ -164,6 +164,7 @@ function changePass() {
 // đổi các thông tin còn lại của user
     function changeInfo(iTag,info){
         var inputTag = iTag.parentElement.previousElementSibling.getElementsByTagName('input')[0];
+        
         if ( !inputTag.readOnly && inputTag.value != ''){
             if ( info === 'username' ){
                 var listUser = getListUser();
@@ -203,7 +204,8 @@ function changePass() {
             inputTag.value ='';
             inputTag.value = v;
         }
-        inputTag.readOnly = !inputTag.readOnly;y 
+        inputTag.readOnly = !inputTag.readOnly;
+  
     }
 
 
@@ -223,34 +225,88 @@ function addTatCaDonHang(user){
             `;
         return;
     }
-    if (user) {
+    if (!user.donhang.length) {
         document.getElementsByClassName('listDonHang')[0].innerHTML += `
             <h3 style="width=100%; padding: 50px; color: green; font-size: 2em; text-align: center"> 
                 Xin chào ` + currentUser.username + `. Bạn chưa có đơn hàng nào.
             </h3>`;
         return;
     }
-    for ( donHang of user.donhang){
-        addDonHang(donHang);
+    for ( dh of user.donhang){
+        addDonHang(dh);
     }    
-    
 }
-function addDonHang(dh){
-    var NodeListDonHang = document.querySelectorAll('.listDonHang')[0];
-    var add = `
-        <table class="listDonHang">
-            <tr>
-                <th colpan="6">
-                    <h1>Đơn hàng ngày:  ` + new Date(dh.ngaymua).toLocaleString + `</h1>
-                </th> 
-            </tr>
-            <tr>
-                <th>STT</th>
-                <th>Sản phẩm</th>
-                <th>Giá</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
-                <th>Thời gian thêm vào giỏ</th>
-            </tr>
-    `
+function addDonHang(dh) {
+    var div = document.getElementsByClassName('listDonHang')[0];
+
+    var s = `
+            <table class="listSanPham">
+                <tr> 
+                    <th colspan="6">
+                        <h3 style="text-align:center;"> Đơn hàng ngày: ` + new Date(dh.ngaymua).toLocaleString() + `</h3> 
+                    </th>
+                </tr>
+                <tr>
+                    <th>STT</th>
+                    <th>Sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Thời gian thêm vào giỏ</th> 
+                </tr>`;
+
+    var totalPrice = 0;
+    for (var i = 0; i < dh.sp.length; i++) {
+        var masp = dh.sp[i].ma;
+        var soluongSp = dh.sp[i].soluong;
+        var p = timKiemTheoMa(list_products, masp);
+        var price = (p.promo.name == 'giareonline' ? p.promo.value : p.price);
+        var thoigian = new Date(dh.sp[i].date).toLocaleString();
+        var thanhtien = stringToNum(price) * soluongSp;
+
+        s += `
+                <tr>
+                    <td>` + (i + 1) + `</td>
+                    <td class="noPadding imgHide">
+                        <a target="_blank" href="chitietsanpham.html?` + p.name.split(' ').join('-') + `" title="Xem chi tiết">
+                            ` + p.name + `
+                            <img src="` + p.img + `">
+                        </a>
+                    </td>
+                    <td class="alignRight">` + price + ` ₫</td>
+                    <td class="soluong" >
+                         ` + soluongSp + `
+                    </td>
+                    <td class="alignRight">` + numToString(thanhtien) + ` ₫</td>
+                    <td style="text-align: center" >` + thoigian + `</td>
+                </tr>
+            `;
+        totalPrice += thanhtien;
+        tongSanPhamTatCaDonHang += soluongSp;
+    }
+    tongTienTatCaDonHang += totalPrice;
+
+    s += `
+                <tr style="font-weight:bold; text-align:center; height: 4em;">
+                    <td colspan="4">TỔNG TIỀN: </td>
+                    <td class="alignRight">` + numToString(totalPrice) + ` ₫</td>
+                    <td > ` + dh.tinhTrang + ` </td>
+                </tr>
+            </table>
+            <hr>
+        `;
+    div.innerHTML += s;
+}
+
+function timKiemTheoMa(list, ma) {
+	for (var l of list) {
+		if (l.masp == ma) return l;
+	}
+}
+function numToString(num, char) {
+    return num.toLocaleString().split(',').join(char || '.');
+}
+
+function stringToNum(str, char) {
+    return Number(str.split(char || '.').join(''));
 }

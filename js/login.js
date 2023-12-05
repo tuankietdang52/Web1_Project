@@ -24,7 +24,7 @@ function EventLogin(){
             div.style.transform = 'scale(1)';
         }
     });
-
+ 
     tabclose[0].addEventListener("click", function() {
         div.style.transform = 'scale(0)';
     });
