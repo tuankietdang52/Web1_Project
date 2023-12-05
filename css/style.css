@@ -702,6 +702,7 @@ header{
 .product-container .star-container{
     transform: translateX(5%);
     display: flex;
+    height: auto !important;
 }
 
 .product-container .fa-star{
