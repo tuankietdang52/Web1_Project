@@ -83,6 +83,20 @@ function setArrayAccounts(){
     }
 }
 
+function checkNameLength(name){
+    if (name.length < 5) return name;
+
+    let newname = "";
+    
+    for (let i = 0; i < 5; i++){
+        newname += name[i];
+    }
+
+    newname += "...";
+
+    return newname;
+}
+
 function capNhat_ThongTin_CurrentUser() {
 
     var u = getCurrentUser();
@@ -92,14 +106,21 @@ function capNhat_ThongTin_CurrentUser() {
 
     if (u) {
         var userElement = document.getElementsByClassName('user')[0];
+        var mobile_userElement = document.getElementsByClassName('user')[1];
 
+        let name = checkNameLength(u.username);
 
         if (userElement) {
             
             var usernameNode = userElement.getElementsByTagName('a')[0].childNodes[2];
+            var mobile_usernameNode = mobile_userElement.getElementsByTagName('a')[0].childNodes[2];
 
             if (usernameNode) {
-                usernameNode.nodeValue = ' ' + u.username;
+                usernameNode.nodeValue = ' ' + name;
+            }
+
+            if (mobile_usernameNode) {
+                mobile_usernameNode.nodeValue = ' ' + name;
             }
 
             //  Hiển thị menu người dùng

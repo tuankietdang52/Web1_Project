@@ -81,7 +81,7 @@ function writeProductDetail(){
         <div class="detail-container">
             <div class="price-container">
                 <h1 class="price">` + getPrice() + `</h1>
-                ` + writedetailpromotag() + `
+                ` + writeDetailPromoTag() + `
             </div>
             ` + writeship() + `
             <div class="promo-container">
@@ -159,15 +159,15 @@ function writeProductDetail(){
     `)
 }
 
-function writedetailpromotag(){
+function writeDetailPromoTag(){
     let promo = product[0].promo.name;
     let promovalue = product[0].promo.value;
 
     if (promo == "") return "";
-    return editdetailpromotag(promo, promovalue);
+    return editDetailPromoTag(promo, promovalue);
 }
 
-function editdetailpromotag(promo, value){
+function editDetailPromoTag(promo, value){
     switch (promo){
         case "moiramat":
             return "<label class='promotag moiramat'>Mới ra mắt</label>";

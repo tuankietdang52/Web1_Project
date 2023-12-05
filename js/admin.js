@@ -2,7 +2,7 @@ const menuoption = ["chart", "product", "order", "user"];
 let choice = menuoption[0];
 
 
-function menuchange(clickelement){
+function Menuchange(clickelement){
     let menu = document.getElementsByClassName("menu")[0];
 
     for (let i = 0; i < menu.children.length; i++){
@@ -16,9 +16,6 @@ function menuchange(clickelement){
     changecontent(choice);
 }
 
-function dangXuat() {
-    window.localStorage.removeItem('admin');
-}
 function findchoice(){
     let menu = document.getElementsByClassName("menu")[0];
 

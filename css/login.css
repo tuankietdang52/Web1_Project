@@ -53,7 +53,7 @@
   transition: .2s ease;
   transform: scale(0);
   /* ẩn đi lúc vào web */
-  z-index: 200;
+  z-index: 600;
 }
 
 .containTaikhoan .close {
