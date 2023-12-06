@@ -16,9 +16,6 @@ function menuchange(clickelement){
     changecontent(choice);
 }
 
-function dangXuat() {
-    window.localStorage.removeItem('admin');
-}
 function findchoice(){
     let menu = document.getElementsByClassName("menu")[0];
 

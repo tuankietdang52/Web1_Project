@@ -282,11 +282,3 @@ header h1{
     background-color: #4a8d50;
 }
 
-.logOut{
-    color: white;
-    text-decoration: none;
-    
-}
-.logOut:hover{
-    margin-left : 20px;
-}
