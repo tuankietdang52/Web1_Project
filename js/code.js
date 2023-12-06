@@ -353,7 +353,7 @@ function writeAmountRemain(amount, link){
     `)
     let seeallbutton = document.getElementsByClassName("see-all")[frameindex];
     seeallbutton.innerHTML += (`
-         <h1>Xem tất cả <span>` + amount + `</span> sản phẩm</h1>
+         <h1>Xem thêm <span>` + amount + `</span> sản phẩm</h1>
     `)
     frameindex++;
 }
@@ -450,12 +450,13 @@ function writeNoProduct(classname){
 
 function Searching(e){
     let searchbarsect = e.target.parentElement;
-    let searchbar = searchbarsect.getElementsByClassName("searchbar")[0].value;
+    let searchbarvalue = searchbarsect.getElementsByClassName("searchbar")[0].value;
     let searchbutton = searchbarsect.getElementsByClassName("searchbutton")[0];
+    
+    let value = searchbarvalue.toLowerCase();
 
-    if (e.keyCode === 13) Search(searchbutton);
+    if (e.keyCode === 13) Search(searchbutton, value);
 
-    let value = searchbar.toLowerCase();
     let result_dropdown = searchbarsect.getElementsByClassName("searchresult-dropdown")[0];
 
     if (!value){
@@ -468,8 +469,7 @@ function Searching(e){
 }
 
 
-function Search(searchbutton){  
-    let value = getSearchValue();
+function Search(searchbutton, value){  
     if (!value) return;
 
     searchbutton.click();
