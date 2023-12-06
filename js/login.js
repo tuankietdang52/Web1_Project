@@ -1,3 +1,4 @@
+// khởi tạo khi load trang
 function khoiTao(){
     adminInfo = getListAdmin() || adminInfo;
     list_products = getProductData() || list_products;
@@ -45,6 +46,7 @@ function updateListUser(u, newData) {
     var list = getListUser();
     for (var i = 0; i < list.length; i++) {
         if (equalUser(u, list[i])) {
+            // duyệt mảng user để cập nhật lại dữ liệu mới 
             list[i] = (newData ? newData : u);
         }
     }
@@ -72,15 +74,17 @@ function logIn(form) {
             return false;
         }
     }
+    // đăng nhập vào admin thông báo chào admin
     for ( var ad of adminInfo){
         if ( equalUser(newUser,ad) ){
             alert('Xin chào admin..');
+            // tạo admin trong local storge
             window.localStorage.setItem('admin',true);
             window.location.assign('admin.html');
             return false;
         }
     }
-
+    // nhập sai thì trỏ về tên tài khoản nhập lại
     alert('Nhập sai tên tài khoản hoặc mật khẩu !!!');
     form.username.focus();
     return false;
@@ -123,8 +127,8 @@ function signUp(form){
     // Đăng nhập vào tài khoản vừa tạo
     window.localStorage.setItem('CurrentUser',JSON.stringify(newUser));
     alert('Đăng kí thành công, tự động đăng nhập!!')
+    // tải lại trang và đăng nhập vào tải khoản vừa tạo
     location.reload();
-
     return false;
 
 }  
