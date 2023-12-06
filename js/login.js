@@ -28,6 +28,7 @@ function EventLogin(){
     tabclose[0].addEventListener("click", function() {
         div.style.transform = 'scale(0)';
     });
+
     for(let i = 0; i <tabHeaderElements.length;i++) {
     tabHeaderElements[i].addEventListener("click",function(){
         tabHeader.querySelector(".active").classList.remove("active");

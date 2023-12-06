@@ -1,3 +1,5 @@
+// SORT //
+
 function sortbyratecount(order, array = null){
     let sortarray = array || arrayproduct;
 
@@ -141,4 +143,18 @@ function sortbycompany(companyname, array = null){
     }
 
     return sortarray;
+}
+
+// FIND //
+
+function findbyproductcode(productcode, array = null){
+    if (!array) array = arrayproduct;
+
+    for (let i = 0; i < array.length; i++){
+        if (array[i][0].masp != productcode) continue;
+        
+        return array[i];
+    }
+
+    return null;
 }

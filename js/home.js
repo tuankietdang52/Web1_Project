@@ -62,11 +62,12 @@ function slideshowowl(){
 		autoplayTimeout: 3500,
         responsiveClass: true,
         responsive:{
-            100:{
+            0:{
                 items: 1,
+                margin: 0,
             },
 
-            1400:{
+            900:{
                 item: 1.5,
             },
         }
@@ -161,33 +162,33 @@ function writecustomfilter(){
 }
 
 // trang index khi co filter //
-function clearproductframe(){
+function clearProductFrame(){
     let productcontainer = document.getElementsByClassName("product-frame-sect")[0];
     productcontainer.style.display = "none";
 
 }
 
-function writefiltersect(){
+function writeFilterSect(){
     if (splitlink().length <= 1) return;
 
-    clearproductframe();
+    clearProductFrame();
 
     let filterproductsect = document.getElementsByClassName("filter-product-sect")[0];
     let filterbuttonsect = document.getElementsByClassName("filter-button-container")[0];
 
     filterproductsect.style.display = "grid";
     filterbuttonsect.style.display = "flex";
-    writerfilterproduct();
+    writeFilterProduct();
 }
 
-function writerfilterproduct(){
+function writeFilterProduct(){
     let filterproduct = getFilterProduct();
 
-    if (filterproduct.length == 0) writenoproduct("filter-product-sect");
+    if (filterproduct.length == 0) writeNoProduct("filter-product-sect");
 
 
     for (let i = 0; i < filterproduct.length; i++){
-        writeproduct(filterproduct[i], "filter-product");
+        writeProduct(filterproduct[i], "filter-product");
     }
 }
 
@@ -197,13 +198,13 @@ function getFilterProduct(){
     let filterproduct = arrayproduct;
 
     for (let i = 1; i < current.length; i++){
-        filterproduct = filter(current[i], filterproduct);
+        filterproduct = Filter(current[i], filterproduct);
     }
 
     return filterproduct;
 }
 
-function filter(filterpath, filterproduct){
+function Filter(filterpath, filterproduct){
     let filterpathsplit = filterpath.split("=");
     let filtertype = filterpathsplit[0];
     let filterdescription = filterpathsplit[1];
@@ -368,4 +369,12 @@ function getFilterSort(filterdescription, filterproduct){
         case "z-a":
             return sortbyname("desc", filterproduct); 
     }
+}
+
+// Responsive //
+
+function showMobileFilter(){
+    let filtersect = document.getElementsByClassName("mobile-filter-sect")[0];
+
+    filtersect.style.transform = "scale(1)";
 }

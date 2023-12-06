@@ -13,7 +13,7 @@
     <script src="https://kit.fontawesome.com/843b9d6718.js" crossorigin="anonymous"></script>
 
     <!-- chung -->
-    <script src="../classes/sort.js"></script>
+    <script src="../classes/sortandnfind.js"></script>
     <script src="../classes/class.js"></script>
 
     <!-- css -->
@@ -102,22 +102,28 @@
     <section class="main-content-sect">
         <aside class="menu">
             <div class="menu-title"><h1>MENU</h1></div>
-            <li class="active" onclick="menuchange(this)">
+            <li class="active" onclick="Menuchange(this, 'thongke')">
                 <i class="fa-solid fa-chart-pie"></i>
                 <span>Thống kê</span>
             </li>
-            <li class="nonactive" onclick="menuchange(this)">
+            <li class="nonactive" onclick="Menuchange(this, 'sanpham')">
                 <i class="fa-solid fa-mobile"></i>
                 <span>Sản phẩm</span>
             </li>
-            <li class="nonactive" onclick="menuchange(this)">
+            <li class="nonactive" onclick="Menuchange(this, 'donhang')">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span>Đơn hàng</span>   
             </li>
-            <li class="nonactive" onclick="menuchange(this)">
+            <li class="nonactive" onclick="Menuchange(this, 'khachhang')">
                 <i class="fa-solid fa-person"></i>
                 <span>Khách hàng</span>
             </li>
+            <a class="logOut" href="index.html">
+                <li class="nonactive">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Đăng xuất</span>
+                    </li>
+            </a>
         </aside>
         <div class="main-content-container">
             <section class="chart-content-sect">

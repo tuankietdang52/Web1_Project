@@ -18,6 +18,8 @@ function equalUser(u1, u2) {
 
 function getProductCartAmount(){
     let user = getCurrentUser();
+    if (!user) return 0;
+    
     let amount = 0;
 
     for (let i = 0; i < user.products.length; i++){
