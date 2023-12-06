@@ -27,7 +27,8 @@ window.onload = function(){
         var warning = `<h2 style="color: red; font-weight:bold; text-align:center; font-size: 2em; padding: 50px;">
                             Bạn chưa đăng nhập !!
                         </h2>`;
-        document.getElementsByClassName('infoUser')[0].innerHTML = warning;
+        // chèn vào class infoUSer 1 một cảnh báo warning khi chưa đăng nhập.
+                        document.getElementsByClassName('infoUser')[0].innerHTML = warning;
     }
     
 
@@ -115,6 +116,7 @@ function addInfoUser(user) {
 function openChangePass(){
     var khungChangePass = document.querySelector('#khungDoiMatKhau');
     var actived = khungChangePass.classList.contains('active');
+    // nếu đã mở thì remove ( tắt ) , nếu đã tắt thì click vào thì mở
     if ( actived )
     khungChangePass.classList.remove('active');
     else
@@ -124,20 +126,22 @@ function openChangePass(){
 // check và đổi mật khẩu mới
 function changePass() {
     var khungChangePass = document.getElementById('khungDoiMatKhau');
+    // lấy giá trị của input 
+    //focus dùng để trỏ vào ô đó
     var inputTag = khungChangePass.getElementsByTagName('input');
-
+    // kiểm tra xem có nhập đúng mat khẩu cũ không?
     if (inputTag[0].value != currentUser.pass) {
         alert('Sai mật khẩu cũ!!');
         inputTag[0].focus();
         return;
     }
-
+    // kiểm tra xem có nhập mật khẩu mới chưa?
     if (inputTag[1].value == '') {
         inputTag[1].focus();
         alert('Chưa nhập mật khẩu mới !');
         return;
     }
-
+    // kiểm tra xem nhập lại mật khẩu mới trùng khớp chưa
     if (inputTag[1].value != inputTag[2].value) {
         alert('Mật khẩu không khớp');
         inputTag[2].focus();
@@ -238,7 +242,7 @@ function addTatCaDonHang(user){
 }
 function addDonHang(dh) {
     var div = document.getElementsByClassName('listDonHang')[0];
-
+    // tạo table 
     var s = `
             <table class="listSanPham">
                 <tr> 
@@ -254,7 +258,7 @@ function addDonHang(dh) {
                     <th>Thành tiền</th>
                     <th>Thời gian thêm vào giỏ</th> 
                 </tr>`;
-
+    // tính tổng tiền
     var totalPrice = 0;
     for (var i = 0; i < dh.sp.length; i++) {
         var masp = dh.sp[i].ma;
