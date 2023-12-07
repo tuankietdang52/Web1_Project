@@ -110,6 +110,7 @@ function addInfoUser(user) {
             <td></td>
         </tr>
     </table>`;
+    // readonly trong tag input là dùng để cho người dùng chỉ dc đọc được nội dung chứ không sủa được
 }
 
 // event ẩn hiện khung đổi mật khẩu
@@ -172,7 +173,7 @@ function changePass() {
         if ( !inputTag.readOnly && inputTag.value != ''){
             if ( info === 'username' ){
                 var listUser = getListUser();
-                for ( var u of listUser){
+                for ( var u of listUser){ // duyệt mảng user
                     if ( u.username == inputTag.value && u.username != currentUser.username){
                         alert('Ten da co nguoi su dung !!');
                         inputTag.value = currentUser.username;
@@ -259,21 +260,26 @@ function addDonHang(dh) {
                     <th>Thời gian thêm vào giỏ</th> 
                 </tr>`;
     // tính tổng tiền
-    var totalPrice = 0;
+    var totalPrice = 0; // tổng tiền của nhiều sản phẩm
     for (var i = 0; i < dh.sp.length; i++) {
         var masp = dh.sp[i].ma;
         var soluongSp = dh.sp[i].soluong;
         var p = timKiemTheoMa(list_products, masp);
-        var price = (p.promo.name == 'giareonline' ? p.promo.value : p.price);
-        var thoigian = new Date(dh.sp[i].date).toLocaleString();
-        var thanhtien = stringToNum(price) * soluongSp;
+        var price;
+        // gán giá trị cho sản phẩm 
+        if ( p.promo.name == 'giareonline')
+                price = p.promo.value;
+        else    price = p.price;
+        
+        var thoigian = new Date(dh.sp[i].date).toLocaleString(); // thời gian
+        
+        var thanhtien = stringToNum(price) * soluongSp; // tổng tiền của 1 sản phẩm 
 
         s += `
                 <tr>
                     <td>` + (i + 1) + `</td>
                     <td class="noPadding imgHide">
-                        <a target="_blank" href="chitietsanpham.html?` + p.name.split(' ').join('-') + `" title="Xem chi tiết">
-                            ` + p.name + `
+                        <a target="_blank" href="chitietsanpham.html?` + p.masp + ` " title="Xem chi tiết"> ` + p.name + `
                             <img src="` + p.img + `">
                         </a>
                     </td>
@@ -289,7 +295,7 @@ function addDonHang(dh) {
         tongSanPhamTatCaDonHang += soluongSp;
     }
     tongTienTatCaDonHang += totalPrice;
-
+    // tạo thêm 1 dòng để xuất tổng tiền vì đã có totalPrice
     s += `
                 <tr style="font-weight:bold; text-align:center; height: 4em;">
                     <td colspan="4">TỔNG TIỀN: </td>
@@ -301,12 +307,14 @@ function addDonHang(dh) {
         `;
     div.innerHTML += s;
 }
-
+// lấy ra mã sản phẩm
 function timKiemTheoMa(list, ma) {
-	for (var l of list) {
-		if (l.masp == ma) return l;
-	}
+    for ( var i=0 ;i<list.length ;i++ ) {
+        if ( list[i].masp == ma) 
+        return list[i];
+    }
 }
+
 function numToString(num, char) {
     return num.toLocaleString().split(',').join(char || '.');
 }
