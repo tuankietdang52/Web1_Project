@@ -70,6 +70,22 @@ class Product{
     }
 }
 
+function toTextPrice(price){
+    let pricetext = price.toString();
+    let text = "";
+
+    let count = 0;
+    for (let i = pricetext.length - 1; i >= 0 ; i--){
+        text += pricetext[i];
+        count++;
+
+        if (count % 3 == 0 && pricetext[i - 1]) text += ".";
+    }
+
+    text = ReverseString(text);
+    return text;
+}
+
 class Promo{
     constructor(name, value){
         this.name = name;

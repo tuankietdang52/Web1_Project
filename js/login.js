@@ -78,8 +78,8 @@ function logIn(form) {
     for ( var ad of adminInfo){
         if ( equalUser(newUser,ad) ){
             alert('Xin chào admin..');
-            // tạo admin trong local storge
-            window.localStorage.setItem('admin',true);
+
+            window.localStorage.setItem('admin', true);
             window.location.assign('admin.html');
             return false;
         }

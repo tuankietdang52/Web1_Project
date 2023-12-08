@@ -158,3 +158,13 @@ function findbyproductcode(productcode, array = null){
 
     return null;
 }
+
+function findUserByUsername(username, array = null){
+    if (!array) array = arrayaccounts;
+
+    for (let i = 0; i < array.length; i++){
+        if (array[i].username == username) return array[i];
+    }
+
+    return null;
+}

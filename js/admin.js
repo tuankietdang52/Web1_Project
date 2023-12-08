@@ -79,7 +79,7 @@ function loadProduct(){
                 <span>${item.company}</span>
             </td>
             <td>
-                <span>${convertPriceToText(item.price)}</span>
+                <span>${item.price}đ</span>
             </td>
             <td>
                 <button class="btn btn-edit" onclick="openProductDetail('${item.masp}')">Sửa</button>
@@ -96,14 +96,6 @@ function loadProduct(){
     }
 }
 
-//  Chuyển đổi giá tiền sang dạng text
-function convertPriceToText(price){
-    try {
-        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "đ";
-    } catch (error) {
-        return "0";
-    }
-}
 // Xóa sản phẩm
 function deleteProduct(element){
     //  Xác nhận xóa
@@ -152,7 +144,7 @@ function openProductDetail(product = null) {
 
     //  Nếu có sản phẩm thì hiển thị thông tin sản phẩm
     if (!product) return;
-    product = findProduct(product);
+    product = findbyproductcode(product, arrayproduct);
     if (!product) return;
 
     document.getElementById("product-name").value = product.name;
@@ -172,15 +164,6 @@ function openProductDetail(product = null) {
     document.getElementById("product-battery").value = product.detail.battery;
     document.getElementById("product-masp").value = product.masp;
     document.getElementById("product-masp-old").value = product.masp;
-}
-
-//  Tìm kiếm sản phẩm
-function findProduct(masp){
-    let data = getProductData();
-    for (let i = 0; i < data.length; i++){
-        if (data[i].masp == masp) return data[i];
-    }
-    return null;
 }
 
 //  Lưu sản phẩm
@@ -223,7 +206,7 @@ function saveProduct(){
         return;
     }
     //  Kiểm tra sản phẩm đã tồn tại chưa
-    const checkProduct = findProduct(masp);
+    const checkProduct = findbyproductcode(masp, arrayproduct);
     if (checkProduct != null && checkProduct.masp != maspOld){
         alert("Mã sản phẩm đã tồn tại");
         return;
@@ -271,7 +254,7 @@ function saveProduct(){
         alert("Thêm sản phẩm thành công");
     } else {
         //  Sửa sản phẩm
-        var product = findProduct(maspOld);
+        var product = findbyproductcode(maspOld, arrayproduct);
         product.name = name;
         product.company = company;
         product.price = price;
@@ -318,19 +301,19 @@ function loadOrder(){
         const html = `
             <tr>
                 <td>
-                    <img src="${item.sp.img}" alt="">
+                    <img src="${item.sp[0].img}" alt="">
                 </td>
                 <td>
-                    <span>${item.sp.name}</span>
+                    <span>${item.sp[0].name}</span>
                 </td>
                 <td>
-                    <span>${item.sp.company}</span>
+                    <span>${item.user}</span>
                 </td>
                 <td>
                     <span>${item.soluong}</span>
                 </td>
                 <td>
-                    <span>${convertPriceToText((convertPriceToNumber(item.sp.price) * parseInt(item.soluong)) || 0)}</span>
+                    <span>${calculatePrice(item.sp[0].numprice, item.soluong)}đ</span>
                 </td>
                 <td>
                     <span>${item.tinhtrang}</span>
@@ -339,8 +322,8 @@ function loadOrder(){
                     <span>${item.ngaydat}</span>
                 </td>
                 <td>
-                    <button class="btn btn-edit">Cập nhật</button>
-                    <button class="btn btn-delete">Hủy</button>
+                    <button class="btn btn-edit" onclick="confirmOrder(this)">Cập nhật</button>
+                    <button class="btn btn-delete" onclick="cancelOrder(this)">Hủy</button>
                 </td>
             </tr>
         `;
@@ -354,7 +337,43 @@ function loadOrder(){
     }
 }
 
-//  Lấy dữ liệu đơn hàng
-function convertPriceToNumber(price){
-    return parseInt(price.toString().replace(/\./g, ""));
+// Hủy đơn hàng
+function cancelOrder(element){
+    //  Xác nhận hủy
+    if (!confirm("Bạn có chắc chắn muốn hủy đơn hàng này?")) return;
+
+    //  Hủy đơn hàng
+    let orderlist = document.getElementById("order-list");
+    let data = getOrderData();
+    let index = element.parentNode.parentNode.rowIndex - 1;
+
+    orderlist.deleteRow(index);
+    data.splice(index, 1);
+
+    //  Lưu lại dữ liệu
+    setOrderData(JSON.stringify(data));
+    loadOrder();
+}
+
+// Duyệt đơn hàng
+function confirmOrder(element){
+    //  Duyệt đơn hàng
+    let orderlist = document.getElementById("order-list");
+    let data = getOrderData();
+    let index = element.parentNode.parentNode.rowIndex - 1;
+
+    orderlist.deleteRow(index);
+    // data.splice(index, 1);
+    // Cập nhật lại tình trạng đơn hàng
+    data[index].tinhtrang = "Đã duyệt";
+
+    //  Lưu lại dữ liệu
+    setOrderData(JSON.stringify(data));
+    saveOrderDataForUser(data[index]);
+    loadOrder();
+}
+
+function calculatePrice(price, amount){
+    price *= amount;
+    return toTextPrice(price);
 }
