@@ -2,6 +2,7 @@
 getData();
 setProductData(list_products);
 setListUser(list_accounts);
+setOrderData(JSON.stringify(list_orders));
 
 function setThingsup(){
     addheader();
@@ -13,6 +14,7 @@ function setThingsup(){
 function getData(){
     list_products = getProductData() || list_products;
     list_accounts = getListUser() || list_accounts;
+    list_orders = getOrderData() || list_orders;
 }
 
 // Header //
@@ -622,4 +624,10 @@ function editAlertBox(text, bgcolor, textcolor, time) {
             al.style.opacity = 0;
             al.style.zIndex = 0;
         }, time);
+}
+
+// Đảo ngược chuỗi //
+function ReverseString(str){
+    // tách, đảo ngược, ghép //
+    return str.split('').reverse().join('');
 }

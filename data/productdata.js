@@ -526,4 +526,6 @@ let list_products = [{
         "battery": "3340 mAh"
     },
     "masp": "Hua3"
-}]
+}];
+
+let list_orders = [];

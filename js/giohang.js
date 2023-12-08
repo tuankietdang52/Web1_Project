@@ -102,6 +102,8 @@ function xoaSanPhamTrongGioHang(i) {
 }
 
 function thanhToan() {
+	let ordercode = randomOrderCode();
+
 	var c_user = getCurrentUser();
 	if(c_user.off) {
         alert('Tài khoản của bạn hiện đang bị khóa nên không thể mua hàng!');
@@ -115,10 +117,33 @@ function thanhToan() {
 	}
 	if (window.confirm('Thanh toán giỏ hàng ?')) {
 		currentuser.donhang.push({
+			"madonhang": ordercode,
 			"sp": currentuser.products,
 			"ngaymua": new Date(),
 			"tinhTrang": 'Đang chờ xử lý'
 		});
+        // Thêm vào danh sách đơn hàng
+        let dataOrder = getOrderData();
+        for (let i = 0; i < currentuser.products.length; i++){
+            // Lấy ngày hiện tại
+            const today = new Date();
+            const day = today.getDate();
+            const month = today.getMonth() + 1;
+            const year = today.getFullYear();
+
+            const formattedDate = `${year}-${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`;
+            dataOrder.push({
+				"madonhang": ordercode,
+                "masp": currentuser.products[i].ma,
+                "soluong": currentuser.products[i].soluong,
+                "ngaydat": formattedDate,
+                "tinhtrang": 'Đang chờ xử lý',
+                "user": currentuser.username
+            });
+        }
+        // Cập nhật lại danh sách đơn hàng
+        setOrderData(dataOrder);
+        
 		currentuser.products = [];
 		capNhatMoiThu();
 		editAlertBox('Các sản phẩm đã được gửi vào đơn hàng và chờ xử lý.', '#17c671', '#fff', 4000);
