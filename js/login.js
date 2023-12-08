@@ -75,7 +75,7 @@ function logIn(form) {
     for ( var ad of adminInfo){
         if ( equalUser(newUser,ad) ){
             alert('Xin chào admin..');
-            window.localStorage.setItem('admin',true);
+            window.localStorage.setItem('admin', true);
             window.location.assign('admin.html');
             return false;
         }

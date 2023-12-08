@@ -1,5 +1,8 @@
 // Get Data for Product Frame //
 
+// set in account admin to false //
+window.localStorage.setItem('admin', false);
+
 let frameindex = 0;
 let producthot = [];
 let newproduct = [];
