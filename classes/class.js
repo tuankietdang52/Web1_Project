@@ -2,7 +2,7 @@ let arrayproduct = [];
 let arrayaccounts = [];
 
 // đối tượng user
-function User(username, pass, ho, ten, email, products, donhang) {
+function User(username, pass, ho, ten, email, isLocked, products, donhang) {
 	this.ho = ho || '';
 	this.ten = ten || '';
 	this.email = email || '';
@@ -10,6 +10,7 @@ function User(username, pass, ho, ten, email, products, donhang) {
 	this.pass = pass;
 	this.products = products || [];
 	this.donhang = donhang || [];
+    this.isLocked = isLocked;
 }
 
 function equalUser(u1, u2) {
