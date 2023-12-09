@@ -1,6 +1,8 @@
 const menuoption = ["chart", "product", "order", "user"];
 let choice = menuoption[0];
 
+let isEditProduct = false;
+
 
 function Menuchange(clickelement){
     let menu = document.getElementsByClassName("menu")[0];
@@ -41,6 +43,13 @@ function changecontent(choice){
         case "order":
             showcontent = document.getElementsByClassName("order-content-sect")[0];
             loadOrder();
+            break;
+        case "user":
+            showcontent = document.getElementsByClassName("user-content-sect")[0];
+            loadUser();
+            break;
+        default:
+            showcontent = null;
             break;
     }
 
@@ -120,8 +129,11 @@ function closeProductDetail() {
 }
 
 // Mở cửa sổ chi tiết sản phẩm
+let imgpath = "";
+
 function openProductDetail(product = null) {
     document.getElementsByClassName("product-detail-container")[0].style = "display: block";
+    isEditProduct = false;
 
     // Clear data
     document.getElementById("product-name").value = "";
@@ -147,10 +159,13 @@ function openProductDetail(product = null) {
     product = findbyproductcode(product, arrayproduct);
     if (!product) return;
 
+    // neu sua thi chinh co hieu thanh true
+    isEditProduct = true;
+    imgpath = product.img;
+
     document.getElementById("product-name").value = product.name;
     document.getElementById("product-company").value = product.company;
     document.getElementById("product-price").value = product.price;
-    // document.getElementById("product-img").value = product.img;
     document.getElementById("product-promo").value = product.promo.name;
     document.getElementById("product-promo-price").value = product.promo.value;
     document.getElementById("product-screen").value = product.detail.screen;
@@ -186,8 +201,6 @@ function saveProduct(){
     const masp = document.getElementById("product-masp").value;
     const maspOld = document.getElementById("product-masp-old").value;
 
-    const imgName = "../img/products/oppo-a3s-32gb-600x600.jpg";
-
     // Kiểm tra thông tin sản phẩm
     if (name == "") {
         alert("Vui lòng nhập tên sản phẩm");
@@ -207,7 +220,7 @@ function saveProduct(){
     }
     //  Kiểm tra sản phẩm đã tồn tại chưa
     const checkProduct = findbyproductcode(masp, arrayproduct);
-    if (checkProduct != null && checkProduct.masp != maspOld){
+    if (checkProduct != null && checkProduct.masp != maspOld && !isEditProduct){
         alert("Mã sản phẩm đã tồn tại");
         return;
     }
@@ -220,7 +233,7 @@ function saveProduct(){
 
     //  Nếu không có sản phẩm cũ thì thêm sản phẩm mới
     if (maspOld == ""){
-        if (imgName == ""){
+        if (imgpath == ""){
             alert("Vui lòng chọn ảnh sản phẩm");
             return;
         }
@@ -228,7 +241,7 @@ function saveProduct(){
         //  Thêm sản phẩm
         let product = new Product(name, 
             company, 
-            imgName, 
+            imgpath, 
             price, 
             0, 
             0, 
@@ -270,15 +283,10 @@ function saveProduct(){
         product.detail.microUSB = microUSB;
         product.detail.battery = battery;
         product.masp = masp;
+        product.img = imgpath;
 
-        let data = getProductData();
-        for (let i = 0; i < data.length; i++){
-            if (data[i].masp == maspOld){
-                data[i] = product;
-                break;
-            }
-        }
-        setProductData(JSON.stringify(data));
+
+        setProductData(arrayproduct);
         alert("Sửa sản phẩm thành công");
     }
 
@@ -301,10 +309,10 @@ function loadOrder(){
         const html = `
             <tr>
                 <td>
-                    <img src="${item.sp[0].img}" alt="">
+                    <img src="${item.sp.img}" alt="">
                 </td>
                 <td>
-                    <span>${item.sp[0].name}</span>
+                    <span>${item.sp.name}</span>
                 </td>
                 <td>
                     <span>${item.user}</span>
@@ -313,7 +321,7 @@ function loadOrder(){
                     <span>${item.soluong}</span>
                 </td>
                 <td>
-                    <span>${calculatePrice(item.sp[0].numprice, item.soluong)}đ</span>
+                    <span>${calculatePrice(item.sp.numprice, item.soluong)}đ</span>
                 </td>
                 <td>
                     <span>${item.tinhtrang}</span>
@@ -347,6 +355,11 @@ function cancelOrder(element){
     let data = getOrderData();
     let index = element.parentNode.parentNode.rowIndex - 1;
 
+    // Cập nhật lại tình trạng đơn hàng
+    data[index].tinhtrang = "Đã hủy bởi Admin";
+    saveOrderDataForUser(data[index]);
+
+    // Xóa đơn hàng sau khi chọn
     orderlist.deleteRow(index);
     data.splice(index, 1);
 
@@ -362,18 +375,128 @@ function confirmOrder(element){
     let data = getOrderData();
     let index = element.parentNode.parentNode.rowIndex - 1;
 
-    orderlist.deleteRow(index);
-    // data.splice(index, 1);
     // Cập nhật lại tình trạng đơn hàng
     data[index].tinhtrang = "Đã duyệt";
+    saveOrderDataForUser(data[index]);
+
+    // Xóa đơn hàng sau khi chọn
+    orderlist.deleteRow(index);
+    data.splice(index, 1);
 
     //  Lưu lại dữ liệu
     setOrderData(JSON.stringify(data));
-    saveOrderDataForUser(data[index]);
     loadOrder();
 }
 
+// tính tiền r chuyển lại sang dạng text
 function calculatePrice(price, amount){
     price *= amount;
     return toTextPrice(price);
+}
+
+// User Manage //
+
+function loadUser(){
+    let userlist = document.getElementsByClassName("user-list")[0];
+    if (!userlist) return;
+
+    userlist.innerHTML = "";
+
+    for (let i = 0; i < arrayaccounts.length; i++){
+        let user = arrayaccounts[i];
+
+        let lockcolor = (userlock) => userlock ? "style='background-color: red'" : "";
+
+        userlist.innerHTML += (`
+            <tr ${lockcolor(user.isLocked)}>
+                <td>${user.ho + " " + user.ten}</td>
+                <td>${user.email}</td>
+                <td>${user.username}</td>
+                <td>${user.pass}</td>
+                <td>
+                    ${checkLocked(user.username)}
+                </td>
+            </tr>
+        `)
+    }
+}
+
+function checkLocked(username){
+    let user = findUserByUsername(username);
+
+    let buttonsect = "";
+
+    if (user.isLocked){
+        buttonsect += (`<button class="btn btn-edit" onclick="unlockAccount('${username}')">Mở khóa</button>`);
+        return buttonsect;
+    }
+
+    buttonsect += (`
+        <button class="btn btn-edit" onclick="lockAccount('${username}')">Khoá tài khoản</button>
+        <button class="btn btn-delete" onclick="deleteAccount('${username}')">Xóa</button>`
+    )
+
+    return buttonsect;
+}
+
+function lockAccount(username){
+    let user = findUserByUsername(username);
+
+    user.isLocked = true;
+    setListUser(arrayaccounts);
+    loadUser();
+}
+
+function unlockAccount(username){
+    let user = findUserByUsername(username);
+
+    user.isLocked = false;
+    setListUser(arrayaccounts);
+    loadUser();
+}
+
+function deleteAccount(username){
+    if (!window.confirm(`Bạn thật sự muốn xóa tài khoản ${username}?`)) return;
+
+    for (let i = 0; i < arrayaccounts.length; i++){
+        if (username != arrayaccounts[i].username) continue;
+
+        arrayaccounts.splice(i, 1);
+    }
+
+    deleteAccountOrder(username);
+    setListUser(arrayaccounts);
+    loadUser();
+    loadOrder();
+}
+
+function deleteAccountOrder(username){
+    for (let i = 0; i < list_orders.length; i++){
+        if (username != list_orders[i].user) continue;
+
+        list_orders.splice(i, 1);
+        i--;
+    }
+    
+    setOrderData(list_orders);
+}
+
+// Save img using FileReader
+
+function changeImg(input){
+    let inputfile = input.files;
+    let file = inputfile[0];
+
+    const filereader = new FileReader();
+    filereader.addEventListener(
+        "load",
+        () => {
+            // filreader.result sẽ cho ra hình ảnh dưới dạng chuỗi base64
+            imgpath = filereader.result;
+        }
+    )
+
+    // truyền file vào
+    // method này sẽ kích hoạt sự kiện load 
+    filereader.readAsDataURL(file);
 }
