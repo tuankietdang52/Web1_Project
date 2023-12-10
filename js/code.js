@@ -1,7 +1,7 @@
 // JS cho thuoc tinh chung //
 getData();
 setProductData(list_products);
-setListUser(list_accounts);
+setArrayAccounts();
 setOrderData(JSON.stringify(list_orders));
 
 function setThingsup(){
@@ -13,7 +13,6 @@ function setThingsup(){
 
 function getData(){
     list_products = getProductData() || list_products;
-    list_accounts = getListUser() || list_accounts;
     list_orders = getOrderData() || list_orders;
 }
 
@@ -269,9 +268,9 @@ function addAlertBox(){
 // viet san pham //
 
 function writeProduct(product, sectionclassname){
-    let productcode = product[0].masp;
-    let nameproduct =  product[0].name;
-    let imgsrc = product[0].img;
+    let productcode = product.masp;
+    let nameproduct =  product.name;
+    let imgsrc = product.img;
 
     let productsect = document.getElementsByClassName(sectionclassname)[0];
 
@@ -292,7 +291,7 @@ function writeProduct(product, sectionclassname){
 function addStarAndRatecount(product){
     let star = "";
     let i = 0;
-    let amountstar = product[0].star;
+    let amountstar = product.star;
 
     while (i < 5){
         if (i < amountstar) star += '<i class="fa fa-star"></i>';
@@ -300,7 +299,7 @@ function addStarAndRatecount(product){
         i++;
     }
 
-    let ratecount = product[0].rateCount;
+    let ratecount = product.rateCount;
     let ratecounttag = `<span class="ratecountdisplay">` + ratecount + " đánh giá" + `</span>`;
     star += ratecounttag;
 
@@ -308,23 +307,23 @@ function addStarAndRatecount(product){
 }
 
 function writePrice(product){
-    switch (product[0].promo.name){
+    switch (product.promo.name){
         case "giareonline":
             return (`
-                <strong>` + product[0].promo.value +  `đ</strong>
-                <span>` + product[0].price + `đ<span>
+                <strong>` + product.promo.value +  `đ</strong>
+                <span>` + product.price + `đ<span>
             `);
 
         default:
             return (`
-                <strong>` + product[0].price + `đ</strong>
+                <strong>` + product.price + `đ</strong>
             `)
     }
 }
 
 function writePromoTag(product){
-    let promo = product[0].promo.name;
-    let promovalue = product[0].promo.value;
+    let promo = product.promo.name;
+    let promovalue = product.promo.value;
 
     if (promo == "") return "";
     return editPromoTag(promo, promovalue);
@@ -491,7 +490,7 @@ function getSearchProduct(value, type = "filter", result_dropdown = null){
     let searchproduct = [];
 
     for (let i = 0; i < arrayproduct.length; i++){
-        let productname = arrayproduct[i][0].name.toLowerCase();
+        let productname = arrayproduct[i].name.toLowerCase();
         if (!CompareCheck(value, productname)) continue;
         
         if (type == "filter") searchproduct.push(arrayproduct[i]);
@@ -524,8 +523,8 @@ function addProducttoSearchDropDown(product, result_dropdown){
     // show product o phan tim kiem (chua click tim kiem) //
     
     result_dropdown.innerHTML += (`
-        <a href="chitietsanpham.html?` + product[0].masp + `" class="search-product">
-            <span>` + product[0].name + `</span>
+        <a href="chitietsanpham.html?` + product.masp + `" class="search-product">
+            <span>` + product.name + `</span>
         </a>
     `)
 }

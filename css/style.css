@@ -623,7 +623,8 @@ header{
 
 .product-container .product-img{
     width: 90%;
-    background-image: url("../img/products/nokia-51-plus-black-18thangbh-400x400.jpg");
+    max-height: 237.27px;
+    min-height: 237.27px;
     background-size: cover;
     background-position: center;
     transition: transform 0.2s;

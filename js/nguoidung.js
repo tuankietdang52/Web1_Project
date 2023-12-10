@@ -81,7 +81,7 @@ function addInfoUser(user) {
                 </table>
             </td>
         </tr>
-        <tr>
+        <tr>    
             <td>Họ: </td>
             <td> <input type="text" value="` + user.ho + `" readonly> </td>
             <td> <i class="fa fa-pencil" onclick="changeInfo(this, 'ho')"></i> </td>
@@ -168,7 +168,8 @@ function changePass() {
 
 // đổi các thông tin còn lại của user
     function changeInfo(iTag,info){
-        var inputTag = iTag.parentElement.previousElementSibling.getElementsByTagName('input')[0];
+        // lấy hàng gần nhất với thẻ i rồi lấy elements input để sử dụng
+        var inputTag = iTag.closest('tr').querySelector('input');
 
         if ( !inputTag.readOnly && inputTag.value != ''){
             if ( info === 'username' ){

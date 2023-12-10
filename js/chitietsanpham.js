@@ -6,7 +6,7 @@ function getProduct(){
     let currentproduct = current[1];
 
     for (let i = 0; i < arrayproduct.length; i++){
-        if (currentproduct == arrayproduct[i][0].masp){
+        if (currentproduct == arrayproduct[i].masp){
             return arrayproduct[i];
         }
     }
@@ -32,12 +32,12 @@ function getRandomProduct(){
 }
 
 function getName(){
-    return product[0].name;
+    return product.name;
 }
 
 function getStar(){
     let star = "";
-    let amountstar = product[0].star;
+    let amountstar = product.star;
     let i = 0;
 
     while (i < 5){
@@ -50,17 +50,17 @@ function getStar(){
 }
 
 function getrateCount(){
-    let rateCount = product[0].rateCount;
+    let rateCount = product.rateCount;
     return rateCount + " Đánh giá";
 }
 
 function getImg(){
-    return product[0].img;
+    return product.img;
 }
 
 function getPrice(){
-    if (product[0].promo.name == "giareonline") return product[0].promo.value;
-    return product[0].price;
+    if (product.promo.name == "giareonline") return product.promo.value;
+    return product.price;
 }
 
 function writeNameandReview(){
@@ -160,8 +160,8 @@ function writeProductDetail(){
 }
 
 function writeDetailPromoTag(){
-    let promo = product[0].promo.name;
-    let promovalue = product[0].promo.value;
+    let promo = product.promo.name;
+    let promovalue = product.promo.value;
 
     if (promo == "") return "";
     return editDetailPromoTag(promo, promovalue);
@@ -174,7 +174,7 @@ function editDetailPromoTag(promo, value){
         case "tragop":
             return "<label class='promotag tragop'>Trả góp " + value + "%</label>";
         case "giareonline":
-            return "<span class='beforesale'>" + product[0].price + "<span>đ</span></span>";
+            return "<span class='beforesale'>" + product.price + "<span>đ</span></span>";
         case "giamgia":
             return (`
                 <label class='promotag giamgia'>
@@ -186,7 +186,7 @@ function editDetailPromoTag(promo, value){
 }
 
 function writeship(){
-    if (product[0].promo.name != "giareonline") return "";
+    if (product.promo.name != "giareonline") return "";
 
     return (`
         <div class="ship">
@@ -199,7 +199,7 @@ function writeship(){
 }
 
 function getPromoValue(){
-    let promo = product[0].promo.name;
+    let promo = product.promo.name;
 
     switch (promo){
         case "giareonline":
@@ -212,7 +212,7 @@ function getPromoValue(){
 
         case "giamgia":
             return (`Sản phẩm sẽ được giảm 
-                    <span>` + product[0].promo.value + `đ</span>
+                    <span>` + product.promo.value + `đ</span>
                     khi mua hàng online bằng thẻ VPBank hoặc tin nhắn SMS
                 `)
 
@@ -231,7 +231,7 @@ function getPromoValue(){
 }
 
 function getGiareonlinePromo(){
-    let promovalue = product[0].beforesaleprice - product[0].numprice;
+    let promovalue = product.beforesaleprice - product.numprice;
 
     promovalue = toTextPrice(promovalue);
 
@@ -246,23 +246,23 @@ function getGiareonlinePromo(){
 function getSystemDetail(systemitem){
     switch (systemitem){
         case "screen":
-            return product[0].detail.screen;
+            return product.detail.screen;
         case "os":
-            return product[0].detail.os;
+            return product.detail.os;
         case "camera":
-            return product[0].detail.camera;
+            return product.detail.camera;
         case "cameraFront":
-            return product[0].detail.cameraFront;
+            return product.detail.cameraFront;
         case "cpu":
-            return product[0].detail.cpu;
+            return product.detail.cpu;
         case "ram":
-            return product[0].detail.ram;
+            return product.detail.ram;
         case "rom":
-            return product[0].detail.rom;
+            return product.detail.rom;
         case "microUSB":
-            return product[0].detail.microUSB;
+            return product.detail.microUSB;
         case "battery":
-            return product[0].detail.battery;
+            return product.detail.battery;
         default:
             return "";
     }
