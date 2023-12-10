@@ -6,6 +6,7 @@ html, body{
 
 html{
     scroll-behavior: smooth;
+    background-color: #2f353a;
 }
 
 hr{
@@ -46,6 +47,7 @@ header h1{
     list-style: none;
     width: 13%;
     border: 1px solid #23282c;
+    border-bottom: none;
 }
 
 .menu-title{

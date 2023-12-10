@@ -19,6 +19,9 @@ function setProductData(newdata = null){
 function setArrayProducts(){
     if (list_products.length <= 0) return;
 
+    arrayproduct = [];
+    list_products = getProductData();
+
     for (let i = 0; i < list_products.length; i++){
         let promo = new Promo(
                             list_products[i].promo.name, 
@@ -49,7 +52,7 @@ function setArrayProducts(){
                             list_products[i].masp
                         );
         
-        arrayproduct.push([product]);
+        arrayproduct.push(product);
     }
 }
 
@@ -103,9 +106,10 @@ function setListUser(l) {
 
 function setArrayAccounts(){
     let userdata = getListUser();
+    arrayaccounts = [];
 
     for (let i = 0; i < userdata.length; i++){
-        let user = new User(userdata[i].username, userdata[i].pass, userdata[i].ho, userdata[i].ten, userdata[i].email, userdata[i].products, userdata[i].donhang);
+        let user = new User(userdata[i].username, userdata[i].pass, userdata[i].ho, userdata[i].ten, userdata[i].email, userdata[i].isLocked, userdata[i].products, userdata[i].donhang);
         arrayaccounts.push(user);
     }
 }

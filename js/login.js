@@ -64,7 +64,7 @@ function logIn(form) {
 
     for (var u of listUser) {
         if (equalUser(newUser, u)) {
-            if (u.off) {
+            if (u.isLocked) {
                 alert('tài khoản này đang bị khóa, không thể đăng nhập');
                 return false;
             }
@@ -97,7 +97,9 @@ function signUp(form){
     var email = form.email.value;
     var username = form.newUser.value;  
     var pass= form.newPass.value;
-    var newUser = new User(username,pass,ho,ten,email);
+    let isLocked = false;
+
+    var newUser = new User(username,pass,ho,ten,email,isLocked);
 
 
     //  lấy dữ liệu từ các user hiện có
