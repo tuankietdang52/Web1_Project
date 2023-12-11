@@ -837,6 +837,7 @@ header{
 }
 
 @media screen and (max-width: 900px){
+
     .header-content{
         width: 100%;
         top: 0;
@@ -1004,4 +1005,80 @@ header{
         font-size: 4vw;
     }
 
+    .product-container .product{
+        height: 450px;
+        flex-basis: 30vw;
+    }
+
+    .product-container .product-img{
+        max-height: 201px;
+        min-height: 201px;
+        max-width: 201px;
+        min-width: 201px;
+    }
+
+    .product-container .product-name{
+        font-size: 2.5vw;
+    }
+
+    .product-container .product-price{
+        font-size: 2.3vw;
+        gap: 5px;
+    }
+
+
+    .product-container .fa-star{
+        font-size: 2vw;
+    }
+
+    .product-container .fa-star-o{
+        font-size: 2vw;
+    }
+
+    .product-container .ratecountdisplay{
+        font-size: 2vw;
+        text-wrap: wrap;
+    }
+
+    .product-container .addtocart-button{
+        height: 7vw;
+        width: 7vw;
+    }
+
+    .product-container .addtocart-button::after{
+        font-size: 4vw;
+        transform: translateX(-5%);
+    }
+
+    .customer-profit-container li{
+        width: 20% !important;
+        font-size: 2vw !important;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .product-container .product-img{
+        max-height: 101px;
+        min-height: 101px;
+        max-width: 101px;
+        min-width: 101px;
+    }
+
+    .product-container .product{
+        height: 68vw;
+    }
+
+    .product-container .promotag{
+        font-size: 2vw;
+        height: 15px;
+        top: 52%;
+        left: 10%;
+    }
+
+    .product-container .fa-bolt{
+        height: 5vw;
+        width: 5vw;
+        transform: translateX(-100%);
+        font-size: 2.5vw;
+    }
 }
