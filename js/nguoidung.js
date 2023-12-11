@@ -170,7 +170,7 @@ function changePass() {
     function changeInfo(iTag,info){
         // lấy hàng gần nhất với thẻ i rồi lấy elements input để sử dụng
         var inputTag = iTag.closest('tr').querySelector('input');
-
+         // !inputTag.readOnly nghĩa là readonly đang true (nghĩa là phần tử đó đang chỉ dc xem và chưa được chỉnh sửa )
         if ( !inputTag.readOnly && inputTag.value != ''){
             if ( info === 'username' ){
                 var listUser = getListUser();
