@@ -295,6 +295,52 @@ function saveProduct(){
 }
 
 // Lấy dữ liệu đơn hàng
+
+let isOneOrder = false;
+let count = 0;
+let lock = false;
+
+function getInformationOrder(informationName, order){
+    switch (informationName){
+        case "img":
+            return `<img src="${order.sp.img}" alt="">`;
+
+        case "name":
+            return `<span>${order.sp.name}</span>`
+
+        case "user":
+            return `<span>${order.user}</span>`
+        
+        case "amount":
+            return `<span>${order.soluong}</span>`
+
+        case "price":
+            return `<span>${calculatePrice(order.sp.numprice, order.soluong)}đ</span>`
+    }
+}
+
+function writeInformationOrder(informationName, ordercode){
+    let information = "";
+    let order = getOrderData();
+    
+    for (let i = 0; i < order.length; i++){
+        if (ordercode != order[i].madonhang) continue;
+
+        information += getInformationOrder(informationName, order[i]);
+
+        // dem xem co bao nhieu san pham trong 1 don hang
+        // lock se khoa trong nhung lan them thuoc tinh tiep theo 
+        // de tranh count bi tang len sau khi dem xong co bao nhieu san pham trong 1 order
+        if (!lock) count++;
+    }
+
+    if (count > 1) isOneOrder = true;
+
+    lock = true;
+
+    return information;
+}
+
 function loadOrder(){
     let orderlist = document.getElementById("order-list");
     if (!orderlist) return;
@@ -306,22 +352,42 @@ function loadOrder(){
     for (let i = 0; i < dataOrder.length; i++){
         const item = dataOrder[i];
         if (!item.sp) continue;
+
+        // kiem tra co phai trong cung 1 don hang khong
+        if (isOneOrder){
+            i += count - 1;
+            isOneOrder = false;
+            continue;
+        }
+
+        count = 0;
+        
         const html = `
             <tr>
                 <td>
-                    <img src="${item.sp.img}" alt="">
+                    <div class="lmao">
+                        ${writeInformationOrder("img", item.madonhang)}
+                    </div>
                 </td>
                 <td>
-                    <span>${item.sp.name}</span>
+                    <div class="lmao">
+                        ${writeInformationOrder("name", item.madonhang)}
+                    </div>
                 </td>
                 <td>
-                    <span>${item.user}</span>
+                    <div class="lmao">
+                        ${writeInformationOrder("user", item.madonhang)}
+                    </div>
                 </td>
                 <td>
-                    <span>${item.soluong}</span>
+                    <div class="lmao">
+                        ${writeInformationOrder("amount", item.madonhang)}
+                    </div>
                 </td>
                 <td>
-                    <span>${calculatePrice(item.sp.numprice, item.soluong)}đ</span>
+                    <div class="lmao">
+                        ${writeInformationOrder("price", item.madonhang)}
+                    </div>
                 </td>
                 <td>
                     <span>${item.tinhtrang}</span>
@@ -342,6 +408,9 @@ function loadOrder(){
 
         //  Thêm vào danh sách
         orderlist.append(htmlObject);
+
+        // xong 1 order thi unlock
+        lock = false;
     }
 }
 

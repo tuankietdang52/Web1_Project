@@ -306,3 +306,14 @@ header h1{
 .logOut:hover > li > i{
     transform: translateX(-100%);
 }
+
+.lmao{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.lmao span{
+    padding: 30px 0px 30px 0px;
+}
