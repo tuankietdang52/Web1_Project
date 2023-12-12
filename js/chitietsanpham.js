@@ -107,7 +107,7 @@ function writeProductDetail(){
                     <span>1 đổi 1 trong 1 tháng nếu lỗi, đổi sản phẩm tại nhà trong 1 ngày</span>
                 </div>
             </div>
-            <button class="addtocart" onclick="Addproducttocart(event, product[0].masp, product[0].name)">
+            <button class="addtocart" onclick="Addproducttocart(event, product.masp, product.name)">
                 <b>
                     <i class="fa-solid fa-cart-plus"></i>
                     Thêm vào giỏ hàng
