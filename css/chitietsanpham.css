@@ -272,3 +272,21 @@
 .suggest{
     background-image: linear-gradient(120deg, #434aa8 0%, #ec1f1f 50%, #434aa8 100%);
 }
+
+@media screen and (max-width: 900px){
+    .product-name-container{
+        width: 90%;
+    }
+
+    .product-detail-container{
+        width: 100%;
+    }
+
+    .addtocart b{
+        font-size: 1.4vw;
+    }
+
+    .addtocart span{
+        font-size: 1.4vw;
+    }
+}
