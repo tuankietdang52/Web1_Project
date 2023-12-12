@@ -545,6 +545,7 @@ function deleteAccount(username){
     }
 
     deleteAccountOrder(username);
+    localStorage.removeItem('CurrentUser');
     setListUser(arrayaccounts);
     loadUser();
     loadOrder();
