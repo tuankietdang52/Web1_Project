@@ -295,6 +295,52 @@ function saveProduct(){
 }
 
 // Lấy dữ liệu đơn hàng
+
+let isOneOrder = false;
+let count = 0;
+let lock = false;
+
+function getInformationOrder(informationName, order){
+    switch (informationName){
+        case "img":
+            return `<img src="${order.sp.img}" alt="">`;
+
+        case "name":
+            return `<span>${order.sp.name}</span>`
+
+        case "user":
+            return `<span>${order.user}</span>`
+        
+        case "amount":
+            return `<span>${order.soluong}</span>`
+
+        case "price":
+            return `<span>${calculatePrice(order.sp.numprice, order.soluong)}đ</span>`
+    }
+}
+
+function writeInformationOrder(informationName, ordercode){
+    let information = "";
+    let order = getOrderData();
+    
+    for (let i = 0; i < order.length; i++){
+        if (ordercode != order[i].madonhang) continue;
+
+        information += getInformationOrder(informationName, order[i]);
+
+        // dem xem co bao nhieu san pham trong 1 don hang
+        // lock se khoa trong nhung lan them thuoc tinh tiep theo 
+        // de tranh count bi tang len sau khi dem xong co bao nhieu san pham trong 1 order
+        if (!lock) count++;
+    }
+
+    if (count > 1) isOneOrder = true;
+
+    lock = true;
+
+    return information;
+}
+
 function loadOrder(){
     let orderlist = document.getElementById("order-list");
     if (!orderlist) return;
@@ -305,23 +351,45 @@ function loadOrder(){
     //  Hiển thị đơn hàng
     for (let i = 0; i < dataOrder.length; i++){
         const item = dataOrder[i];
-        if (!item.sp) continue;
+        if (!item.sp || item.tinhtrang != "Đang chờ xử lý") continue;
+
+        // kiem tra co phai trong cung 1 don hang khong
+        if (isOneOrder){
+            // nhay sang count - 1 don hang tiep theo
+            i += count - 1;
+            isOneOrder = false;
+            lock = false;
+            continue;
+        }
+
+        count = 0;
+        
         const html = `
             <tr>
                 <td>
-                    <img src="${item.sp.img}" alt="">
+                    <div class="information-container">
+                        ${writeInformationOrder("img", item.madonhang)}
+                    </div>
                 </td>
                 <td>
-                    <span>${item.sp.name}</span>
+                    <div class="information-container">
+                        ${writeInformationOrder("name", item.madonhang)}
+                    </div>
                 </td>
                 <td>
-                    <span>${item.user}</span>
+                    <div class="information-container">
+                        ${writeInformationOrder("user", item.madonhang)}
+                    </div>
                 </td>
                 <td>
-                    <span>${item.soluong}</span>
+                    <div class="information-container">
+                        ${writeInformationOrder("amount", item.madonhang)}
+                    </div>
                 </td>
                 <td>
-                    <span>${calculatePrice(item.sp.numprice, item.soluong)}đ</span>
+                    <div class="information-container">
+                        ${writeInformationOrder("price", item.madonhang)}
+                    </div>
                 </td>
                 <td>
                     <span>${item.tinhtrang}</span>
@@ -342,7 +410,25 @@ function loadOrder(){
 
         //  Thêm vào danh sách
         orderlist.append(htmlObject);
+
+        // xong 1 order thi unlock
+        lock = false;
     }
+}
+
+function setProductStatus(status, ordercode){
+    let orderlist = getOrderData();
+
+    for (let i = 0; i < orderlist.length; i++){
+        if (orderlist[i].madonhang != ordercode) continue;
+
+        orderlist[i].tinhtrang = status;
+        saveOrderDataForUser(orderlist[i]);
+        orderlist.splice(i, 1);
+        i--;
+    }
+
+    setOrderData(JSON.stringify(orderlist));
 }
 
 // Hủy đơn hàng
@@ -356,15 +442,12 @@ function cancelOrder(element){
     let index = element.parentNode.parentNode.rowIndex - 1;
 
     // Cập nhật lại tình trạng đơn hàng
-    data[index].tinhtrang = "Đã hủy bởi Admin";
-    saveOrderDataForUser(data[index]);
+    setProductStatus("Đã hủy bởi Admin", data[index].madonhang);
 
     // Xóa đơn hàng sau khi chọn
     orderlist.deleteRow(index);
-    data.splice(index, 1);
 
     //  Lưu lại dữ liệu
-    setOrderData(JSON.stringify(data));
     loadOrder();
 }
 
@@ -376,15 +459,12 @@ function confirmOrder(element){
     let index = element.parentNode.parentNode.rowIndex - 1;
 
     // Cập nhật lại tình trạng đơn hàng
-    data[index].tinhtrang = "Đã duyệt";
-    saveOrderDataForUser(data[index]);
+    setProductStatus("Đã duyệt", data[index].madonhang);
 
     // Xóa đơn hàng sau khi chọn
     orderlist.deleteRow(index);
-    data.splice(index, 1);
 
     //  Lưu lại dữ liệu
-    setOrderData(JSON.stringify(data));
     loadOrder();
 }
 
