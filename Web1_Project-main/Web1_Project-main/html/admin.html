@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- data -->
+    <script src="../data/accountdata.js"></script>
+    <script src="../data/datamethod.js"></script>
+    <script src="../data/productdata.js"></script>
+
+    <!-- Thu vien icon -->
+    <script src="https://kit.fontawesome.com/843b9d6718.js" crossorigin="anonymous"></script>
+    <!-- Chart Js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- chung -->
+    <script src="../classes/sortandnfind.js"></script>
+    <script src="../classes/class.js"></script>
+    <script src="../js/code.js"></script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <!-- javascript -->
+    <script src="../js/admin.js"></script>
+</head>
+
+<body>
+    <div class="product-detail-container" style="display: none;">
+        <div class="product-detail-body">
+            <div class="product-detail-header">
+                <h1>Chi tiết sản phẩm</h1>
+                <span><i class="fa-solid fa-times" onclick="closeProductDetail()"></i></span>
+            </div>
+            <div class="product-detail-value">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label for="product-name">Tên sản phẩm</label></td>
+                            <td><input type="text" id="product-name"></td>
+                            <td><label for="product-company">Thương hiệu</label></td>
+                            <td><input type="text" id="product-company"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-price">Giá</label></td>
+                            <td><input type="text" id="product-price"></td>
+                            <td><label for="product-masp">Mã sản phẩm</label></td>
+                            <td><input type="text" id="product-masp"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-promo">Khuyến mãi</label></td>
+                            <td>
+                                <select name="" id="product-promo">
+                                    <option value="">Không khuyến mãi</option>
+                                    <option value="moiramat">Mới ra mắt</option>
+                                    <option value="tragop">Trả góp</option>
+                                    <option value="giareonline">Giá rẻ online</option>
+                                    <option value="giamgia">Giảm giá</option>
+                                </select>
+                            </td>
+                            <td><label for="product-promo-price">Giá khuyến mãi</label></td>
+                            <td><input type="text" id="product-promo-price"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-screen">Màn hình</label></td>
+                            <td><input type="text" id="product-screen"></td>
+                            <td><label for="product-os">Hệ điều hành</label></td>
+                            <td><input type="text" id="product-os"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-camera">Camera</label></td>
+                            <td><input type="text" id="product-camera"></td>
+                            <td><label for="product-camera-front">Camera trước</label></td>
+                            <td><input type="text" id="product-camera-front"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-cpu">CPU</label></td>
+                            <td><input type="text" id="product-cpu"></td>
+                            <td><label for="product-ram">RAM</label></td>
+                            <td><input type="text" id="product-ram"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-rom">ROM</label></td>
+                            <td><input type="text" id="product-rom"></td>
+                            <td><label for="product-microUSB">MicroUSB</label></td>
+                            <td><input type="text" id="product-microUSB"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="product-battery">Pin</label></td>
+                            <td><input type="text" id="product-battery"></td>
+                            <td><label for="product-img">Img</label></td>
+                            <td><input type="file" id="product-img" onchange="changeImg(this)"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="product-detail-btn">
+                    <input type="hidden" id="product-masp-old">
+                    <button onclick="saveProduct()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <h1>Smartphone Store - Admin</h1>
+    </header>
+    <section class="main-content-sect">
+        <aside class="menu">
+            <div class="menu-title"><h1>MENU</h1></div>
+            <li class="active" onclick="Menuchange(this, 'thongke')">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Thống kê</span>
+            </li>
+            <li class="nonactive" onclick="Menuchange(this, 'sanpham')">
+                <i class="fa-solid fa-mobile"></i>
+                <span>Sản phẩm</span>
+            </li>
+            <li class="nonactive" onclick="Menuchange(this, 'donhang')">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Đơn hàng</span>   
+            </li>
+            <li class="nonactive" onclick="Menuchange(this, 'khachhang')">
+                <i class="fa-solid fa-person"></i>
+                <span>Khách hàng</span>
+            </li>
+            <hr>
+            <a class="logOut" href="index.html">
+                <li class="nonactive">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Đăng xuất</span>
+                    </li>
+            </a>
+        </aside>
+        <div class="main-content-container">
+            <section class="chart-content-sect">
+                <div id="chart-report">
+                    <canvas id="myChart"></canvas>
+                </div> 
+            </section>
+
+      
+            <section class="product-content-sect">
+                <button class="btn-create" onclick="openProductDetail()">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Thêm sản phẩm</span>
+                </button>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Ảnh</td>
+                            <td>Tên sản phẩm</td>
+                            <td>Thương hiệu</td>
+                            <td>Giá</td>
+                            <td>Thao tác</td>
+                        </tr>
+                    </thead>
+                    <tbody id="product-list">
+                        
+                    </tbody>
+                </table>
+            </section>
+            <section class="order-content-sect">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Ảnh</td>
+                            <td>Tên sản phẩm</td>
+                            <td>Tài khoản</td>
+                            <td>Số lượng</td>
+                            <td>Tổng tiền</td>
+                            <td>Trạng thái</td>
+                            <td>Thời gian</td>
+                            <td>Thao tác</td>
+                        </tr>
+                    </thead>
+                    <tbody id="order-list">
+                        
+                    </tbody>
+                </table>
+            </section>
+            <section class="user-content-sect">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Họ tên</td>
+                            <td>Email</td>
+                            <td>Tài khoản</td>
+                            <td>Mật khẩu</td>
+                            <td>Thao tác</td>
+                        </tr>
+                    </thead>
+                    <tbody class="user-list">
+                        
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </section>
+<script>
+        var confirmOrders = JSON.parse(localStorage.getItem("ConfirmedOrders")) 
+        var totalByDay = {};
+        if(confirmOrders.length == 0 || confirmOrders.length <0) {
+            alert("Chưa có doanh thu nào trong ngày hôm nay")
+        }
+        else {
+        confirmOrders.forEach(order => {
+        // chuyển đổi chuỗi ngày thành đối tượng ngày
+        var orderDate = new Date(order.timeConfirm.replace(/\//g, '-'));
+
+        // tạo key để nhóm theo ngày tháng năm
+        var dayKey = orderDate.toISOString().split('T')[0]; 
+        if (totalByDay.hasOwnProperty(dayKey)) {
+            totalByDay[dayKey] += order.sp.numprice;
+        } else {
+            totalByDay[dayKey] = order.sp.numprice;
+        }
+        });
+        var labels = [];
+        var data = [];
+        for (var day in totalByDay) {
+            if (totalByDay.hasOwnProperty(day)) {
+                labels.push(day); 
+                data.push(totalByDay[day]); 
+            }
+        }
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Doanh Thu theo ngày ',
+              data: data,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+            plugins: {
+            legend: {
+                labels: {
+                fontSize: 14 // Đặt kích thước chữ cho nhãn
+                }
+              }
+            }
+          }
+        });
+        }
+       
+</script>
+</body>
+</html>

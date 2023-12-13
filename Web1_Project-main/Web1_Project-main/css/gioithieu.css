@@ -1,0 +1,13 @@
+.page-gioithieu{
+  width: 70.00%;
+  margin: 50px auto;
+  font-size: 30px;
+  height: 1000px;
+}
+.page-gioithieu .tieude{
+  background: red;
+  height: 40px;
+  margin-top:0 ;
+  line-height: 40px;
+  padding-left: 15px;
+}
