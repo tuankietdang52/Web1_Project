@@ -35,7 +35,7 @@ function getProductCartAmount(){
 
 
 class Product{
-    constructor(name, company, img, price, star, rateCount, promo, detail, masp){
+    constructor(name, company, img, price, star, rateCount, promo, detail, masp, soldamount){
         this.name = name;
         this.company = company;
         this.img = img;
@@ -48,6 +48,7 @@ class Product{
         this.numprice = this.toNumPrice(price);
         this.promovaluenum = this.toNumPrice(this.promo.value);
         this.beforesaleprice = 0;
+        this.soldamount = soldamount || 0;
 
         this.checkCheapOnlPromo();
     }

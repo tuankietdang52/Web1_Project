@@ -12,6 +12,9 @@
     <!-- Thu vien icon -->
     <script src="https://kit.fontawesome.com/843b9d6718.js" crossorigin="anonymous"></script>
 
+    <!-- Thong ke -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- chung -->
     <script src="../classes/sortandnfind.js"></script>
     <script src="../classes/class.js"></script>
@@ -132,7 +135,9 @@
         </aside>
         <div class="main-content-container">
             <section class="chart-content-sect">
-                
+                <div class="chart-container">
+                    <canvas class="sold-chart"></canvas>
+                </div>
             </section>
 
             <section class="product-content-sect">
@@ -192,5 +197,6 @@
             </section>
         </div>
     </section>
+    <script>createSoldChart()</script>
 </body>
 </html>
