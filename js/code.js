@@ -547,12 +547,15 @@ function Addproducttocart(e, productcode, name){
 // tang so luong vat pham trong gio hang //
 
 function adjustProductCartAmount(){
-    let cart_num = document.getElementsByClassName("cart-number");
-    let amount = getProductCartAmount();
-
-    for (let i = 0; i < 2; i++){
-        cart_num[0].innerHTML = amount;
-        cart_num[1].innerHTML = amount;
+    var user = getCurrentUser();
+    if ( user ){
+        let cart_num = document.getElementsByClassName("cart-number");
+        let amount = getProductCartAmount();
+    
+        for (let i = 0; i < 2; i++){
+            cart_num[0].innerHTML = amount;
+            cart_num[1].innerHTML = amount;
+        }
     }
 }
 
@@ -572,11 +575,14 @@ function animateCartNumber() {
 
 function themVaoGioHang(masp, name) {
     var user = getCurrentUser();
+    var cartNumer = document.getElementsByClassName('cart-number')[0];
+
+
     if (!user) {
         alert('Bạn cần đăng nhập để mua hàng !');
         return;
     }
-    if (user.off) {
+    if (user.isLocked) {
         addAlertBox('Tài khoản của bạn đã bị khóa bởi Admin.', '#aa0000', '#fff', 10000);
         return;
     }
