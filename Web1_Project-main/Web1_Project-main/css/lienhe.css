@@ -1,0 +1,55 @@
+html{
+  width: 100%;
+}
+body{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 80%;
+}
+html.html__responsive, html.html__responsive body {
+  min-width: auto;
+}
+.container{
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.page-lienhe{
+  width: 70%;
+  margin: 15px auto;
+}
+  .page-lienhe-info{
+  width: 100%;
+  height: max-content;
+  display: inline-block;
+}
+.page-header{
+  background-color: pink ;
+  height: 40px;
+  line-height: 40px;
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+.info-left{
+  width: 55%;
+  float: left;
+  line-height: 40px;
+  font-size: larger;
+}
+.info-right{
+  width: 45%;
+  float: right;
+  height: auto;
+}
+.info-right iframe{
+  width: 100%;
+
+}
+.page-lienhe-form{
+  display: inline-block;
+}
+.form-left{
+  float: left;
+  width: 55%;
+}

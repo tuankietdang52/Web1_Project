@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- data -->
+    <script src="../data/accountdata.js"></script>
+    <script src="../data/datamethod.js"></script>
+    <script src="../data/productdata.js"></script>
+
+    
+    <!-- Thu vien jquery va waypoints -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    
+    <!-- Thu vien slideshow -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    
+    <!-- Thu vien icon -->
+    <script src="https://kit.fontawesome.com/843b9d6718.js" crossorigin="anonymous"></script>
+
+    <!-- chung -->
+    <script src="../classes/sortandnfind.js"></script>
+    <script src="../classes/class.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/code.js"></script>
+    
+    <!-- javascript -->
+    <script src="../js/home.js"></script>
+    <script src="../js/login.js"></script>
+    
+    <!-- css -->
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/home.css">
+    
+    <title>Mobile</title>
+</head> 
+
+<body>
+    <script>
+        setThingsup();
+        //localStorage.clear();
+    </script>
+    
+    <!-- slideshow section -->
+    <section class="slideshow-container">
+        <div class="slideshow">
+            <div class="owl-carousel">
+                <div class="item item0"></div>
+                <div class="item item1"></div>
+                <div class="item item2"></div>
+                <div class="item item3"></div>
+                <div class="item item4"></div>
+                <div class="item item5"></div>
+                <div class="item item6"></div>
+                <div class="item item7"></div>
+                <div class="item item8"></div>
+            </div>
+        </div>
+    </section>
+    <!-- end slideshow sect  -->
+
+    <!-- filter section -->
+    <section class="filter-sect">
+        <img class="sale-ads" src="../img/banners/blackFriday.gif" alt="blackFriday"> 
+        <div class="company-filter-container">
+            <script>companyfilter()</script>
+        </div>
+        <div class="custom-filter-container">
+            <script>writecustomfilter()</script>
+        </div>
+        <div class="filter-button-container">
+            <a href="../html/index.html" class="filter-button">
+                <span>Xoá bộ lọc</span>
+                <i class="fa-solid fa-x"></i>
+            </a>
+        </div>
+        <hr>
+    </section>
+
+    <!-- end filter section -->
+
+    <!-- product frame section -->
+    <section class="product-frame-sect">
+        <div class="product-container" style="border-color: orangered;">
+            <div class="banner hot">
+                <h1>* NỔI BẬT NHẤT *</h1>
+            </div>
+            <div class="product-frame product-hot">
+                <script>ReviewProduct("product-hot", "?star=2&sort=ratedesc")</script>
+            </div>
+        </div>
+        <hr>
+        <div class="product-container" style="border-color: blue;">
+            <div class="banner new">
+                <h1>* SẢN PHẨM MỚI *</h1>
+            </div>
+            <div class="product-frame new-product">
+                <script>ReviewProduct("new-product", "?promo=moiramat")</script>
+            </div>
+        </div>
+        <hr>
+        <div class="product-container" style="border-color: orangered;">
+            <div class="banner sale0">
+                <h1>* TRẢ GÓP 0% *</h1>
+            </div>
+            <div class="product-frame sale-product-0">
+                <script>ReviewProduct("sale-product-0", "?promo=tragop")</script>
+            </div>
+        </div>
+        <hr>
+        <div class="product-container" style="border-color: #5de272;">
+            <div class="banner shockonl">
+                <h1>* GIÁ SỐC ONLINE *</h1>
+            </div>
+            <div class="product-frame shock-price-online">
+                <script>ReviewProduct("shock-price-online", "?promo=giareonline")</script>
+            </div>
+        </div>
+        <hr>
+        <div class="product-container" style="border-color: orangered;">
+            <div class="banner discount">
+                <h1>* Giảm giá lớn *</h1>
+            </div>
+            <div class="product-frame product-discount">
+                <script>ReviewProduct("product-discount", "?promo=giamgia")</script>
+            </div>
+        </div>
+        <hr>
+        <div class="product-container" style="border-color: #5de272;;">
+            <div class="banner cheap">
+                <h1>* Giá rẻ cho mọi nhà *</h1>
+            </div>
+            <div class="product-frame cheap-product">
+                <script>ReviewProduct("cheap-product", "?price=0-2m")</script>
+            </div>
+        </div>
+    </section>
+    <!-- end product frame section -->
+
+    <!-- filter product section -->
+    <section class="filter-product-sect">
+        <div class="product-container" style="border: unset;">
+            <div class="product-frame filter-product">
+
+            </div> 
+        </div>
+        <script>writeFilterSect()</script>
+    </section>
+    <!-- end filter product section -->
+
+    <!-- customer profit section  -->
+    <section class="customer-profit-sect">
+        <div class="customer-profit-container">
+            <li>Giao hàng hỏa tốc trong 1 giờ</li>
+            <li>Thanh toán linh hoạt: tiền mặt, visa / master, trả góp</li>
+            <li>Trải nghiệm sản phẩm tại nhà</li>
+            <li>Lỗi đổi tại nhà trong 1 ngày</li>
+            <li style="display: grid; border: none;">
+                <span>Hỗ trợ suốt thời gian sử dụng</span>
+                <span>Hotline: 
+                    <a href="#">012345678</a>
+                </span>
+            </li>
+        </div>
+    </section>
+    <!-- end customer profit section -->
+
+    <!-- footer -->
+    <script>
+        addfooter(); 
+        addContainTaiKhoan();
+    </script>
+    <!-- end footer -->
+</body>
+</html>
