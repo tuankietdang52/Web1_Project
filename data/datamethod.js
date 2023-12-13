@@ -49,7 +49,8 @@ function setArrayProducts(){
                             list_products[i].rateCount, 
                             promo, 
                             detail, 
-                            list_products[i].masp
+                            list_products[i].masp,
+                            list_products[i].soldamount
                         );
         
         arrayproduct.push(product);
@@ -211,4 +212,11 @@ function saveOrderDataForUser(order){
     }
 
     setListUser(arrayaccounts);
+}
+
+function increaseProductSoldAmount(productcode, amount){
+    let product = findbyproductcode(productcode);
+
+    product.soldamount += amount;
+    setProductData(arrayproduct);
 }

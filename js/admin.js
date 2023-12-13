@@ -35,6 +35,7 @@ function changecontent(choice){
     switch (choice){
         case "chart":
             showcontent = document.getElementsByClassName("chart-content-sect")[0];
+            createSoldChart();
             break;
         case "product":
             showcontent = document.getElementsByClassName("product-content-sect")[0];
@@ -424,6 +425,11 @@ function setProductStatus(status, ordercode){
 
         orderlist[i].tinhtrang = status;
         saveOrderDataForUser(orderlist[i]);
+
+        // Tăng số lượng bán ra của sản phẩm
+        increaseProductSoldAmount(orderlist[i].sp.masp, orderlist[i].soluong);
+
+        // Xóa khỏi orderlist
         orderlist.splice(i, 1);
         i--;
     }
@@ -442,6 +448,8 @@ function cancelOrder(element){
     let index = element.parentNode.parentNode.rowIndex - 1;
 
     // Cập nhật lại tình trạng đơn hàng
+    // Nếu có nhiều sản phẩm trong 1 đơn, lúc này ta sẽ lấy 1 sản phẩm để lấy mã đơn hàng từ nó
+    // Từ đó ta sẽ tìm trong list_order để set tình trạng của các sản phẩm có mã đơn hàng tương ứng
     setProductStatus("Đã hủy bởi Admin", data[index].madonhang);
 
     // Xóa đơn hàng sau khi chọn
@@ -459,6 +467,7 @@ function confirmOrder(element){
     let index = element.parentNode.parentNode.rowIndex - 1;
 
     // Cập nhật lại tình trạng đơn hàng
+    // Tương tự với xóa đơn hàng
     setProductStatus("Đã duyệt", data[index].madonhang);
 
     // Xóa đơn hàng sau khi chọn
@@ -580,4 +589,72 @@ function changeImg(input){
     // truyền file vào
     // method này sẽ kích hoạt sự kiện load 
     filereader.readAsDataURL(file);
+}
+
+// Thống kê
+
+let chart;
+let chartName = [];
+let chartData = [];
+
+function getChartData(){
+    chartName = [];
+    chartData = [];
+
+    arrayproduct.forEach(
+        (product) => {
+            chartName.push(product.masp);
+            chartData.push(product.soldamount);
+        }
+    )
+}
+
+let isCreatedChart = false;
+
+function createSoldChart(){
+    getChartData();
+
+    let chartContainer = document.getElementsByClassName("sold-chart")[0];
+
+    if (isCreatedChart) chart.destroy();
+    else isCreatedChart = true;
+
+    let barColors = ["red", "green", "blue", "orange", "brown"];
+
+    chart = new Chart(chartContainer, {
+        type: "bar",
+        responsive: true,
+        data: {
+            labels: chartName,
+            datasets: [{
+                backgroundColor: barColors,
+                data: chartData,
+            }]
+        },
+        options: {
+            plugins:{
+                legend: {display: false},
+                title: {
+                    display: true,
+                    text: "Thống kê số sản phẩm bán được",
+                }
+            },
+            
+            scales:{
+                x:{
+                    ticks:{
+                        font:{
+                            size: 10
+                        }
+                    }
+                },
+
+                y:{
+                    beginAtZero: true,
+                }
+            },
+
+            barPercentage: 1,
+        }
+    });
 }
