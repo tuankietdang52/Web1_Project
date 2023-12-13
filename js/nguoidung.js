@@ -30,8 +30,6 @@ window.onload = function(){
         // chèn vào class infoUSer 1 một cảnh báo warning khi chưa đăng nhập.
                         document.getElementsByClassName('infoUser')[0].innerHTML = warning;
     }
-    
-
 }
 
 // khi đã đăng nhập thì hiện ra đoạn bên dưới 
@@ -81,7 +79,7 @@ function addInfoUser(user) {
                 </table>
             </td>
         </tr>
-        <tr>    
+        <tr>
             <td>Họ: </td>
             <td> <input type="text" value="` + user.ho + `" readonly> </td>
             <td> <i class="fa fa-pencil" onclick="changeInfo(this, 'ho')"></i> </td>
@@ -110,7 +108,6 @@ function addInfoUser(user) {
             <td></td>
         </tr>
     </table>`;
-    // readonly trong tag input là dùng để cho người dùng chỉ dc đọc được nội dung chứ không sủa được
 }
 
 // event ẩn hiện khung đổi mật khẩu
@@ -168,13 +165,12 @@ function changePass() {
 
 // đổi các thông tin còn lại của user
     function changeInfo(iTag,info){
-        // lấy hàng gần nhất với thẻ i rồi lấy elements input để sử dụng
-        var inputTag = iTag.closest('tr').querySelector('input');
-         // !inputTag.readOnly nghĩa là readonly đang true (nghĩa là phần tử đó đang chỉ dc xem và chưa được chỉnh sửa )
+        var inputTag = iTag.parentElement.previousElementSibling.getElementsByTagName('input')[0];
+        
         if ( !inputTag.readOnly && inputTag.value != ''){
             if ( info === 'username' ){
                 var listUser = getListUser();
-                for ( var u of listUser){ // duyệt mảng user
+                for ( var u of listUser){
                     if ( u.username == inputTag.value && u.username != currentUser.username){
                         alert('Ten da co nguoi su dung !!');
                         inputTag.value = currentUser.username;
@@ -261,26 +257,21 @@ function addDonHang(dh) {
                     <th>Thời gian thêm vào giỏ</th> 
                 </tr>`;
     // tính tổng tiền
-    var totalPrice = 0; // tổng tiền của nhiều sản phẩm
+    var totalPrice = 0;
     for (var i = 0; i < dh.sp.length; i++) {
         var masp = dh.sp[i].ma;
         var soluongSp = dh.sp[i].soluong;
         var p = timKiemTheoMa(list_products, masp);
-        var price;
-        // gán giá trị cho sản phẩm 
-        if ( p.promo.name == 'giareonline')
-                price = p.promo.value;
-        else    price = p.price;
-        
-        var thoigian = new Date(dh.sp[i].date).toLocaleString(); // thời gian
-        
-        var thanhtien = stringToNum(price) * soluongSp; // tổng tiền của 1 sản phẩm 
+        var price = (p.promo.name == 'giareonline' ? p.promo.value : p.price);
+        var thoigian = new Date(dh.sp[i].date).toLocaleString();
+        var thanhtien = stringToNum(price) * soluongSp;
 
         s += `
                 <tr>
                     <td>` + (i + 1) + `</td>
                     <td class="noPadding imgHide">
-                        <a target="_blank" href="chitietsanpham.html?` + p.masp + ` " title="Xem chi tiết"> ` + p.name + `
+                        <a target="_blank" href="chitietsanpham.html?` + p.name.split(' ').join('-') + `" title="Xem chi tiết">
+                            ` + p.name + `
                             <img src="` + p.img + `">
                         </a>
                     </td>
@@ -296,7 +287,7 @@ function addDonHang(dh) {
         tongSanPhamTatCaDonHang += soluongSp;
     }
     tongTienTatCaDonHang += totalPrice;
-    // tạo thêm 1 dòng để xuất tổng tiền vì đã có totalPrice
+
     s += `
                 <tr style="font-weight:bold; text-align:center; height: 4em;">
                     <td colspan="4">TỔNG TIỀN: </td>
@@ -308,14 +299,12 @@ function addDonHang(dh) {
         `;
     div.innerHTML += s;
 }
-// lấy ra mã sản phẩm
-function timKiemTheoMa(list, ma) {
-    for ( var i=0 ;i<list.length ;i++ ) {
-        if ( list[i].masp == ma) 
-        return list[i];
-    }
-}
 
+function timKiemTheoMa(list, ma) {
+	for (var l of list) {
+		if (l.masp == ma) return l;
+	}
+}
 function numToString(num, char) {
     return num.toLocaleString().split(',').join(char || '.');
 }

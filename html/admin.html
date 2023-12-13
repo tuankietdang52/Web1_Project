@@ -11,6 +11,8 @@
 
     <!-- Thu vien icon -->
     <script src="https://kit.fontawesome.com/843b9d6718.js" crossorigin="anonymous"></script>
+    <!-- Chart Js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- chung -->
     <script src="../classes/sortandnfind.js"></script>
@@ -132,9 +134,12 @@
         </aside>
         <div class="main-content-container">
             <section class="chart-content-sect">
-                
+                <div id="chart-report">
+                    <canvas id="myChart"></canvas>
+                </div> 
             </section>
 
+      
             <section class="product-content-sect">
                 <button class="btn-create" onclick="openProductDetail()">
                     <i class="fa-solid fa-plus"></i>
@@ -192,5 +197,63 @@
             </section>
         </div>
     </section>
+<script>
+        var confirmOrders = JSON.parse(localStorage.getItem("ConfirmedOrders")) 
+        var totalByDay = {};
+        if(confirmOrders.length == 0 || confirmOrders.length <0) {
+            alert("Chưa có doanh thu nào trong ngày hôm nay")
+        }
+        else {
+        confirmOrders.forEach(order => {
+        // chuyển đổi chuỗi ngày thành đối tượng ngày
+        var orderDate = new Date(order.timeConfirm.replace(/\//g, '-'));
+
+        // tạo key để nhóm theo ngày tháng năm
+        var dayKey = orderDate.toISOString().split('T')[0]; 
+        if (totalByDay.hasOwnProperty(dayKey)) {
+            totalByDay[dayKey] += order.sp.numprice;
+        } else {
+            totalByDay[dayKey] = order.sp.numprice;
+        }
+        });
+        var labels = [];
+        var data = [];
+        for (var day in totalByDay) {
+            if (totalByDay.hasOwnProperty(day)) {
+                labels.push(day); 
+                data.push(totalByDay[day]); 
+            }
+        }
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Doanh Thu theo ngày ',
+              data: data,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+            plugins: {
+            legend: {
+                labels: {
+                fontSize: 14 // Đặt kích thước chữ cho nhãn
+                }
+              }
+            }
+          }
+        });
+        }
+       
+</script>
 </body>
 </html>

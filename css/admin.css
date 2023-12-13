@@ -2,6 +2,7 @@
 html, body{
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 html{
@@ -201,6 +202,7 @@ header h1{
     position: fixed;
     background-color: #dddddd4b;
     padding: 20px;
+    z-index: 1;
 }
 
 .product-detail-container .product-detail-body {
@@ -305,19 +307,4 @@ header h1{
 
 .logOut:hover > li > i{
     transform: translateX(-100%);
-}
-
-.information-container{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: space-between;
-}
-
-.information-container img{
-    padding: 5px 0px 5px 0px;
-}
-
-.information-container span{
-    padding: 30px 0px 30px 0px;
 }

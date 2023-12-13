@@ -295,52 +295,6 @@ function saveProduct(){
 }
 
 // Lấy dữ liệu đơn hàng
-
-let isOneOrder = false;
-let count = 0;
-let lock = false;
-
-function getInformationOrder(informationName, order){
-    switch (informationName){
-        case "img":
-            return `<img src="${order.sp.img}" alt="">`;
-
-        case "name":
-            return `<span>${order.sp.name}</span>`
-
-        case "user":
-            return `<span>${order.user}</span>`
-        
-        case "amount":
-            return `<span>${order.soluong}</span>`
-
-        case "price":
-            return `<span>${calculatePrice(order.sp.numprice, order.soluong)}đ</span>`
-    }
-}
-
-function writeInformationOrder(informationName, ordercode){
-    let information = "";
-    let order = getOrderData();
-    
-    for (let i = 0; i < order.length; i++){
-        if (ordercode != order[i].madonhang) continue;
-
-        information += getInformationOrder(informationName, order[i]);
-
-        // dem xem co bao nhieu san pham trong 1 don hang
-        // lock se khoa trong nhung lan them thuoc tinh tiep theo 
-        // de tranh count bi tang len sau khi dem xong co bao nhieu san pham trong 1 order
-        if (!lock) count++;
-    }
-
-    if (count > 1) isOneOrder = true;
-
-    lock = true;
-
-    return information;
-}
-
 function loadOrder(){
     let orderlist = document.getElementById("order-list");
     if (!orderlist) return;
@@ -351,45 +305,23 @@ function loadOrder(){
     //  Hiển thị đơn hàng
     for (let i = 0; i < dataOrder.length; i++){
         const item = dataOrder[i];
-        if (!item.sp || item.tinhtrang != "Đang chờ xử lý") continue;
-
-        // kiem tra co phai trong cung 1 don hang khong
-        if (isOneOrder){
-            // nhay sang count - 1 don hang tiep theo
-            i += count - 1;
-            isOneOrder = false;
-            lock = false;
-            continue;
-        }
-
-        count = 0;
-        
+        if (!item.sp) continue;
         const html = `
             <tr>
                 <td>
-                    <div class="information-container">
-                        ${writeInformationOrder("img", item.madonhang)}
-                    </div>
+                    <img src="${item.sp.img}" alt="">
                 </td>
                 <td>
-                    <div class="information-container">
-                        ${writeInformationOrder("name", item.madonhang)}
-                    </div>
+                    <span>${item.sp.name}</span>
                 </td>
                 <td>
-                    <div class="information-container">
-                        ${writeInformationOrder("user", item.madonhang)}
-                    </div>
+                    <span>${item.user}</span>
                 </td>
                 <td>
-                    <div class="information-container">
-                        ${writeInformationOrder("amount", item.madonhang)}
-                    </div>
+                    <span>${item.soluong}</span>
                 </td>
                 <td>
-                    <div class="information-container">
-                        ${writeInformationOrder("price", item.madonhang)}
-                    </div>
+                    <span>${calculatePrice(item.sp.numprice, item.soluong)}đ</span>
                 </td>
                 <td>
                     <span>${item.tinhtrang}</span>
@@ -410,25 +342,7 @@ function loadOrder(){
 
         //  Thêm vào danh sách
         orderlist.append(htmlObject);
-
-        // xong 1 order thi unlock
-        lock = false;
     }
-}
-
-function setProductStatus(status, ordercode){
-    let orderlist = getOrderData();
-
-    for (let i = 0; i < orderlist.length; i++){
-        if (orderlist[i].madonhang != ordercode) continue;
-
-        orderlist[i].tinhtrang = status;
-        saveOrderDataForUser(orderlist[i]);
-        orderlist.splice(i, 1);
-        i--;
-    }
-
-    setOrderData(JSON.stringify(orderlist));
 }
 
 // Hủy đơn hàng
@@ -442,31 +356,56 @@ function cancelOrder(element){
     let index = element.parentNode.parentNode.rowIndex - 1;
 
     // Cập nhật lại tình trạng đơn hàng
-    setProductStatus("Đã hủy bởi Admin", data[index].madonhang);
+    data[index].tinhtrang = "Đã hủy bởi Admin";
+    saveOrderDataForUser(data[index]);
 
     // Xóa đơn hàng sau khi chọn
     orderlist.deleteRow(index);
+    data.splice(index, 1);
 
     //  Lưu lại dữ liệu
+    setOrderData(JSON.stringify(data));
     loadOrder();
+}
+
+// lấy ngày tháng 
+function getDate() {
+    const currentTime = new Date();
+    // +1 nếu muốn tính doanh thu ngày kế tiếp
+    currentTime.setDate(currentTime.getDate() - 1);
+    const year = currentTime.getFullYear();
+    const month = String(currentTime.getMonth() + 1).padStart(2, '0'); 
+    const day = String(currentTime.getDate()).padStart(2, '0'); 
+    const formattedDate = `${year}/${month}/${day}`;
+    return formattedDate
 }
 
 // Duyệt đơn hàng
+// Thống kê
+let confirmedProducts = [];
 function confirmOrder(element){
-    //  Duyệt đơn hàng
+
     let orderlist = document.getElementById("order-list");
     let data = getOrderData();
     let index = element.parentNode.parentNode.rowIndex - 1;
-
     // Cập nhật lại tình trạng đơn hàng
-    setProductStatus("Đã duyệt", data[index].madonhang);
-
+    data[index].tinhtrang = "Đã duyệt";
+    data[index].timeConfirm = getDate()
+    saveOrderDataForUser(data[index]);
+    let storedConfirmedProducts = window.localStorage.getItem("ConfirmedOrders");
+    if (storedConfirmedProducts) {
+        confirmedProducts = JSON.parse(storedConfirmedProducts);
+    }
+    //push đơn hàng được duyệt vào confirmedProducts
+    confirmedProducts.push(data[index]);
+    window.localStorage.setItem("ConfirmedOrders", JSON.stringify(confirmedProducts));
     // Xóa đơn hàng sau khi chọn
-    orderlist.deleteRow(index);
-
-    //  Lưu lại dữ liệu
+     orderlist.deleteRow(index);
+     data.splice(index, 1);
+     //  Lưu lại dữ liệu
+    setOrderData(JSON.stringify(data));
     loadOrder();
-}
+}  
 
 // tính tiền r chuyển lại sang dạng text
 function calculatePrice(price, amount){
@@ -545,7 +484,6 @@ function deleteAccount(username){
     }
 
     deleteAccountOrder(username);
-    localStorage.removeItem('CurrentUser');
     setListUser(arrayaccounts);
     loadUser();
     loadOrder();

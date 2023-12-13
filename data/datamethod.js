@@ -206,7 +206,6 @@ function saveOrderDataForUser(order){
     
     for (let i = 0; i < user.donhang.length; i++){
         if (order.madonhang != user.donhang[i].madonhang) continue;
-
         user.donhang[i].tinhTrang = order.tinhtrang;
     }
 
