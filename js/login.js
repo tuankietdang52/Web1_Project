@@ -53,10 +53,10 @@ function updateListUser(u, newData) {
     setListUser(list);
 }
 
-function logIn(form) {
+function logIn() {
     // get dữ liệu từ form
-    var name = form.username.value;
-    var pass = form.pass.value;
+    var name = document.getElementsByName('name')[0].value;
+    var pass = document.getElementsByName('pass')[0].value;
     var newUser = new User(name, pass);
 
     // lấy dữ liệu list User in localStorage
@@ -91,12 +91,14 @@ function logIn(form) {
 }
 
 
-function signUp(form){
-    var ho = form.ho.value;
-    var ten = form.ten.value;
-    var email = form.email.value;
-    var username = form.newUser.value;  
-    var pass= form.newPass.value;
+function signUp(){
+
+    var ho = document.getElementsByName('ho')[0].value;
+    var ten = document.getElementsByName('ten')[0].value;
+    var email = document.getElementsByName('email')[0].value;
+    var username = document.getElementsByName('newUser')[0].value;
+    var pass = document.getElementsByName('newPass')[0].value;
+
     let isLocked = false;
 
     var newUser = new User(username,pass,ho,ten,email,isLocked);
@@ -155,7 +157,7 @@ document.write(`<div class="containTaikhoan">
         <div class="signIn active">
             <h1>Chào mừng bạn trở lại!</h1>
 
-            <form onsubmit="return logIn(this);">
+            <form onsubmit="return logIn();">
 
                 <div class="field-wrap">
                     <input name='username' type="text" required autocomplete="off" placeholder="Tên đăng nhập "/>
@@ -176,7 +178,7 @@ document.write(`<div class="containTaikhoan">
         <div class="signUp ">
             <h1>Đăng kí</h1>
 
-            <form onsubmit="return signUp(this);">
+            <form onsubmit="return signUp();">
 
                 <div class="top-row">
                     <div class="field-wrap">
