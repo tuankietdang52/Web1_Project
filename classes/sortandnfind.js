@@ -81,7 +81,7 @@ function sortbymintomax(amount1, amount2, array){
     let temparray = [];
     let price = 0;
     for (let i = 0; i < array.length; i++){
-        price = array[i][0].promo.name == "giareonline" ? array[i].promovaluenum : array[i].numprice;
+        price = array[i].promo.name == "giareonline" ? array[i].promovaluenum : array[i].numprice;
         if (price < amount1 || price > amount2) continue;
 
         temparray.push(array[i]);

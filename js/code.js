@@ -397,6 +397,7 @@ function ReviewProduct(parentclassname, link = ""){
 
 // loc filter //
 function splitlink(){
+    // lấy path hiện tại
     let current = window.location.href.toString().split(/[?&]/);
     return current;
 }
@@ -406,14 +407,19 @@ function getNewFilterPath(filtername){
 
     let current = splitlink();
     
+    // path lọc luôn có ? sau path mặc định
     let newcurrent = "?";
 
+    // nếu path length sau khi split = 1 thì trả về ? + path lọc (làm ở phần home)
     if (current.length == 1) return newcurrent;
     
     for (let i = 1; i < current.length; i++){
+        // tách tên và điều kiện lọc (price=0-2m => price và 0-2m)
         let filterpath = current[i].split("=");
+        // check tồn tại điều kiện đã lọc
         if (filterpath[0].includes(filtername)) continue;
         
+        // ghép chuỗi path mới
         newcurrent += current[i] + "&";
     }
 
@@ -450,14 +456,19 @@ function writeNoProduct(classname){
 }
 
 function Searching(e){
+    // lấy cha của thanh search
     let searchbarsect = e.target.parentElement;
+
+
     let searchbarvalue = searchbarsect.getElementsByClassName("searchbar")[0].value;
     let searchbutton = searchbarsect.getElementsByClassName("searchbutton")[0];
     
     let value = searchbarvalue.toLowerCase();
 
+    // ấn phím enter
     if (e.keyCode === 13) Search(searchbutton, value);
 
+    // hiển thị drop down
     let result_dropdown = searchbarsect.getElementsByClassName("searchresult-dropdown")[0];
 
     if (!value){
@@ -478,9 +489,10 @@ function Search(searchbutton, value){
 
 function getSearchProduct(value, type = "filter", result_dropdown = null){
 
-    // ham nay co 2 dang la show product o phan tim kiem va lay product khi click search //
+    // ham nay co 2 dang la show product o phan tim kiem (dropdown) va lay product khi click search //
     // filter lay product, dropdown show product //
 
+    // làm mới dropdown
     if (result_dropdown) result_dropdown.innerHTML = "";
     
     value = value.toLowerCase();
@@ -491,6 +503,7 @@ function getSearchProduct(value, type = "filter", result_dropdown = null){
 
     for (let i = 0; i < arrayproduct.length; i++){
         let productname = arrayproduct[i].name.toLowerCase();
+        // check sản phẩm có chứa kí tự đã nhập không
         if (!CompareCheck(value, productname)) continue;
         
         if (type == "filter") searchproduct.push(arrayproduct[i]);
@@ -520,6 +533,7 @@ function getSearchFilterText(filterdescription){
 }
 
 function addProducttoSearchDropDown(product, result_dropdown){
+    // ghi sản phẩm đã tìm được vào phần dropdown
     // show product o phan tim kiem (chua click tim kiem) //
     
     result_dropdown.innerHTML += (`
@@ -532,7 +546,8 @@ function addProducttoSearchDropDown(product, result_dropdown){
 function getSearchPath(value){
     let searchbutton = document.getElementsByClassName("searchbutton")[0];
     
-    let path = "index.html?search=" + value;
+    // sửa path của button
+    let path = "index.html?search=" + value; // search value = sa => search=sa
 
     searchbutton.setAttribute("href", path);
 }

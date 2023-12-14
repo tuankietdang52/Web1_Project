@@ -168,6 +168,7 @@ function capNhat_ThongTin_CurrentUser() {
 
 function getOrderData(){
     let data = JSON.parse(window.localStorage.getItem("ListOrders"));
+
     if (!data) return [];
     for (let i = 0; i < data.length; i++){
         //  Lấy thông tin sản phẩm
@@ -175,6 +176,33 @@ function getOrderData(){
     }
 
     return data;
+}
+
+function removeOrder(ordercode, orderlist){
+    let newOrderList = [];
+
+    for (let i = 0; i < orderlist.length; i++){
+        if (orderlist[i].madonhang == ordercode) continue;
+
+        newOrderList.push(orderlist[i]);
+    } 
+
+    removeUserOrder(ordercode);
+    setOrderData(newOrderList);
+    return newOrderList;
+}
+
+function removeUserOrder(ordercode){
+    for (let i = 0; i < arrayaccounts.length; i++){
+        let userorder = arrayaccounts[i].donhang;
+        for (let j = 0; j < userorder.length; j++){
+            if (userorder[j].madonhang != ordercode) continue;
+
+            userorder.splice(j, 1);
+        }
+    }
+
+    setListUser(arrayaccounts);
 }
 
 function setOrderData(newdata = null){

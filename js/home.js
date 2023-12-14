@@ -196,11 +196,16 @@ function writeFilterProduct(){
 }
 
 function getFilterProduct(){
+    // lấy sản phẩm lọc
+
+    // lấy path hiện tại
     let current = splitlink();
 
+    // lấy dữ liệu sản phẩm
     let filterproduct = arrayproduct;
 
     for (let i = 1; i < current.length; i++){
+        // lọc sản phẩm
         filterproduct = Filter(current[i], filterproduct);
     }
 
@@ -208,9 +213,11 @@ function getFilterProduct(){
 }
 
 function Filter(filterpath, filterproduct){
+    // tách tên và điều kiện lọc (price=0-2m => price và 0-2m)
     let filterpathsplit = filterpath.split("=");
-    let filtertype = filterpathsplit[0];
-    let filterdescription = filterpathsplit[1];
+    let filtertype = filterpathsplit[0]; // price
+    let filterdescription = filterpathsplit[1]; // 0-2m
+
     writeFilterButton(filtertype, filterdescription);
 
     switch (filtertype){
