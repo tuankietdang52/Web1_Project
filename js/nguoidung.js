@@ -195,8 +195,12 @@ function changePass() {
             }
             
             var temp = copyObject(currentUser);
+
+            updateOrderUser(currentUser[info], inputTag.value);
+
             currentUser[info] = inputTag.value;
             
+
             setCurrentUser(currentUser);
             updateListUser(temp,currentUser);
 
@@ -212,6 +216,21 @@ function changePass() {
         }
         inputTag.readOnly = !inputTag.readOnly;
   
+    }
+
+
+    // truyen username cũ để tìm order của user cũ
+    // thay bằng username mới
+
+    function updateOrderUser(oldUsername, newUsername){
+        let orderdata = getOrderData();
+        for (let i = 0; i < orderdata.length; i++){
+            if (oldUsername != orderdata[i].user) continue;
+
+            orderdata[i].user = newUsername;
+        }
+
+        setOrderData(orderdata);
     }
 
 
@@ -263,9 +282,18 @@ function addDonHang(dh) {
     // tính tổng tiền
     var totalPrice = 0; // tổng tiền của nhiều sản phẩm
     for (var i = 0; i < dh.sp.length; i++) {
+
         var masp = dh.sp[i].ma;
         var soluongSp = dh.sp[i].soluong;
         var p = timKiemTheoMa(list_products, masp);
+
+        if (p == null){
+            // nếu trong đơn hàng có sp bị null thì xóa đơn hàng đó
+            removeUserOrder(dh.madonhang);
+            s = "";
+            return;
+        }
+
         var price;
         // gán giá trị cho sản phẩm 
         if ( p.promo.name == 'giareonline')

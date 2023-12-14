@@ -320,12 +320,21 @@ function getInformationOrder(informationName, order){
     }
 }
 
-function writeInformationOrder(informationName, ordercode){
+let isNull = false;
+let orderNull = "";
+
+function writeInformationOrder(informationName, ordercode, order){
     let information = "";
-    let order = getOrderData();
     
     for (let i = 0; i < order.length; i++){
         if (ordercode != order[i].madonhang) continue;
+
+        // nếu gặp sản phẩm bị null thì nhảy ra khỏi hàm
+        if (order[i].sp == null){
+            isNull = true;
+            orderNull = order[i].madonhang;
+            return;
+        }
 
         information += getInformationOrder(informationName, order[i]);
 
@@ -352,44 +361,50 @@ function loadOrder(){
     //  Hiển thị đơn hàng
     for (let i = 0; i < dataOrder.length; i++){
         const item = dataOrder[i];
-        if (!item.sp || item.tinhtrang != "Đang chờ xử lý") continue;
+        if (!item.sp){
+            dataOrder = removeOrder(item.madonhang, dataOrder); 
+            i--;
+            continue;
+        }
+        if (item.tinhtrang != "Đang chờ xử lý") continue;
 
         // kiem tra co phai trong cung 1 don hang khong
         if (isOneOrder){
-            // nhay sang count - 1 don hang tiep theo
-            i += count - 1;
+            // nhay sang count - 2 don hang tiep theo
+            i += count - 2;
             isOneOrder = false;
             lock = false;
             continue;
         }
 
         count = 0;
+        isNull = false;
         
         const html = `
             <tr>
                 <td>
                     <div class="information-container">
-                        ${writeInformationOrder("img", item.madonhang)}
+                        ${writeInformationOrder("img", item.madonhang, dataOrder)}
                     </div>
                 </td>
                 <td>
                     <div class="information-container">
-                        ${writeInformationOrder("name", item.madonhang)}
+                        ${writeInformationOrder("name", item.madonhang, dataOrder)}
                     </div>
                 </td>
                 <td>
                     <div class="information-container">
-                        ${writeInformationOrder("user", item.madonhang)}
+                        ${writeInformationOrder("user", item.madonhang, dataOrder)}
                     </div>
                 </td>
                 <td>
                     <div class="information-container">
-                        ${writeInformationOrder("amount", item.madonhang)}
+                        ${writeInformationOrder("amount", item.madonhang, dataOrder)}
                     </div>
                 </td>
                 <td>
                     <div class="information-container">
-                        ${writeInformationOrder("price", item.madonhang)}
+                        ${writeInformationOrder("price", item.madonhang, dataOrder)}
                     </div>
                 </td>
                 <td>
@@ -399,11 +414,21 @@ function loadOrder(){
                     <span>${item.ngaydat}</span>
                 </td>
                 <td>
-                    <button class="btn btn-edit" onclick="confirmOrder(this)">Cập nhật</button>
-                    <button class="btn btn-delete" onclick="cancelOrder(this)">Hủy</button>
+                    <button class="btn btn-edit" onclick="confirmOrder('${item.madonhang}')">Cập nhật</button>
+                    <button class="btn btn-delete" onclick="cancelOrder('${item.madonhang}')">Hủy</button>
                 </td>
             </tr>
         `;
+
+
+        // nếu có sp trong đơn hàng bị null
+        if (isNull){
+            isOneOrder = false;
+            lock = false;
+            dataOrder = removeOrder(orderNull, dataOrder);
+            i--;
+            continue;
+        }
 
         //  Tạo thẻ tr
         const htmlObject = document.createElement('tr');
@@ -427,7 +452,7 @@ function setProductStatus(status, ordercode){
         saveOrderDataForUser(orderlist[i]);
 
         // Tăng số lượng bán ra của sản phẩm
-        increaseProductSoldAmount(orderlist[i].sp.masp, orderlist[i].soluong);
+        if (status == "Đã duyệt") increaseProductSoldAmount(orderlist[i].sp.masp, orderlist[i].soluong);
 
         // Xóa khỏi orderlist
         orderlist.splice(i, 1);
@@ -438,40 +463,25 @@ function setProductStatus(status, ordercode){
 }
 
 // Hủy đơn hàng
-function cancelOrder(element){
+function cancelOrder(madonhang){
     //  Xác nhận hủy
     if (!confirm("Bạn có chắc chắn muốn hủy đơn hàng này?")) return;
 
-    //  Hủy đơn hàng
-    let orderlist = document.getElementById("order-list");
-    let data = getOrderData();
-    let index = element.parentNode.parentNode.rowIndex - 1;
 
     // Cập nhật lại tình trạng đơn hàng
     // Nếu có nhiều sản phẩm trong 1 đơn, lúc này ta sẽ lấy 1 sản phẩm để lấy mã đơn hàng từ nó
     // Từ đó ta sẽ tìm trong list_order để set tình trạng của các sản phẩm có mã đơn hàng tương ứng
-    setProductStatus("Đã hủy bởi Admin", data[index].madonhang);
-
-    // Xóa đơn hàng sau khi chọn
-    orderlist.deleteRow(index);
+    setProductStatus("Đã hủy bởi Admin", madonhang);
 
     //  Lưu lại dữ liệu
     loadOrder();
 }
 
 // Duyệt đơn hàng
-function confirmOrder(element){
-    //  Duyệt đơn hàng
-    let orderlist = document.getElementById("order-list");
-    let data = getOrderData();
-    let index = element.parentNode.parentNode.rowIndex - 1;
-
+function confirmOrder(madonhang){
     // Cập nhật lại tình trạng đơn hàng
     // Tương tự với xóa đơn hàng
-    setProductStatus("Đã duyệt", data[index].madonhang);
-
-    // Xóa đơn hàng sau khi chọn
-    orderlist.deleteRow(index);
+    setProductStatus("Đã duyệt", madonhang);
 
     //  Lưu lại dữ liệu
     loadOrder();
