@@ -54,11 +54,9 @@ function updateListUser(u, newData) {
 }
 
 function logIn(form) {
-    // get dữ liệu từ form
     var name = form.username.value;
     var pass = form.pass.value;
     var newUser = new User(name, pass);
-
     // lấy dữ liệu list User in localStorage
     var listUser = getListUser();
 
@@ -92,6 +90,7 @@ function logIn(form) {
 
 
 function signUp(form){
+
     var ho = form.ho.value;
     var ten = form.ten.value;
     var email = form.email.value;
