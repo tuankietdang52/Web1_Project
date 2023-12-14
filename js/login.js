@@ -54,7 +54,6 @@ function updateListUser(u, newData) {
 }
 
 function logIn(form) {
-
     var name = form.username.value;
     var pass = form.pass.value;
     var newUser = new User(name, pass);
